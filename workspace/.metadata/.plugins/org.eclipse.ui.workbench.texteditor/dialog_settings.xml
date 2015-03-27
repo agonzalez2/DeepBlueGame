@@ -2,9 +2,9 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="432" key="DIALOG_Y_ORIGIN"/>
+		<item value="572" key="DIALOG_Y_ORIGIN"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="971" key="DIALOG_X_ORIGIN"/>
+		<item value="1012" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,18 +13,22 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="setThread" key="selection"/>
+		<item value="healthLabel" key="selection"/>
 		<list key="findhistory">
-			<item value="setThread"/>
-			<item value="imageArray"/>
-			<item value="14"/>
-			<item value="system.out"/>
-			<item value="IMAGE:"/>
-			<item value="IMAGE"/>
-			<item value="controlling"/>
-			<item value="client controlling"/>
+			<item value="healthLabel"/>
+			<item value="health"/>
+			<item value="HEALTH"/>
+			<item value="qty"/>
+			<item value="quantity"/>
+			<item value="wunaitty"/>
+			<item value="font"/>
+			<item value="choice"/>
 		</list>
 		<list key="replacehistory">
+			<item value="userSubmitButton"/>
+			<item value="userInputArea"/>
+			<item value="eastPanel"/>
+			<item value="southPanel"/>
 			<item value="ClientUpdater"/>
 			<item value="trackPanel"/>
 			<item value="sliderPanel"/>
