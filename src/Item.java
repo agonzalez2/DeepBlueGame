@@ -5,11 +5,10 @@
  */
 public class Item 
 {
-	protected String itemDescription;
-	protected int itemID;
-	protected String[] possibleInfo;
-	
-	
+	private String itemDescription;
+	private int itemID;
+	private Action[] possibleActions;
+	private String[] possibleInfo;
 	
 	public Item(String itemDescription, int itemID, String[] possibleInfo) 
 	{
@@ -32,4 +31,10 @@ public class Item
 	{
 		return itemID;
 	}
+	
+	public String getPossibleInfo(int index) 
+	{
+		return possibleInfo[index];
+	}
+	
 }
