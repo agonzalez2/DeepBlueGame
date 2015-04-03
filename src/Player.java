@@ -1,5 +1,3 @@
-package Battle;
-
 import java.util.ArrayList;
 
 //import Rooms.Item;
@@ -24,10 +22,14 @@ public class Player {
 
 //	private Rooms.Item[] inventory;
 
-	private Action[] actionArray;
-	
+	private Action[] actionArray = new Action[2];
 	private Action nextAction;
-
+	
+	private void popActionArray(){
+		actionArray[0] = Action.attack;
+		actionArray[1] = Action.defend;
+	}
+	
 	//paramatrized constructor allows for save/loading non-full health players
 	public Player(int health) {
 		this.health = health;
@@ -50,7 +52,14 @@ public class Player {
 
 	//All these actions are called by the monsterBattle class
 	public void performAction(Action nextAction) {
-		switch(nextAction){
+		if(nextAction.equals(actionArray[0]))
+		//processes defend command
+		if(nextAction.toString().equals(Action.defend.toString()))
+		{
+			
+		}
+		else switch(nextAction)
+		{
 		//Attack calls upon weapon's damage amount
 		case attack:
 		//Defends calls upon shield's defend amount
@@ -82,6 +91,10 @@ public class Player {
 	//Navigation 
 	public void moveToNext(int nextRoom) {
 //		setCurrentRoomID(nextRoom);
+	}
+	
+	public int getHealth(){
+		return health;
 	}
 
 	public void updateHealth(int num) {

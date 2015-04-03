@@ -1,7 +1,3 @@
-package Battle;
-
-//import Action;
-
 public class MonsterBattle {
 
 	private int currentMonsterID;
@@ -11,9 +7,12 @@ public class MonsterBattle {
 	private Action currentPlayerAction;
 
 	private Action currentMonsterAction;
+	
+	Player pTemp;
 
-	public MonsterBattle(Battle.Player player, Battle.Monster monster) {
-		
+	public MonsterBattle(Player player, Monster monster) {
+		pTemp = player;
+		currentMonsterID = monster.getMonsterID();
 	}
 
 	public void changeHealth(int playerHealthChange, int monsterHealthChange) {
@@ -33,9 +32,10 @@ public class MonsterBattle {
 	}
 
 	public String getResult() {
-		if()
-		return null;
+		if(pTemp.getHealth() == 0)
+			return "You have died!";
+		else
+			return "You win!";
 	}
 
 }
-
