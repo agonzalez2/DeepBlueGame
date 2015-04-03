@@ -3,24 +3,18 @@
  * @author Alexander
  *
  */
-public class Item 
+public abstract class Item
 {
 	private String itemDescription;
 	private int itemID;
-	private Action[] possibleActions;
-	private String[] possibleInfo;
 	
-	public Item(String itemDescription, int itemID, String[] possibleInfo) 
+	public Item(String itemDescription, int itemID) 
 	{
 		this.itemDescription = itemDescription;
 		this.itemID = itemID;
-		this.possibleInfo = possibleInfo;
 	}
 
-	public String use()
-	{
-		return possibleInfo[0];
-	}
+	public abstract String use();
 	
 	public String getDescription()
 	{
@@ -30,11 +24,6 @@ public class Item
 	public int getID()
 	{
 		return itemID;
-	}
-	
-	public String getPossibleInfo(int index) 
-	{
-		return possibleInfo[index];
 	}
 	
 }

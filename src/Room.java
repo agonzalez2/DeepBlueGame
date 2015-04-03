@@ -9,20 +9,36 @@ public class Room
 	private int monsterInRoomID;
 	private int puzzleInRoomID;
 	private boolean complete;
-
-	public void markRoomComplete() 
+	private int placeInObjects;
+	
+	
+	public Room(String roomDescription, Item[] objectsInRoom, int monsterInRoomID, int puzzleInRoomID)
 	{
-
+		RoomDescription = roomDescription;
+		this.objectsInRoom = objectsInRoom;
+		this.monsterInRoomID = monsterInRoomID;
+		this.puzzleInRoomID = puzzleInRoomID;
+		monster = (monsterInRoomID >= 0);
+		puzzle = (puzzleInRoomID >= 0);
+		complete = false;
 	}
 
+	private void markRoomComplete() 
+	{
+		complete = true;
+	}
+
+	//still in progress
 	public String investigate() 
 	{
+		
+		if (placeInObjects == objectsInRoom.length) markRoomComplete();
 		return null;
 	}
 
 	public String getRoomDescription() 
 	{
-		return null;
+		return RoomDescription;
 	}
 
 	public int getMonsterInRoom() 
@@ -30,20 +46,24 @@ public class Room
 		return monsterInRoomID;
 	}
 
-	public int getPuzzleInRoom() {
+	public int getPuzzleInRoom() 
+	{
 		return puzzleInRoomID;
 	}
 
-	public boolean hasMonster() {
+	public boolean hasMonster() 
+	{
 		return monster;
 	}
 
-	public boolean hasPuzzle() {
+	public boolean hasPuzzle() 
+	{
 		return puzzle;
 	}
 
-	public boolean isComplete() {
-		return false;
+	public boolean isComplete() 
+	{
+		return complete;
 	}
 
 }

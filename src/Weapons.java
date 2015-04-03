@@ -1,14 +1,16 @@
 
 public class Weapons extends Item 
 {
-	private String WeaponType;
-	private int DamageAmount;
+	private String weaponType;
+	private int damageAmount;
 	private int ammo;
 
-	public Weapons(String itemDescription, int itemID, String[] possibleInfo)
+	public Weapons(String itemDescription, int itemID, String type, int damage)
 	{
-		super(itemDescription, itemID, possibleInfo);
-		// TODO Auto-generated constructor stub
+		super(itemDescription, itemID);
+		ammo = 5;
+		damageAmount = damage;
+		weaponType = type;
 	}
 	
 	public String use() 
@@ -16,7 +18,7 @@ public class Weapons extends Item
 		return null;
 	}
 
-	public void reload() 
+	public void reload(AmmoPack magazine) 
 	{
 
 	}
