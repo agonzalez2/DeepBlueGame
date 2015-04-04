@@ -33,5 +33,10 @@ public class Weapons extends Item
 	{
 		ammo += Integer.parseInt(magazine.use());
 	}
+	
+	public int getDamage()
+	{
+		return damageAmount;
+	}
 
 }
