@@ -12,15 +12,26 @@ public class Weapons extends Item
 		damageAmount = damage;
 		weaponType = type;
 	}
-	
+
 	public String use() 
 	{
-		return null;
+		String info;
+		if (ammo > 0)
+		{
+			info = weaponType + " has been fired.";
+			ammo --;
+			info += " Remaining ammo: ";
+		}
+		else
+		{
+			info = weaponType + "is out of ammo. Reload now!";
+		}
+		return info;
 	}
 
 	public void reload(AmmoPack magazine) 
 	{
-
+		ammo += Integer.parseInt(magazine.use());
 	}
 
 }
