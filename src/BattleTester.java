@@ -1,5 +1,3 @@
-package Battle;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -43,7 +41,11 @@ public class BattleTester
 		monsterList[15] = m15;
 
 		MonsterBattle b = new MonsterBattle(p,m1);
-		
+		HealthPack hp1 = new HealthPack();
+		Weapon w1 = new Weapon();
+		Weapon w2 = new Weapon();
+		Shield s1 = new Shield("",1,);
+		p.addToInventory();
 		
 	}
 

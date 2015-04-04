@@ -1,7 +1,3 @@
-package Battle;
-
-//import Action;
-
 public class Monster {
 
 	private String monsterDesc;
