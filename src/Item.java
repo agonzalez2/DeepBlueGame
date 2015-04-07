@@ -3,10 +3,10 @@
  * @author Alexander
  *
  */
-public abstract class Item
+public class Item //CHANGED FROM ABSTRACT
 {
 	private String itemDescription;
-	private int itemID;
+	private int itemID; //(pistolAmmo, stunAmmo, healthPak, scubaPart) = (1, 2, 3, 4)
 	
 	public Item(String itemDescription, int itemID) 
 	{
@@ -14,7 +14,7 @@ public abstract class Item
 		this.itemID = itemID;
 	}
 
-	public abstract String use();
+	//public abstract String use();
 	
 	public String getDescription()
 	{

@@ -30,6 +30,11 @@ public class Monster {
 	public String getDesc() {
 		return monsterDesc;
 	}
+	
+	public String  getName()
+	{
+		return name;
+	}
 
 	public int getHealth() {
 		return health;

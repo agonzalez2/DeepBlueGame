@@ -18,7 +18,7 @@ public class Player {
 
 	private int health;
 	
-	private ArrayList<Item> inventory;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
 
 //	private Rooms.Item[] inventory;
 
@@ -70,11 +70,54 @@ public class Player {
 	//Adds an item to inventory when player obtains an item
 	public void addToInventory(Item itemToAdd) {
 		inventory.add(itemToAdd);
+		
+		if(itemToAdd.getID() == 1)
+		{
+			UserInterface.updateInventory(1, 1);
+		}
+		
+		if(itemToAdd.getID() == 2)
+		{
+			UserInterface.updateInventory(2, 1);
+		}
+		
+		if(itemToAdd.getID() == 3)
+		{
+			UserInterface.updateInventory(3, 1);
+		}
+		
+		if(itemToAdd.getID() == 4)
+		{
+			UserInterface.updateInventory(4, 1);
+		}
 	}
 	
 	//Removes an item from inventory by player request or item use
-	public String removeFromInventory(Item itemToRemove) {
+	public String removeFromInventory(Item itemToRemove) 
+	{
 		inventory.remove(inventory.indexOf(itemToRemove));
+		
+		if(itemToRemove.getID() == 1)
+		{
+			UserInterface.updateInventory(1, -1);
+		}
+		
+		if(itemToRemove.getID() == 2)
+		{
+			UserInterface.updateInventory(2, -1);
+		}
+		
+		if(itemToRemove.getID() == 3)
+		{
+			UserInterface.updateInventory(3, -1);
+		}
+		
+		if(itemToRemove.getID() == 4)
+		{
+			UserInterface.updateInventory(4, -1);
+		}
+		
+		
 		return itemToRemove.toString() + "Has been removed!";
 	}
 	

@@ -1,25 +1,15 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 
 public class UserInterface 
@@ -51,7 +41,7 @@ public class UserInterface
 	//TEXTAREA
 	private static JTextArea userInputArea = new JTextArea();
 	private static JTextArea gameTextArea = new JTextArea("Welcome to Deep Blue! Navigate to File > New Game"
-			+ " to begin a new game - Or load a previous game to continue your progress!");
+			+ " to begin a new game - Or load a previous game to continue your progress!" + '\n');
 	
 	//LABELS
 	private static JLabel userInputLabel = new JLabel("USER INPUT:");
@@ -65,10 +55,14 @@ public class UserInterface
 	private static JLabel choiceLabel2 = new JLabel("Text description of B");
 	private static JLabel choiceLabel3 = new JLabel("Text description of C");
 	private static JLabel choiceLabel4 = new JLabel("Text description of D");
-	private static JLabel quantityLabel1 = new JLabel("QTY.  1");
-	private static JLabel quantityLabel2 = new JLabel("QTY.  2");
-	private static JLabel quantityLabel3 = new JLabel("QTY.  3");
-	private static JLabel quantityLabel4 = new JLabel("QTY.  4");
+	private static int quantityValue1 = 0;
+	private static int quantityValue2 = 0;
+	private static int quantityValue3 = 0;
+	private static int quantityValue4 = 0;
+	private static JLabel quantityLabel1 = new JLabel("QTY.  " + quantityValue1);
+	private static JLabel quantityLabel2 = new JLabel("QTY.  " + quantityValue2);
+	private static JLabel quantityLabel3 = new JLabel("QTY.  " + quantityValue3);
+	private static JLabel quantityLabel4 = new JLabel("QTY.  " + quantityValue4);
 	
 	//Health / Inventory Components
 	private static ImageIcon[] inventoryArray = new ImageIcon[4];
@@ -83,7 +77,7 @@ public class UserInterface
 		frame.setLayout(new BorderLayout());
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 
 		//Set COMPONENT Layouts and COLORS
 		centerPanel.setLayout(new BorderLayout());
@@ -217,6 +211,16 @@ public class UserInterface
 		
 		
 		//ACTION LISTENERS
+		newGame.addActionListener(new ActionListener() {
+	       	 
+            public void actionPerformed(ActionEvent e)
+            {
+            	String[] args = {};
+            	CreateGame.main(args);
+            }
+        }); 
+		
+		
 		quit.addActionListener(new ActionListener() {
 	       	 
             public void actionPerformed(ActionEvent e)
@@ -246,6 +250,25 @@ public class UserInterface
             public void actionPerformed(ActionEvent e)
             {
             	String input = userInputArea.getText();
+            	
+            	if(isInteger(input))
+            	{
+            		Game.setCurrentRoom(Integer.parseInt(input));
+                	setGameTextArea(Game.roomArray[Game.currentRoomID].getRoomDescription());
+                	
+                	if(Game.roomArray[Game.currentRoomID].hasMonster())
+                	{
+                		int monsterInRoom = Game.roomArray[Game.currentRoomID].getMonsterInRoom();
+                		String monstName = Game.monsterArray[monsterInRoom].getName();
+                		setGameTextArea("MONSTER IN ROOM! " + monstName);
+                	}
+            	}
+            	
+            	if(input.equals("investigate"))
+    			{
+            		setGameTextArea(Game.roomArray[Game.currentRoomID].investigate());
+    			}
+            		
                 System.out.println("User Input " + input + " Submitted.");
                 userInputArea.setText(null);
      
@@ -259,7 +282,7 @@ public class UserInterface
 	
 	public static void main(String Args[])
 	{
-		//READ IN SPEED and DIRECTION IMAGES
+		//READ IN HEALTH and INVENTORY IMAGES
 		try {
 			
 			for(int i = 0; i < inventoryArray.length; i++)
@@ -291,11 +314,57 @@ public class UserInterface
 		
 		healthPic.setIcon(healthArray[0]); //SETS FULL HEALTH INITIALLY
 
-		UserInterface client = new UserInterface();
+		new UserInterface();
 
 	}
 
+	public boolean isInteger( String input )
+	{
+	   try
+	   {
+	      Integer.parseInt( input );
+	      return true;
+	   }
+	   catch(Exception e)
+	   {
+	      return false;
+	   }
+	}
 	
+	public static void updateInventory(int itemType, int updateValue)
+	{
+		if(itemType == 1)
+		{
+			int current = quantityValue1;
+			int newValue = current + updateValue;
+			quantityLabel1.setText("QTY.   " + newValue);
+			quantityValue1 = newValue;
+		}
+		
+		if(itemType == 2)
+		{
+			int current = quantityValue2;
+			int newValue = current + updateValue;
+			quantityLabel2.setText("QTY.   " + newValue);
+			quantityValue2 = newValue;
+		}
+		
+		if(itemType == 3)
+		{
+			int current = quantityValue3;
+			int newValue = current + updateValue;
+			quantityLabel3.setText("QTY.   " + newValue);
+			quantityValue3 = newValue;
+		}
+		
+		if(itemType == 4)
+		{
+			int current = quantityValue4;
+			int newValue = current + updateValue;
+			quantityLabel4.setText("QTY.   " + newValue);
+			quantityValue4 = newValue;
+		}
+	}
 	
 	public static void setHealthPic(int healthNumber)
 	{
@@ -305,7 +374,7 @@ public class UserInterface
 	
 	public static void setGameTextArea(String s)
 	{
-	    gameTextArea.append(s + '\n');
+	    gameTextArea.append('\n' + s + '\n');
 		gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
 	}
 	
