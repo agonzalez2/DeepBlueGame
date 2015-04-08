@@ -11,7 +11,6 @@ public class Room
 	private int monsterInRoomID;
 	private int puzzleInRoomID;
 	private boolean complete = false;
-	private int placeInObjects = 0;
 
 
 	public Room(String roomDescription, ArrayList<Item> objectsInRoom, int monsterInRoomID, int puzzleInRoomID)
@@ -29,22 +28,21 @@ public class Room
 		complete = true;
 	}
 
-	//still in progress
+	//change to utilize functions given by having arraylist as items in room
 	public String investigate() 
 	{
 		String info;
-		if (placeInObjects == objectsInRoom.size()) 
+		if (objectsInRoom.size() == 0) 
 		{
 			info = "The room is empty.";
 			markRoomComplete();
 		}
 		else
 		{
-			Item roomObject = objectsInRoom.get(placeInObjects);
+			Item roomObject = objectsInRoom.remove(0);
 			info = "The room contained " + roomObject.getDescription();
 			Game.currentPlayer.addToInventory(roomObject);
 			info += ", it has been added to your inventory.";
-			placeInObjects++;
 		}
 		return info;
 	}

@@ -4,9 +4,9 @@ public class Shield extends Item
 	private String shieldType;
 	private int defendAmount;
 	
-	public Shield(String itemDescription, int itemID, String[] possibleInfo)
+	public Shield(String itemDescription, int itemID)
 	{
-		super(itemDescription, itemID, possibleInfo);
+		super(itemDescription, itemID);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -13,7 +13,7 @@ public class AmmoPack extends Item
 
 	public String use() 
 	{
-		//Game.player.removeFromInventory(this);
+		Game.currentPlayer.removeFromInventory(this);
 		return "" + ammoAmmount;
 	}
 

@@ -1,11 +1,11 @@
 
-public class Weapons extends Item 
+public class Weapon extends Item 
 {
 	private String weaponType;
 	private int damageAmount;
 	private int ammo;
 
-	public Weapons(String itemDescription, int itemID, String type, int damage)
+	public Weapon(String itemDescription, int itemID, String type, int damage)
 	{
 		super(itemDescription, itemID);
 		ammo = 5;
