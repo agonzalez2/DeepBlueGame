@@ -211,7 +211,8 @@ public class UserInterface
 		
 		
 		//ACTION LISTENERS
-		newGame.addActionListener(new ActionListener() {
+		newGame.addActionListener(new ActionListener() 
+		{
 	       	 
             public void actionPerformed(ActionEvent e)
             {
@@ -221,7 +222,8 @@ public class UserInterface
         }); 
 		
 		
-		quit.addActionListener(new ActionListener() {
+		quit.addActionListener(new ActionListener() 
+		{
 	       	 
             public void actionPerformed(ActionEvent e)
             {
@@ -229,7 +231,8 @@ public class UserInterface
             }
         }); 
 		
-		about.addActionListener(new ActionListener() {
+		about.addActionListener(new ActionListener() 
+		{
 	       	 
             public void actionPerformed(ActionEvent e)
             {
@@ -245,7 +248,8 @@ public class UserInterface
         }); 
 		
 		
-		userSubmitButton.addActionListener(new ActionListener() {
+		userSubmitButton.addActionListener(new ActionListener() 
+		{
 	       	 
             public void actionPerformed(ActionEvent e)
             {
@@ -253,12 +257,12 @@ public class UserInterface
             	
             	if(isInteger(input))
             	{
-            		Game.setCurrentRoom(Integer.parseInt(input));
-                	setGameTextArea(Game.roomArray[Game.currentRoomID].getRoomDescription());
+            		Game.getInstance().setCurrentRoom(Integer.parseInt(input));
+                	setGameTextArea(Game.roomArray[Game.getInstance().currentRoomID].getRoomDescription());
                 	
-                	if(Game.roomArray[Game.currentRoomID].hasMonster())
+                	if(Game.roomArray[Game.getInstance().currentRoomID].hasMonster())
                 	{
-                		int monsterInRoom = Game.roomArray[Game.currentRoomID].getMonsterInRoom();
+                		int monsterInRoom = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom();
                 		String monstName = Game.monsterArray[monsterInRoom].getName();
                 		setGameTextArea("MONSTER IN ROOM! " + monstName);
                 	}
@@ -266,7 +270,7 @@ public class UserInterface
             	
             	if(input.equals("investigate"))
     			{
-            		setGameTextArea(Game.roomArray[Game.currentRoomID].investigate());
+            		setGameTextArea(Game.roomArray[Game.getInstance().currentRoomID].investigate());
     			}
             		
                 System.out.println("User Input " + input + " Submitted.");

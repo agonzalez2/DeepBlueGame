@@ -1,18 +1,20 @@
 
 public class Game
 {
-	//Public Game-Object Data Structures
-	public static Room[] roomArray = new Room[30];
-	public static Monster[] monsterArray = new Monster[10]; 
-	public static Puzzle[] puzzleArray = new Puzzle[10]; 
+	private static Game instance;
 	
-	public static Player currentPlayer;
+	//Public Game-Object Data Structures
+	public static Room[] roomArray;
+	public static Monster[] monsterArray; 
+	public static Puzzle[] puzzleArray; 
+	
+	public Player currentPlayer;
 	private int GameSave = 0;
 	private int GameID = 0;
 	public int scubaPartCount = 0;
-	public static int currentRoomID = 0;
+	public int currentRoomID = 0;
 	
-	public Game(Room[] r, Monster[] m, Puzzle[] p)
+	protected Game(Room[] r, Monster[] m, Puzzle[] p)
 	{
 		roomArray = r;
 		monsterArray = m;
@@ -32,7 +34,7 @@ public class Game
 		
 	}
 	
-	public static void setCurrentRoom(int roomNum)
+	public void setCurrentRoom(int roomNum)
 	{
 		currentRoomID = roomNum;
 	}
@@ -47,4 +49,12 @@ public class Game
 		
 	}
 	
+	public static Game getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new Game(roomArray, monsterArray, puzzleArray);
+		}
+		return instance;
+	}
 }

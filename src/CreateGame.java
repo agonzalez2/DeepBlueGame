@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class CreateGame 
 {
+	
 	public static Room[] tempRoomArray = new Room[30];
 	public static Monster[] tempMonsterArray = new Monster[10];
 	public static Puzzle[] tempPuzzleArray = new Puzzle[10];
@@ -55,10 +56,10 @@ public class CreateGame
 	public static void generateItems()
 	{
 		//initialize the item types into an array for retrieval
-		itemTypeArray[0] = new Item("Pistol Ammo", 1);
-		itemTypeArray[1] = new Item("Stun Ammo", 2);
-		itemTypeArray[2] = new Item("Health Pak", 3);
-		itemTypeArray[3] = new Item("Scuba Part", 4);
+		itemTypeArray[0] = new AmmoPack("Pistol Ammo", 1,10);
+		itemTypeArray[1] = new AmmoPack("Stun Ammo", 2,5);
+		itemTypeArray[2] = new HealthPack("Health Pak", 3, 2);
+		itemTypeArray[3] = new ScubaGear("Scuba Part", 4);
 	}
 	
 	public static void generateRooms()
@@ -188,7 +189,7 @@ public class CreateGame
 		
 		Game test = new Game(tempRoomArray, tempMonsterArray, tempPuzzleArray);
 		Player p = new Player(100);
-		Game.currentPlayer = p;
+		Game.getInstance().currentPlayer = p;
 		
 		//add 10 pistol ammo
 		for(int i = 0; i < 10; i++)

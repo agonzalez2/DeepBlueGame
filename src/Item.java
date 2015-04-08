@@ -3,7 +3,7 @@
  * @author Alexander
  *
  */
-public class Item //CHANGED FROM ABSTRACT
+public abstract class Item //CHANGED BACK TO ABSTRACT A.G. 4/8/15
 {
 	private String itemDescription;
 	private int itemID; //(pistolAmmo, stunAmmo, healthPak, scubaPart) = (1, 2, 3, 4)
@@ -14,7 +14,7 @@ public class Item //CHANGED FROM ABSTRACT
 		this.itemID = itemID;
 	}
 
-	//public abstract String use();
+	public abstract String use();
 	
 	public String getDescription()
 	{

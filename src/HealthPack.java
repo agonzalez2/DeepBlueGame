@@ -7,10 +7,10 @@ public class HealthPack extends Item
 {
 	private int healAmount;
 
-	public HealthPack(String itemDescription, int itemID)
+	public HealthPack(String itemDescription, int itemID, int health)
 	{
 		super(itemDescription, itemID);
-		// TODO Auto-generated constructor stub
+		healAmount = health;
 	}
 
 	public String use() 
