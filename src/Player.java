@@ -13,12 +13,22 @@ import java.util.ArrayList;
  * changed removeFromInventory parameter from int to Item and changed to String
  * changed getInventory return type from item[] to String because of toString of inventory
  * 
+<<<<<<< HEAD
  */
 public class Player {
 
 	private int health;
 
 	private ArrayList<Item> inventory = new ArrayList<Item>();
+=======
+*/
+public class Player
+{
+
+	private int health;
+	
+	private ArrayList<Item> inventory;
+>>>>>>> origin/master
 
 	//	private Rooms.Item[] inventory;
 
@@ -36,8 +46,13 @@ public class Player {
 	{
 		this.health = health;
 	}
+<<<<<<< HEAD
 
 	//default constructor
+=======
+	
+	//default constructor of new player
+>>>>>>> origin/master
 	public Player() 
 	{
 		this.health = 100;
@@ -48,15 +63,20 @@ public class Player {
 	{
 		return nextAction;
 	}
+<<<<<<< HEAD
 
 	//
+=======
+	
+	//stores user's current command
+>>>>>>> origin/master
 	public void setNextAction(Action nextAction)
 	{
 		this.nextAction = nextAction;
 	}
 
 	//All these actions are called by the monsterBattle class
-	public void performAction(Action nextAction) 
+	public void performAction(Action nextAction)
 	{
 		if(nextAction.equals(actionArray[0]))
 			//processes defend command
@@ -77,6 +97,7 @@ public class Player {
 	public void addToInventory(Item itemToAdd) 
 	{
 		inventory.add(itemToAdd);
+<<<<<<< HEAD
 
 		if(itemToAdd instanceof AmmoPack)
 		{
@@ -98,12 +119,15 @@ public class Player {
 		{
 			UserInterface.updateInventory(4, 1);
 		}
+=======
+>>>>>>> origin/master
 	}
 
 	//Removes an item from inventory by player request or item use
 	public String removeFromInventory(Item itemToRemove) 
 	{
 		inventory.remove(inventory.indexOf(itemToRemove));
+<<<<<<< HEAD
 
 		if(itemToRemove.getID() == 1)
 		{
@@ -126,6 +150,8 @@ public class Player {
 		}
 
 
+=======
+>>>>>>> origin/master
 		return itemToRemove.toString() + "Has been removed!";
 	}
 
@@ -136,7 +162,7 @@ public class Player {
 	}
 
 	//Ask Alexander about item use
-	public String useItem(int itemPosition) 
+	public String useItem(int itemPosition)
 	{
 		return null;
 	}
@@ -146,8 +172,14 @@ public class Player {
 	{
 		//		setCurrentRoomID(nextRoom);
 	}
+<<<<<<< HEAD
 
 	public int getHealth(){
+=======
+	
+	public int getHealth()
+	{
+>>>>>>> origin/master
 		return health;
 	}
 
