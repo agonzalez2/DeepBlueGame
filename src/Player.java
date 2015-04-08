@@ -14,7 +14,8 @@ import java.util.ArrayList;
  * changed getInventory return type from item[] to String because of toString of inventory
  * 
 */
-public class Player {
+public class Player
+{
 
 	private int health;
 	
@@ -25,33 +26,39 @@ public class Player {
 	private Action[] actionArray = new Action[2];
 	private Action nextAction;
 	
-	private void popActionArray(){
+	private void popActionArray()
+	{
 		actionArray[0] = Action.attack;
 		actionArray[1] = Action.defend;
 	}
 	
 	//paramatrized constructor allows for save/loading non-full health players
-	public Player(int health) {
+	public Player(int health) 
+	{
 		this.health = health;
 	}
 	
-	//default constructor
-	public Player() {
+	//default constructor of new player
+	public Player() 
+	{
 		this.health = 100;
 	}
 	
 	//stores player's current action
-	public Action getNextAction(){
+	public Action getNextAction()
+	{
 		return nextAction;
 	}
 	
-	//
-	public void setNextAction(Action nextAction){
+	//stores user's current command
+	public void setNextAction(Action nextAction)
+	{
 		this.nextAction = nextAction;
 	}
 
 	//All these actions are called by the monsterBattle class
-	public void performAction(Action nextAction) {
+	public void performAction(Action nextAction)
+	{
 		if(nextAction.equals(actionArray[0]))
 		//processes defend command
 		if(nextAction.toString().equals(Action.defend.toString()))
@@ -68,36 +75,43 @@ public class Player {
 	}
 	
 	//Adds an item to inventory when player obtains an item
-	public void addToInventory(Item itemToAdd) {
+	public void addToInventory(Item itemToAdd) 
+	{
 		inventory.add(itemToAdd);
 	}
 	
 	//Removes an item from inventory by player request or item use
-	public String removeFromInventory(Item itemToRemove) {
+	public String removeFromInventory(Item itemToRemove) 
+	{
 		inventory.remove(inventory.indexOf(itemToRemove));
 		return itemToRemove.toString() + "Has been removed!";
 	}
 	
 	//Returns a list of items inside of the player's inventory
-	public String getInventory() {
+	public String getInventory() 
+	{
 		return inventory.toString();
 	}
 
 	//Ask Alexander about item use
-	public String useItem(int itemPosition) {
+	public String useItem(int itemPosition)
+	{
 		return null;
 	}
 	
 	//Navigation 
-	public void moveToNext(int nextRoom) {
+	public void moveToNext(int nextRoom) 
+	{
 //		setCurrentRoomID(nextRoom);
 	}
 	
-	public int getHealth(){
+	public int getHealth()
+	{
 		return health;
 	}
 
-	public void updateHealth(int num) {
+	public void updateHealth(int num) 
+	{
 		health += num;
 	}
 }

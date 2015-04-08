@@ -3,14 +3,21 @@ import java.util.Scanner;
 
 public class BattleTester
 {
+	public void startTest(){
+		//Constructors
+		Player p1 = new Player();
+		Player p2 = new Player(50);
+	}
 	public static  void main(String args[])
 	{
 		
 		Monster[] monsterList = new Monster[15];
 		Player p = new Player();
-		Monster m1 = new Monster(1,"Sea Turtle", "Angry spiky-shelled monster", 100);		
-		Monster m2 = new Monster(2,"Man-Shark", "", 100);		
-		Monster m3 = new Monster(3,"Jaws", "", 100);		
+		
+		//return mTemp.getName() + " is " + mTemp.getDesc() + 
+		Monster m1 = new Monster(1,"Sea Tortoise", "an angry spiky-shelled tortoise", 100);		
+		Monster m2 = new Monster(2,"Man-Shark", "a chimera with a human body and a shark head", 100);		
+		Monster m3 = new Monster(3,"Jaws", "the famous 25-foot shark with an appalling appetite for human flesh", 100);		
 		Monster m4 = new Monster(4,"Zoidberg", "", 100);		
 		Monster m5 = new Monster(5,"Giant Jellyfish", "", 100);		
 		Monster m6 = new Monster(6,"Sea Serpent", "", 100);		
@@ -39,13 +46,14 @@ public class BattleTester
 		monsterList[13] = m13;
 		monsterList[14] = m14;
 		monsterList[15] = m15;
-
+		
+		
 		MonsterBattle b = new MonsterBattle(p,m1);
 		HealthPack hp1 = new HealthPack();
 		Weapon w1 = new Weapon();
 		Weapon w2 = new Weapon();
 		Shield s1 = new Shield("",1,);
-		p.addToInventory();
+		p.addToInventory(hp1);
 		
 	}
 
