@@ -1,4 +1,5 @@
-public enum Action {
+public enum Action
+{
 	/*help, start, load, save, quit,
 	inventory, i, invt, use,
 	move, walk, go, 
@@ -9,9 +10,11 @@ public enum Action {
 	move(),
 	open_inventory(),
 	attack(),
+	attack_gun(),
+	attack_stun(),
 	defend(),
 	use(),
-	reload_stungun(),
+	reload_stun(),
 	reload_pistol();
 	
 }

@@ -14,11 +14,12 @@ import java.util.ArrayList;
  * changed getInventory return type from item[] to String because of toString of inventory
  * 
 */
-public class Player {
+public class Player
+{
 
 	private int health;
 	
-	private ArrayList<Item> inventory = new ArrayList<Item>();
+	private ArrayList<Item> inventory;
 
 //	private Rooms.Item[] inventory;
 
@@ -37,7 +38,7 @@ public class Player {
 		this.health = health;
 	}
 	
-	//default constructor
+	//default constructor of new player
 	public Player() 
 	{
 		this.health = 100;
@@ -49,14 +50,14 @@ public class Player {
 		return nextAction;
 	}
 	
-	//
+	//stores user's current command
 	public void setNextAction(Action nextAction)
 	{
 		this.nextAction = nextAction;
 	}
 
 	//All these actions are called by the monsterBattle class
-	public void performAction(Action nextAction) 
+	public void performAction(Action nextAction)
 	{
 		if(nextAction.equals(actionArray[0]))
 		//processes defend command
@@ -77,54 +78,12 @@ public class Player {
 	public void addToInventory(Item itemToAdd) 
 	{
 		inventory.add(itemToAdd);
-		
-		if(itemToAdd.getID() == 1)
-		{
-			UserInterface.updateInventory(1, 1);
-		}
-		
-		if(itemToAdd.getID() == 2)
-		{
-			UserInterface.updateInventory(2, 1);
-		}
-		
-		if(itemToAdd.getID() == 3)
-		{
-			UserInterface.updateInventory(3, 1);
-		}
-		
-		if(itemToAdd.getID() == 4)
-		{
-			UserInterface.updateInventory(4, 1);
-		}
 	}
 	
 	//Removes an item from inventory by player request or item use
 	public String removeFromInventory(Item itemToRemove) 
 	{
 		inventory.remove(inventory.indexOf(itemToRemove));
-		
-		if(itemToRemove.getID() == 1)
-		{
-			UserInterface.updateInventory(1, -1);
-		}
-		
-		if(itemToRemove.getID() == 2)
-		{
-			UserInterface.updateInventory(2, -1);
-		}
-		
-		if(itemToRemove.getID() == 3)
-		{
-			UserInterface.updateInventory(3, -1);
-		}
-		
-		if(itemToRemove.getID() == 4)
-		{
-			UserInterface.updateInventory(4, -1);
-		}
-		
-		
 		return itemToRemove.toString() + "Has been removed!";
 	}
 	
@@ -135,7 +94,7 @@ public class Player {
 	}
 
 	//Ask Alexander about item use
-	public String useItem(int itemPosition) 
+	public String useItem(int itemPosition)
 	{
 		return null;
 	}
@@ -146,7 +105,8 @@ public class Player {
 //		setCurrentRoomID(nextRoom);
 	}
 	
-	public int getHealth(){
+	public int getHealth()
+	{
 		return health;
 	}
 

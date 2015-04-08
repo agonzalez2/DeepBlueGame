@@ -1,47 +1,58 @@
-public class Monster {
+import java.util.ArrayList;
 
-	private String monsterDesc;
-
+public class Monster
+{
 	private Action[] actionSequence;
-
 	private int monsterID;
-
+	private String name;
+	private String monsterDesc;
 	private int health;
-
 	private int nextAction;
 
-	private String name;
 
-	public Monster(int monsterID, String name,String monsterDesc, int health) {
-		this.monsterDesc = monsterDesc;
+	public Monster(int monsterID, String name,String monsterDesc, int health) 
+	{
 		this.monsterID = monsterID;
-		this.health = health;
 		this.name = name;
-	}
-
-	public Action performAction() {
-		return null;
-	}
-
-	public int getMonsterID() {
-		return monsterID;
-	}
-
-	public String getDesc() {
-		return monsterDesc;
+		this.monsterDesc = monsterDesc;
+		this.health = health;
+		nextAction = 0;
 	}
 	
-	public String  getName()
+	public int getMonsterID() 
 	{
+		return monsterID;
+	}
+	
+	public String getName(){
 		return name;
 	}
 
-	public int getHealth() {
+	public String getDesc()
+	{
+		return monsterDesc;
+	}
+
+	public int getHealth() 
+	{
 		return health;
 	}
 
-	public void decreaseHealth(int amount) {
+	public void updateHealth(int amount) 
+	{
 		health -= amount;
 	}
 
+	public Action getNextAction()
+	{
+		nextAction++;
+		return actionSequence[nextAction];
+	}
+
+	public Action performAction()
+	{
+		return null;
+	}
+
+	
 }
