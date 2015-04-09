@@ -13,32 +13,20 @@ import java.util.ArrayList;
  * changed removeFromInventory parameter from int to Item and changed to String
  * changed getInventory return type from item[] to String because of toString of inventory
  * 
-<<<<<<< HEAD
+
  */
-public class Player {
+public class Player 
+{
 
 	private int health;
 
 	private ArrayList<Item> inventory = new ArrayList<Item>();
-=======
-*/
-public class Player
-{
-
-	private int health;
-	
-	private ArrayList<Item> inventory;
->>>>>>> origin/master
-
-	//	private Rooms.Item[] inventory;
-
 	private Action[] actionArray = new Action[2];
 	private Action nextAction;
 
-	private void popActionArray()
+	public Player() 
 	{
-		actionArray[0] = Action.attack;
-		actionArray[1] = Action.defend;
+		this.health = 100;
 	}
 
 	//paramatrized constructor allows for save/loading non-full health players
@@ -46,16 +34,11 @@ public class Player
 	{
 		this.health = health;
 	}
-<<<<<<< HEAD
 
-	//default constructor
-=======
-	
-	//default constructor of new player
->>>>>>> origin/master
-	public Player() 
+	private void popActionArray()
 	{
-		this.health = 100;
+		actionArray[0] = Action.attack;
+		actionArray[1] = Action.defend;
 	}
 
 	//stores player's current action
@@ -63,13 +46,7 @@ public class Player
 	{
 		return nextAction;
 	}
-<<<<<<< HEAD
 
-	//
-=======
-	
-	//stores user's current command
->>>>>>> origin/master
 	public void setNextAction(Action nextAction)
 	{
 		this.nextAction = nextAction;
@@ -97,8 +74,6 @@ public class Player
 	public void addToInventory(Item itemToAdd) 
 	{
 		inventory.add(itemToAdd);
-<<<<<<< HEAD
-
 		if(itemToAdd instanceof AmmoPack)
 		{
 			if (itemToAdd.getDescription().equalsIgnoreCase("stun ammo"))
@@ -119,15 +94,13 @@ public class Player
 		{
 			UserInterface.updateInventory(4, 1);
 		}
-=======
->>>>>>> origin/master
+
 	}
 
 	//Removes an item from inventory by player request or item use
 	public String removeFromInventory(Item itemToRemove) 
 	{
 		inventory.remove(inventory.indexOf(itemToRemove));
-<<<<<<< HEAD
 
 		if(itemToRemove.getID() == 1)
 		{
@@ -149,9 +122,6 @@ public class Player
 			UserInterface.updateInventory(4, -1);
 		}
 
-
-=======
->>>>>>> origin/master
 		return itemToRemove.toString() + "Has been removed!";
 	}
 
@@ -161,10 +131,10 @@ public class Player
 		return inventory.toString();
 	}
 
-	//Ask Alexander about item use
+	//Alexander added this, should work but may need more thinking
 	public String useItem(int itemPosition)
 	{
-		return null;
+		return inventory.get(itemPosition).use();
 	}
 
 	//Navigation 
@@ -172,14 +142,10 @@ public class Player
 	{
 		//		setCurrentRoomID(nextRoom);
 	}
-<<<<<<< HEAD
 
-	public int getHealth(){
-=======
-	
+
 	public int getHealth()
 	{
->>>>>>> origin/master
 		return health;
 	}
 
