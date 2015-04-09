@@ -36,7 +36,7 @@ public class Weapon extends Item
 	
 	public int getDamage()
 	{
-		return damageAmount;
+		return (ammo > 0)? damageAmount : 0; 
 	}
 
 }

@@ -40,8 +40,9 @@ public class Room
 		else
 		{
 			Item roomObject = objectsInRoom.remove(0);
+			if (roomObject instanceof ScubaGear) roomObject.use();
 			info = "The room contained " + roomObject.getDescription();
-			Game.currentPlayer.addToInventory(roomObject);
+			Game.getInstance().currentPlayer.addToInventory(roomObject);
 			info += ", it has been added to your inventory.";
 		}
 		return info;
