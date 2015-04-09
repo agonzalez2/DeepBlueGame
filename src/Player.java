@@ -52,61 +52,26 @@ public class Player
 		actionArray[5] = Action.open_inventory;
 		actionArray[6] = Action.use;
 	}
-	
-	//Parameterized constructor allows for save/loading non-full health players
-=======
-
- */
-public class Player 
-{
-
-	private int health;
-
-	private ArrayList<Item> inventory = new ArrayList<Item>();
-	private Action[] actionArray = new Action[2];
-	private Action nextAction;
-
-	public Player() 
-	{
-		this.health = 100;
-	}
-
 	//paramatrized constructor allows for save/loading non-full health players
->>>>>>> origin/master
 	public Player(int health) 
 	{
 		this.health = health;
 	}
-<<<<<<< HEAD
 	
-	//Default constructor of new player
+	//Default constructor of new player (Health = 100)
 	public Player() 
-=======
-
-	private void popActionArray()
->>>>>>> origin/master
 	{
-		actionArray[0] = Action.attack;
-		actionArray[1] = Action.defend;
+		health = 100;
 	}
-<<<<<<< HEAD
-	
-	//Returns player's current action
-=======
 
-	//stores player's current action
->>>>>>> origin/master
+	//Returns player's current action
 	public Action getNextAction()
 	{
 		return nextAction;
 	}
-<<<<<<< HEAD
-	
+
 	//NOT NEEDED IF GAME.USERINPUT IS ACCESSIBLE
 	//Stores user's current command
-=======
-
->>>>>>> origin/master
 	public void setNextAction(Action nextAction)
 	{
 		this.nextAction = nextAction;
@@ -118,10 +83,8 @@ public class Player
 	{
 		//actionArray[0] is attack_pistol
 		if(nextAction.equals(actionArray[0]))
-<<<<<<< HEAD
 		{
-			//parse the user input here?
-			
+			//parse the user input here?		
 		}
 		if(nextAction.toString().equals(Action.defend.toString()))
 		{
@@ -129,22 +92,6 @@ public class Player
 		}
 	}
 	//NEED SPECIFICATION ON HOW USER INPUT IS PARSED
-=======
-			//processes defend command
-			if(nextAction.toString().equals(Action.defend.toString()))
-			{
-
-			}
-			else switch(nextAction)
-			{
-			//Attack calls upon weapon's damage amount
-			case attack:
-				//Defends calls upon shield's defend amount
-			case defend:
-			}
-	}
-
->>>>>>> origin/master
 	//Adds an item to inventory when player obtains an item
 	public void addToInventory(Item itemToAdd) 
 	{
@@ -206,7 +153,6 @@ public class Player
 		return inventory.toString();
 	}
 
-<<<<<<< HEAD
 	//Returns an item the user requests
 	public Item getItem(int item)
 	{
@@ -214,33 +160,21 @@ public class Player
 	}
 	
 	//Uses an actual item specified by the user
-=======
 	//Alexander added this, should work but may need more thinking
->>>>>>> origin/master
 	public String useItem(int itemPosition)
 	{
 		return inventory.get(itemPosition).use();
 	}
-<<<<<<< HEAD
 	
 	//Currently purely just teleporting
 	//Navigation between rooms
 	public void moveToNext(int nextRoom) 
 	{
-		Game.setCurrentRoom(nextRoom);
+		//Game.setCurrentRoom(nextRoom);
 	}
 	
 	//Returns health of player
-=======
 
-	//Navigation 
-	public void moveToNext(int nextRoom) 
-	{
-		//		setCurrentRoomID(nextRoom);
-	}
-
-
->>>>>>> origin/master
 	public int getHealth()
 	{
 		return health;

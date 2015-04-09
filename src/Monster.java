@@ -18,7 +18,7 @@ public class Monster
 	private int damage;
 
 	//Monster constructor without an action sequence 
-	//Should delte
+	//Should delete
 	public Monster(int monsterID, String name,String monsterDesc, int health) 
 	{
 		this.monsterID = monsterID;
@@ -28,7 +28,7 @@ public class Monster
 		nextAction = 0;
 	}
 	
-	//Monster constuctor with set action sequence array
+	//Monster constructor with set action sequence array
 	//id,name,description,health,Action[]
 	public Monster(int monsterID, String name,String monsterDesc, int health,int damage, Action[] actionSequence) 
 	{
@@ -73,8 +73,14 @@ public class Monster
 	//Returns the monster's next action
 	public Action getNextAction()
 	{
-		nextAction++;
-		return actionSequence[nextAction];
+		if(nextAction >= actionSequence.length)
+		{
+			nextAction = 0;
+			return actionSequence[nextAction];
+		}else
+		{
+			return actionSequence[nextAction];
+		}
 	}
 
 	//Initiate the damage or defense actions
