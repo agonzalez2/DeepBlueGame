@@ -1,7 +1,11 @@
-import java.util.ArrayList;
+/**
+ * @author Maxim
+ * Class: ITEC 3860 SPRING 2015
+ * Date: March 9, 2015
+ * Purpose: 
+ */
 
-//import Rooms.Item;
-//import Action;
+import java.util.ArrayList;
 
 /*Change Log as of 3/30/2015
  * Included no parameter default constructor
@@ -13,7 +17,19 @@ import java.util.ArrayList;
  * changed removeFromInventory parameter from int to Item and changed to String
  * changed getInventory return type from item[] to String because of toString of inventory
  * 
+ * 
+ * in game, there is 1 single player instance
+ * the player has a inventory arraylist
+ * that is it
+ * to get items from the inventory
+ * inventory.get(item's index)
+ * how would you get the item index?
+ * inventory.indexOf(item object)
+ * how would player get the item object?
+ * if(player.input
+ * 
 */
+
 public class Player
 {
 
@@ -21,59 +37,62 @@ public class Player
 	
 	private ArrayList<Item> inventory;
 
-//	private Rooms.Item[] inventory;
-
-	private Action[] actionArray = new Action[2];
+	private Action[] actionArray = new Action[5];
 	private Action nextAction;
 	
+	//Possible actions player can before
 	private void popActionArray()
 	{
-		actionArray[0] = Action.attack;
-		actionArray[1] = Action.defend;
+		actionArray[0] = Action.attack_pistol;
+		actionArray[1] = Action.attack_stun;
+		actionArray[2] = Action.reload_pistol;
+		actionArray[3] = Action.reload_stun;
+		actionArray[4] = Action.move;
+		actionArray[5] = Action.open_inventory;
+		actionArray[6] = Action.use;
 	}
 	
-	//paramatrized constructor allows for save/loading non-full health players
+	//Parameterized constructor allows for save/loading non-full health players
 	public Player(int health) 
 	{
 		this.health = health;
 	}
 	
-	//default constructor of new player
+	//Default constructor of new player
 	public Player() 
 	{
 		this.health = 100;
 	}
 	
-	//stores player's current action
+	//Returns player's current action
 	public Action getNextAction()
 	{
 		return nextAction;
 	}
 	
-	//stores user's current command
+	//NOT NEEDED IF GAME.USERINPUT IS ACCESSIBLE
+	//Stores user's current command
 	public void setNextAction(Action nextAction)
 	{
 		this.nextAction = nextAction;
 	}
-
+	
+	//@incomplete
 	//All these actions are called by the monsterBattle class
 	public void performAction(Action nextAction)
 	{
+		//actionArray[0] is attack_pistol
 		if(nextAction.equals(actionArray[0]))
-		//processes defend command
+		{
+			//parse the user input here?
+			
+		}
 		if(nextAction.toString().equals(Action.defend.toString()))
 		{
 			
 		}
-		else switch(nextAction)
-		{
-		//Attack calls upon weapon's damage amount
-		case attack:
-		//Defends calls upon shield's defend amount
-		case defend:
-		}
 	}
-	
+	//NEED SPECIFICATION ON HOW USER INPUT IS PARSED
 	//Adds an item to inventory when player obtains an item
 	public void addToInventory(Item itemToAdd) 
 	{
@@ -93,25 +112,34 @@ public class Player
 		return inventory.toString();
 	}
 
-	//Ask Alexander about item use
+	//Returns an item the user requests
+	public Item getItem(int item)
+	{
+		return inventory.get(item);
+	}
+	
+	//Uses an actual item specified by the user
 	public String useItem(int itemPosition)
 	{
-		return null;
+		return inventory.get(itemPosition).use();
 	}
 	
-	//Navigation 
+	//Currently purely just teleporting
+	//Navigation between rooms
 	public void moveToNext(int nextRoom) 
 	{
-//		setCurrentRoomID(nextRoom);
+		Game.setCurrentRoom(nextRoom);
 	}
 	
+	//Returns health of player
 	public int getHealth()
 	{
 		return health;
 	}
 
-	public void updateHealth(int num) 
+	//Sets the health to a specific amount (TOTAL HEALTH)
+	public void updateHealth(int newHealth) 
 	{
-		health += num;
+		health = newHealth;
 	}
 }

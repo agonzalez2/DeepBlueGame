@@ -1,3 +1,10 @@
+/**
+ * @author Maxim
+ * Class: ITEC 3860 SPRING 2015
+ * Date: March 9, 2015
+ * Purpose: 
+ */
+
 public class MonsterBattle {
 
 	private int currentMonsterID;
@@ -14,6 +21,7 @@ public class MonsterBattle {
 	
 	Player pTemp;
 
+	//MonsterBattle constructor 
 	public MonsterBattle(Player player, Monster monster)
 	{
 		pTemp = player;
@@ -39,34 +47,47 @@ public class MonsterBattle {
 	 * if(p.blah)
 	 * }
 	 */
+	
+	//Battle processing unit where health is changed according to different actions
 	public void changeHealth() 
 	{
-		//player attacks with gun & monster attacks
-		if(pTemp.getNextAction().equals(Action.attack_gun) && mTemp.getNextAction().equals(Action.attack))
+		//When monster attacks
+		if(mTemp.getNextAction().equals(Action.attack))
 		{
-			//how the fuck do you get the monster's damage
-			//also how about the player's weapon damage
-			pTemp.updateHealth(pTemp.getHealth()-mTemp.getMonsterID());
-			mTemp.updateHealth(mTemp.getHealth()-25);
+			//pTemp.updateHealth(mTemp.getMonsterID());//this is suppose to be mTemp.getDamage()
+			//so whereever the line above is, correct with getDamage
+			//and player attack with pistol
+			if(pTemp.getNextAction().equals(Action.attack_pistol))
+			{
+				//next line changes player's health according to monster's damage
+				pTemp.updateHealth(mTemp.getDamage());
+				//This is where we try to change monster's health using weapon's damage amount
+				//how do you get the player's pistol's damage amount?
+				mTemp.updateHealth(Integer.parseInt(pTemp.useItem(0)));
+			}else 
+			//player attack with stungun
+			if(pTemp.getNextAction().equals(Action.attack_stun))
+			{
+				pTemp.updateHealth(mTemp.getDamage());
+				mTemp.updateHealth(Integer.parseInt(pTemp.useItem(0)));
+			}else
+			//player defends
+			if(pTemp.getNextAction().equals(Action.defend))
+			{
+				pTemp.updateHealth((int)(mTemp.getDamage()-mTemp.getDamage()*0.5));
+			}
 		}
-		//player attacks with gun & monster defends
-		if(pTemp.getNextAction().equals(Action.attack_gun) && mTemp.getNextAction().equals(Action.attack))
+		
+		//When monster defends
+		if(mTemp.getNextAction().equals(Action.defend))
 		{
-			//how the fuck do you get the monster's defence
-			pTemp.updateHealth(pTemp.getHealth()-mTemp.getMonsterID());
-			mTemp.updateHealth(mTemp.getHealth()-25);
+			
 		}
-		//player attacks with stun gun and monster attacks
-		if(pTemp.getNextAction().equals(Action.attack_stun) && mTemp.getNextAction().equals(Action.attack))
-		{
-			//how the fuck do you get the monster's damage
-			pTemp.updateHealth(pTemp.getHealth()-mTemp.getMonsterID());
-			mTemp.updateHealth(mTemp.getHealth()-25);
-		}
-
+		
+		
 	}
 	
-	//following the sdd
+	//WHY DO WE NEED THESE 2 METHODS?**********************
 	public void requestPlayerAction() 
 	{
 		//get user input, parse into an action
@@ -84,6 +105,7 @@ public class MonsterBattle {
 		inBattle = !inBattle;
 	}
 
+	//Returns the changed health of player/monster and determines if game is over
 	public String getResult() 
 	{
 		if(pTemp.getHealth() == 0)
@@ -96,5 +118,4 @@ public class MonsterBattle {
 			return "Your health is now " + pTemp.getHealth() +". " +mTemp.getName()+ " now has " +mTemp.getHealth() +"health.";
 		}
 	}
-
 }

@@ -1,3 +1,10 @@
+/**
+ * @author Maxim
+ * Class: ITEC 3860 SPRING 2015
+ * Date: March 9, 2015
+ * Purpose: 
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,10 +56,10 @@ public class BattleTester
 		
 		
 		MonsterBattle b = new MonsterBattle(p,m1);
-		HealthPack hp1 = new HealthPack();
-		Weapon w1 = new Weapon();
-		Weapon w2 = new Weapon();
-		Shield s1 = new Shield("",1,);
+		HealthPack hp1 = new HealthPack("HealthPack 10",1);
+		Weapon w1 = new Weapon("Pistol", 0, "Pistol", 3);
+		Weapon w2 = new Weapon("Stun Gun",1,"Stun",4);
+		Shield s1 = new Shield("",1);
 		p.addToInventory(hp1);
 		
 	}
