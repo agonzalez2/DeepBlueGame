@@ -16,8 +16,6 @@ public class MonsterBattle {
 	
 	//WHAT DID THE CURRENT MONSTER ID DO? 4/6/2015
 	
-	private Monster mTemp;
-	
 	//private boolean inBattle;  MOVED TO PLAYER CLASS
 
 	private Action currentPlayerAction;
@@ -31,8 +29,9 @@ public class MonsterBattle {
 	private boolean timeForUpdate = false;
 	
 	//NEED TO Replace all temporary variables with Game.getXXXXX
-	Player pTemp;
-
+	private Player pTemp = Game.getInstance().currentPlayer;
+	private Monster mTemp = Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()];
+	
 	//MonsterBattle constructor 
 	public MonsterBattle(Player player, Monster monster)
 	{
@@ -44,26 +43,7 @@ public class MonsterBattle {
 		Game.getInstance().toggleBattle();
 		startBattle();
 	}
-	
-	//removed int playerHealthChange, int monsterHealthChange parameters 
-	/*
-	 * possibilities
-	 * gun v atk
-	 * gun v def
-	 * stun v atk
-	 * stun v def
-	 * item v atk
-	 * item v def
-	 * run v atk
-	 * run v def
-	 * 
-	 * I suggest branch off of 
-	 * if(mTemp.getNextAction().equals(Action.attack))
-	 * {
-	 * if(p.blah)
-	 * }
-	 */
-	
+		
 	//Battle processing unit where health is changed according to different actions
 	/** COMPLETELY CHANGED THIS METHOD BELOW
 
@@ -173,7 +153,7 @@ public class MonsterBattle {
 			//and player attack with pistol
 			if(currentPlayerAction.equals(Action.attack_pistol))
 			{
-				//mTemp.updateHealth(mTemp.getHealth()-Integer.parseInt(pTemp.useItem(0)));
+				//Game.getInstance().monsterArray[0].getDamage());
 				mTemp.updateHealth(mTemp.getHealth()-pDmg);
 				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
 			}
@@ -225,13 +205,10 @@ public class MonsterBattle {
 				Game.getInstance().currentPlayer.findAndUseHealthPack();
 			}
 		}
-		
-		
+		Game.getInstance().currentPlayer = pTemp;
+		Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()] = mTemp;		
 	}
 	
-	
-	
-	//WHY DO WE NEED THESE 2 METHODS?**********************
 	public void requestPlayerAction() 
 	{
 		//get user input, parse into an action
@@ -255,8 +232,7 @@ public class MonsterBattle {
 		if(userActionInput == 3)
 		{
 			currentPlayerAction = Action.use;
-		}
-		
+		}		
 	}
 
 	public Action getMonsterAction() 
