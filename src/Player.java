@@ -40,6 +40,7 @@ public class Player
 
 	private Action[] actionArray = new Action[5];
 	private Action nextAction;
+
 	
 	//Possible actions player can before
 	private void popActionArray()
@@ -56,6 +57,8 @@ public class Player
 	public Player(int health) 
 	{
 		this.health = health;
+		this.inventory = new ArrayList<Item>();
+		
 	}
 	
 	//Default constructor of new player (Health = 100)
@@ -98,11 +101,13 @@ public class Player
 		inventory.add(itemToAdd);
 		if(itemToAdd instanceof AmmoPack)
 		{
-			if (itemToAdd.getDescription().equalsIgnoreCase("stun ammo"))
+	
+			if(itemToAdd.getDescription().equalsIgnoreCase("pistol ammo"))
 			{
 				UserInterface.updateInventory(1, 1);
 			}
-			else if(itemToAdd.getDescription().equalsIgnoreCase("pistol ammo"))
+			
+			else if (itemToAdd.getDescription().equalsIgnoreCase("stun ammo"))
 			{
 				UserInterface.updateInventory(2, 1);
 			}
@@ -112,7 +117,7 @@ public class Player
 			UserInterface.updateInventory(3, 1);
 		}
 
-		if(itemToAdd.getID() == 4)
+		if(itemToAdd instanceof ScubaGear)
 		{
 			UserInterface.updateInventory(4, 1);
 		}
@@ -123,28 +128,30 @@ public class Player
 	public String removeFromInventory(Item itemToRemove) 
 	{
 		inventory.remove(inventory.indexOf(itemToRemove));
-
-		if(itemToRemove.getID() == 1)
+		
+		if(itemToRemove instanceof AmmoPack)
 		{
-			UserInterface.updateInventory(1, -1);
+			if(itemToRemove.getDescription().equalsIgnoreCase("pistol ammo"))
+			{
+				UserInterface.updateInventory(1, -1);
+			}
+			
+			else if (itemToRemove.getDescription().equalsIgnoreCase("stun ammo"))
+			{
+				UserInterface.updateInventory(2, -1);
+			}
 		}
-
-		if(itemToRemove.getID() == 2)
-		{
-			UserInterface.updateInventory(2, -1);
-		}
-
-		if(itemToRemove.getID() == 3)
+			
+		if(itemToRemove instanceof HealthPack)
 		{
 			UserInterface.updateInventory(3, -1);
 		}
-
-		if(itemToRemove.getID() == 4)
+	
+		if(itemToRemove instanceof ScubaGear)
 		{
 			UserInterface.updateInventory(4, -1);
 		}
-
-		return itemToRemove.toString() + "Has been removed!";
+			return itemToRemove.toString() + "Has been removed!";
 	}
 
 	//Returns a list of items inside of the player's inventory
@@ -170,7 +177,7 @@ public class Player
 	//Navigation between rooms
 	public void moveToNext(int nextRoom) 
 	{
-		//Game.setCurrentRoom(nextRoom);
+		Game.getInstance().setCurrentRoom(nextRoom);
 	}
 	
 	//Returns health of player
@@ -184,5 +191,21 @@ public class Player
 	public void updateHealth(int newHealth) 
 	{
 		health = newHealth;
+		
+	}
+	
+
+	
+	public void findAndUseHealthPack()
+	{
+		
+		for (Item i : inventory)
+		{
+			if(i.getDescription().equalsIgnoreCase("Health Pak"))
+			{
+				i.use();
+				inventory.remove(i);
+			}
+		}
 	}
 }

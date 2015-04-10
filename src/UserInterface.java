@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +17,7 @@ public class UserInterface
 {
 	
 
-	private JFrame frame = new JFrame("Deep Blue");
+	private static JFrame frame = new JFrame("Deep Blue");
 	
 	//PANELS
 	private JPanel northPanel = new JPanel();
@@ -27,6 +28,7 @@ public class UserInterface
 
 	//BUTTONS
 	private JButton userSubmitButton = new JButton("SUBMIT");
+	private static JButton investigateButton = new JButton("Investigate");
 	
 	//MENU and MENUITEMS
 	private JMenuBar menu = new JMenuBar();
@@ -51,10 +53,6 @@ public class UserInterface
 	private static JLabel inventoryPic4 = new JLabel();
 	private static JLabel healthPic = new JLabel();
 	private static JLabel healthLabel = new JLabel("HEALTH: 100%");
-	private static JLabel choiceLabel1 = new JLabel("Text description of A");
-	private static JLabel choiceLabel2 = new JLabel("Text description of B");
-	private static JLabel choiceLabel3 = new JLabel("Text description of C");
-	private static JLabel choiceLabel4 = new JLabel("Text description of D");
 	private static int quantityValue1 = 0;
 	private static int quantityValue2 = 0;
 	private static int quantityValue3 = 0;
@@ -84,7 +82,6 @@ public class UserInterface
 		centerPanel.setBackground(new Color(70,130,180));
 		westPanel.setLayout(new GridLayout(4,2));
 		westPanel.setBackground(new Color(128,128,128));
-		//eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
 		eastPanel.setLayout(new BorderLayout());
 		eastPanel.setBackground(new Color(211,211,211));
 		southPanel.setLayout(new GridLayout(0,2,0,0));
@@ -101,19 +98,6 @@ public class UserInterface
 		quantityLabel2.setFont(new Font("Serif", Font.BOLD, 18));
 		quantityLabel3.setFont(new Font("Serif", Font.BOLD, 18));
 		quantityLabel4.setFont(new Font("Serif", Font.BOLD, 18));
-		
-		JLabel choice1Label = new JLabel("CHOICE 1:  ");
-		choice1Label.setFont(new Font("Serif", Font.BOLD, 16));
-		choice1Label.setForeground(new Color(0,153,0));
-		JLabel choice2Label = new JLabel("CHOICE 2:  ");
-		choice2Label.setFont(new Font("Serif", Font.BOLD, 16));
-		choice2Label.setForeground(new Color(0,153,0));
-		JLabel choice3Label = new JLabel("CHOICE 3:  ");
-		choice3Label.setFont(new Font("Serif", Font.BOLD, 16));
-		choice3Label.setForeground(new Color(0,153,0));
-		JLabel choice4Label = new JLabel("CHOICE 4:  ");
-		choice4Label.setFont(new Font("Serif", Font.BOLD, 16));
-		choice4Label.setForeground(new Color(0,153,0));
 		
 		
 		//SET EDITABLE
@@ -162,14 +146,10 @@ public class UserInterface
 		//SOUTH PANEL
 		southPanel.add(new JLabel());
 		southPanel.add(new JLabel());
-		southPanel.add(choice1Label);
-		southPanel.add(choiceLabel1);
-		southPanel.add(choice2Label);
-		southPanel.add(choiceLabel2);
-		southPanel.add(choice3Label);
-		southPanel.add(choiceLabel3);
-		southPanel.add(choice4Label);
-		southPanel.add(choiceLabel4);
+		southPanel.add(investigateButton);
+		southPanel.add(new JLabel());
+		southPanel.add(new JLabel());
+		southPanel.add(new JLabel());
 		southPanel.add(new JScrollPane(userInputArea));
 		southPanel.add(userSubmitButton);
 		//WEST PANEL
@@ -182,8 +162,6 @@ public class UserInterface
 		westPanel.add(inventoryPic4);
 		westPanel.add(quantityLabel4);
 		//EAST PANEL
-		//eastPanel.add(healthPic);
-		//eastPanel.add(healthLabel);
 		healthPic.setHorizontalAlignment(JLabel.CENTER);
 		eastPanel.add(healthPic, BorderLayout.CENTER);
 		eastPanel.add(healthLabel, BorderLayout.SOUTH);
@@ -210,6 +188,7 @@ public class UserInterface
 		frame.setVisible(true);
 		
 		
+		
 		//ACTION LISTENERS
 		newGame.addActionListener(new ActionListener() 
 		{
@@ -218,6 +197,16 @@ public class UserInterface
             {
             	String[] args = {};
             	CreateGame.main(args);
+            }
+        }); 
+		
+		investigateButton.addActionListener(new ActionListener() 
+		{
+	       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                String investigateString = Game.roomArray[Game.getInstance().currentRoomID].investigate();
+                setGameTextArea(investigateString);
             }
         }); 
 		
@@ -322,7 +311,7 @@ public class UserInterface
 
 	}
 
-	public boolean isInteger( String input )
+	public static boolean isInteger( String input )
 	{
 	   try
 	   {
@@ -378,8 +367,105 @@ public class UserInterface
 	
 	public static void setGameTextArea(String s)
 	{
+		
 	    gameTextArea.append('\n' + s + '\n');
 		gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+		
+		if(s.equalsIgnoreCase("the room is empty."))
+		{
+			Game.promptUserForNext();
+		}
+		
+		if(s.substring(0,7).equalsIgnoreCase("monster"))
+		{
+			System.out.println("MONSTER BATTLE ENTERED!");
+			
+			gameButtonsOn(false);
+			int monsterInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom();
+			new MonsterBattle(Game.getInstance().currentPlayer, Game.monsterArray[monsterInRoomIndex]);
+			Game.getInstance().toggleBattle();
+		}
+	}
+	
+	
+	public static void gameButtonsOn(boolean areTheyOn)
+	{
+		if(areTheyOn == true)
+		{
+			investigateButton.setEnabled(true);
+		}
+		
+		if(areTheyOn == false)
+		{
+			investigateButton.setEnabled(false);
+		}
+	}
+	
+	public static int promptUserForRoom()
+	{
+		int roomNumSelected = -1;
+
+		Object[] options = {"Door 1",
+		                    "Door 2",
+		                    "Door 3"};
+		int n = JOptionPane.showOptionDialog(frame,
+		    "Choose a door to continue to the next room.",
+		    "Choose your path.",
+		    JOptionPane.YES_NO_CANCEL_OPTION,
+		    JOptionPane.QUESTION_MESSAGE,
+		    null,
+		    options,
+		    options[2]);
+	
+		
+		System.out.println("You Selected Door " + n);
+
+		
+		roomNumSelected = n;
+		
+		return roomNumSelected;
+	}
+	
+	public static int promptUserForAction()
+	{
+		int actionSelected = -1;
+
+		Object[] options = {"Pistol Attack",
+		                    "Stun Attack",
+		                    "Defend",
+		                    "Use Health Pack"};
+		int n = JOptionPane.showOptionDialog(frame,
+		    "Choose an action to take against the encountered monster.",
+		    "Choose your action.",
+		    JOptionPane.YES_NO_CANCEL_OPTION,
+		    JOptionPane.QUESTION_MESSAGE,
+		    null,
+		    options,
+		    options[2]);
+	
+		
+		System.out.println("You Selected Action " + n);
+
+		
+		actionSelected = n;
+		
+		
+		while(actionSelected < 0)
+		{
+			n = JOptionPane.showOptionDialog(frame,
+				    "Choose an action to take against the encountered monster.",
+				    "Choose a VALID action.",
+				    JOptionPane.YES_NO_CANCEL_OPTION,
+				    JOptionPane.QUESTION_MESSAGE,
+				    null,
+				    options,
+				    options[2]);
+			
+			actionSelected = n;
+		}
+		
+		
+		return actionSelected;
 	}
 	
 
