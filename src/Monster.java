@@ -14,8 +14,10 @@ public class Monster
 	private String name;
 	private String monsterDesc;
 	private int health;
-	private int nextAction;
+	private int nextAction = 0;
 	private int damage;
+	private double defense;
+	private boolean isDefeated = false;
 
 	//Monster constructor without an action sequence 
 	//Should delete
@@ -25,20 +27,19 @@ public class Monster
 		this.name = name;
 		this.monsterDesc = monsterDesc;
 		this.health = health;
-		nextAction = 0;
 	}
 	
 	//Monster constructor with set action sequence array
 	//id,name,description,health,Action[]
-	public Monster(int monsterID, String name,String monsterDesc, int health,int damage, Action[] actionSequence) 
+	public Monster(int monsterID, String name,String monsterDesc, int health,int damage, double defense, Action[] actionSequence) 
 	{
 		this.monsterID = monsterID;
 		this.name = name;
 		this.monsterDesc = monsterDesc;
 		this.health = health;
 		this.damage = damage;
+		this.defense = defense;
 		this.actionSequence = actionSequence;
-		nextAction = 0;
 	}
 	
 	//Returns monster ID
@@ -95,6 +96,15 @@ public class Monster
 	{
 		return damage;
 	}
+	
+	public double getDefense()
+	{
+		return defense;
+	}
 
+	public void toggleIsDefeated()
+	{
+		isDefeated = !isDefeated;
+	}
 	
 }

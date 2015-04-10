@@ -179,7 +179,7 @@ public class MonsterBattle {
 		//When monster defends
 		if(mTemp.getNextAction().equals(Action.defend))
 		{
-			double mDef = 0.5;
+			double mDef = mTemp.getDefense();
 			//and player attack with pistol
 			if(pTemp.getNextAction().equals(Action.attack_pistol))
 			{

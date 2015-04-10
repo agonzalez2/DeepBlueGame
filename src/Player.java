@@ -84,12 +84,25 @@ public class Player
 		//actionArray[0] is attack_pistol
 		if(nextAction.equals(actionArray[0]))
 		{
-			//parse the user input here?		
+			useItem(getItem(0).getID());
 		}
-		if(nextAction.toString().equals(Action.defend.toString()))
+		//actionArray[1] is attack_stun
+		if(nextAction.equals(actionArray[1]))
 		{
-			
+			useItem(getItem(1).getID());
 		}
+		//actionArray[2] is reload_pistol
+		if(nextAction.equals(actionArray[2]))
+		{
+			useItem(getItem(2).getID());
+		}
+		//actionArray[3] is reload_stun
+		if(nextAction.equals(actionArray[3]))
+		{
+			useItem(getItem(3).getID());
+		}
+
+	
 	}
 	//NEED SPECIFICATION ON HOW USER INPUT IS PARSED
 	//Adds an item to inventory when player obtains an item

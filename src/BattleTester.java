@@ -17,7 +17,7 @@ public class BattleTester
 		Player p = new Player(10);
 		Action[] typeA = {Action.attack,Action.defend};
 		//return mTemp.getName() + " is " + mTemp.getDesc() + "."
-		Monster m1 = new Monster(1,"Sea Tortoise", "an angry spiky-shelled tortoise",10, 1, typeA );		
+		Monster m1 = new Monster(1,"Sea Tortoise", "an angry spiky-shelled tortoise",10, 1, 0.5, typeA );		
 		Monster m2 = new Monster(2,"Man-Shark", "a chimera with a human body and a shark head", 100);		
 		Monster m3 = new Monster(3,"Jaws", "the famous 25-foot shark with an appalling appetite for human flesh", 100);		
 		Monster m4 = new Monster(4,"Zoidberg", "a lobster who is a poor excuse for a human doctor", 100);		
