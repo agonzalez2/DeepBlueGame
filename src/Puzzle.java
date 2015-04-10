@@ -1,42 +1,65 @@
 
-public class Puzzle {
-
+public class Puzzle
+{
 	private String puzzleDesc;
 	private Action[] solution;
 	private int puzzleID;
-	private String[] results;
+	private String[][] results;
 	private boolean isSolved;
 	private int placeInSequence;
 	private Item prizeItem;
-	
+
+
+
 	public String checkSolution(Action playerAction) 
 	{
-		return null;
+		String info;
+		if (!isSolved)
+		{
+			if (playerAction == solution[placeInSequence])
+			{
+				info = getResult(0);
+				placeInSequence++;
+				if (placeInSequence >= solution.length)
+				{
+					markSolved();
+					info += " Your rewards is a " + getItem().getDescription();
+					info += ", it has been added to inventory";
+				}
+			}
+			else
+			{
+				info = getResult(1);
+			}
+		}
+		else info = "Puzzle is already solved.";
+		return info;
 	}
 
-	public void markSolved() 
+	private void markSolved() 
 	{
-
+		isSolved = true;
 	}
 
 	public String getPuzzleDescription() 
 	{
+		return puzzleDesc;
+	}
+
+	private Item getItem() 
+	{
+
 		return null;
 	}
 
-	public Item getItem() 
+	private String getResult(int resultInt) 
 	{
-		return null;
-	}
-
-	public String getResult(int resultInt) 
-	{
-		return null;
+		return ;
 	}
 
 	public boolean isSolved() 
 	{
-		return false;
+		return isSolved;
 	}
 
 }
