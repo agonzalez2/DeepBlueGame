@@ -15,9 +15,9 @@ public class HealthPack extends Item
 
 	public String use() 
 	{
-		Game.currentPlayer.updateHealth(healAmount);
+		Game.getInstance().currentPlayer.updateHealth(healAmount);
 		String info = "A health pack has been used. Health has been increased by " + healAmount;
-		Game.currentPlayer.removeFromInventory(this);
+		Game.getInstance().currentPlayer.removeFromInventory(this);
 		info += ", health pack has been removed from inventory.";
 		return info;
 	}

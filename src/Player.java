@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * changed removeFromInventory parameter from int to Item and changed to String
  * changed getInventory return type from item[] to String because of toString of inventory
  * 
-
  */
+
 public class Player 
 {
 
