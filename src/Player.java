@@ -15,15 +15,7 @@ import java.util.ArrayList;
  * temporary item class was created thus rooms.Item is changed to just Item
  * Action class is independent of any package (wat)
  * changed removeFromInventory parameter from int to Item and changed to String
- * changed getInventory return type from item[] to String because of toString of inventory
- * 
-<<<<<<< HEAD
- */
-
-public class Player 
-=======
-<<<<<<< HEAD
- * 
+ * changed getInventory return type from item[] to String because of toString of inventory 
  * in game, there is 1 single player instance
  * the player has a inventory arraylist
  * that is it
@@ -37,7 +29,6 @@ public class Player
 */
 
 public class Player
->>>>>>> origin/master
 {
 
 	private int health;
