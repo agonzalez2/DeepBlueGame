@@ -36,6 +36,7 @@ public class Room
 		{
 			info = "The room is empty.";
 			markRoomComplete();
+			
 		}
 		else
 		{
@@ -46,6 +47,7 @@ public class Room
 			info += ", it has been added to your inventory.";
 		}
 		return info;
+		
 	}
 
 	public String getRoomDescription() 
