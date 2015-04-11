@@ -1,3 +1,14 @@
+/**Class: Puzzle.java 
+ * @author Alexander Gonzalez 
+ * @version 1.0 <p> 
+ * Course : ITEC 3150 Spring 2015
+ * Written: Apr 4, 2015 
+ * 
+ * 
+ * This class – Business class of a Puzzle. 
+ * 
+ * Purpose: – To represent a Puzzle to be implemented in a text based game
+ */
 
 public class Puzzle
 {
@@ -9,8 +20,14 @@ public class Puzzle
 	private int placeInSequence;
 	private Item prizeItem;
 
-
-
+	/**
+	 * A method to check whether the action taken by the player is part of the solution 
+	 * to the puzzle. This method is public, and should be called by the game interface 
+	 * after a player performs an action to solve the puzzle. 
+	 * @param playerAction
+	 * @return a string that should be displayed to the user to let him 
+	 * know what result the action taken yielded.
+	 */
 	public String checkSolution(Action playerAction) 
 	{
 		String info;
@@ -48,13 +65,13 @@ public class Puzzle
 
 	private Item getItem() 
 	{
-
-		return null;
+		Game.getInstance().currentPlayer.addToInventory(prizeItem);
+		return prizeItem;
 	}
 
 	private String getResult(int resultInt) 
 	{
-		return ;
+		return results[resultInt][placeInSequence];
 	}
 
 	public boolean isSolved() 

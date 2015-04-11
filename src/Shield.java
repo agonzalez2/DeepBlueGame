@@ -10,7 +10,8 @@ public class Shield extends Item
 		// TODO Auto-generated constructor stub
 	}
 
-	public String use() {
+	public String use() 
+	{
 		return null;
 	}
 
