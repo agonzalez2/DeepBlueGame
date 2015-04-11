@@ -7,6 +7,8 @@
 
 import java.util.ArrayList;
 
+import javax.activity.InvalidActivityException;
+
 /*Change Log as of 3/30/2015
  * Included no parameter default constructor
  * changed capitalization of health, inventory
@@ -89,8 +91,7 @@ public class Player
 		if(nextAction.equals(actionArray[2]))
 		{
 			useItem(getItem(2).getID());
-		}
-		//actionArray[3] is reload_stun
+		} 		//actionArray[3] is reload_stun
 		if(nextAction.equals(actionArray[3]))
 		{
 			useItem(getItem(3).getID());
@@ -159,15 +160,32 @@ public class Player
 	}
 
 	//Returns a list of items inside of the player's inventory
-	public String getInventory() 
+	public ArrayList getInventory() 
 	{
-		return inventory.toString();
+		ArrayList<String> temp = new ArrayList<String>();
+		for(Item i : inventory)
+		{
+			temp.add(i.getDescription());
+		}
+		return temp;
 	}
 
 	//Returns an item the user requests
-	public Item getItem(int item)
+	public Item getItem(int itemIndex)
 	{
-		return inventory.get(item);
+		return inventory.get(itemIndex);
+	}
+	
+	public Item getItem(String name) throws InvalidItemException
+	{
+		for (Item i : inventory)
+		{
+			if(i.getDescription().equalsIgnoreCase(name))
+			{
+				return i;
+			}
+		}
+		throw new InvalidItemException();
 	}
 	
 	//Uses an actual item specified by the user
@@ -210,4 +228,8 @@ public class Player
 			}
 		}
 	}
+}
+class InvalidItemException extends Exception
+{
+	public InvalidItemException(){}
 }
