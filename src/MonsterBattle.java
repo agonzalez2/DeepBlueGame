@@ -43,76 +43,8 @@ public class MonsterBattle {
 		Game.getInstance().toggleBattle();
 		startBattle();
 	}
-		
-	//Battle processing unit where health is changed according to different actions
-	/** COMPLETELY CHANGED THIS METHOD BELOW
-
-	public void changeHealth() 
-	{
-		int pDmg = 2;
-		//When monster attacks
-		if(mTemp.getNextAction().equals(Action.attack))
-		{
-			//and player attack with pistol
-			if(pTemp.getNextAction().equals(Action.attack_pistol))
-			{
-				//mTemp.updateHealth(mTemp.getHealth()-Integer.parseInt(pTemp.useItem(0)));
-				mTemp.updateHealth(mTemp.getHealth()-pDmg);
-				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
-			}
-			//player attack with stungun
-			if(pTemp.getNextAction().equals(Action.attack_stun))
-			{
-				mTemp.updateHealth(mTemp.getHealth()-pDmg*2);
-				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
-			}
-			//player defends
-			if(pTemp.getNextAction().equals(Action.defend))
-			{
-				pTemp.updateHealth( pTemp.getHealth()-((int)(mTemp.getDamage()-mTemp.getDamage()*0.5)));
-			}
-			//player uses health pack
-			if(pTemp.getNextAction().equals(Action.use))
-			{
-				pTemp.updateHealth(pTemp.getHealth()+pDmg*2);
-				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
-			}
-		}
-		
-		//When monster defends
-		if(mTemp.getNextAction().equals(Action.defend))
-		{
-			double mDef = 0.5;
-			//and player attack with pistol
-			if(pTemp.getNextAction().equals(Action.attack_pistol))
-			{
-				//mTemp.updateHealth(mTemp.getHealth()-Integer.parseInt(pTemp.useItem(0)));
-				mTemp.updateHealth((int)(mTemp.getHealth()-pDmg*mDef));
-			}
-			//player attack with stungun
-			if(pTemp.getNextAction().equals(Action.attack_stun))
-			{
-				mTemp.updateHealth((int)(mTemp.getHealth()-pDmg*2*mDef));
-
-			}
-			//player defends
-			if(pTemp.getNextAction().equals(Action.defend))
-			{
-
-			}
-			//player uses health pack
-			if(pTemp.getNextAction().equals(Action.use))
-			{
-				//pTemp.updateHealth(pTemp.getHealth()+pTemp.useItem(pTemp.getItem(healthpackID)))
-				pTemp.updateHealth(pTemp.getHealth()+pDmg*2);
-			}
-		}
-		
 	
-	}
-	
-	**/
-	
+	//Determines who's turn it is
 	public void startBattle()
 	{
 		while(Game.getInstance().inBattle)
@@ -144,6 +76,7 @@ public class MonsterBattle {
 		}
 	}
 	
+	//Battle processing unit where health is changed according to different actions
 	public void changeHealth() 
 	{
 		int pDmg = 2;

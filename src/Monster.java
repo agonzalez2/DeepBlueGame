@@ -5,8 +5,6 @@
  * Purpose: 
  */
 
-import java.util.ArrayList;
-
 public class Monster
 {
 	private Action[] actionSequence;

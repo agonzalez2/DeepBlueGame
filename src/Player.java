@@ -35,21 +35,15 @@ public class Player
 	
 	private ArrayList<Item> inventory;
 
-	private Action[] actionArray = new Action[5];
+	private Action[] actionArray = {Action.attack_pistol,
+						Action.attack_stun,
+						Action.reload_pistol,
+						Action.reload_stun,
+						Action.move,
+						Action.open_inventory,
+						Action.use};
 	private Action nextAction;
 
-	
-	//Possible actions player can before
-	private void popActionArray()
-	{
-		actionArray[0] = Action.attack_pistol;
-		actionArray[1] = Action.attack_stun;
-		actionArray[2] = Action.reload_pistol;
-		actionArray[3] = Action.reload_stun;
-		actionArray[4] = Action.move;
-		actionArray[5] = Action.open_inventory;
-		actionArray[6] = Action.use;
-	}
 	//paramatrized constructor allows for save/loading non-full health players
 	public Player(int health) 
 	{
@@ -191,7 +185,6 @@ public class Player
 	}
 	
 	//Returns health of player
-
 	public int getHealth()
 	{
 		return health;
@@ -204,8 +197,7 @@ public class Player
 		
 	}
 	
-
-	
+	//This can be modified to incorporate all items
 	public void findAndUseHealthPack()
 	{
 		

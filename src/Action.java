@@ -2,26 +2,25 @@
  * @author Maxim
  * Class: ITEC 3860 SPRING 2015
  * Date: March 9, 2015
- * Purpose: 
+ * Purpose: Pure list of possible actions called by player/monsters.
+ * Serves only as a connector and to categorize player input.
  */
 
 public enum Action
 {
-	/*help, start, load, save, quit,
-	inventory, i, invt, use,
-	move, walk, go, 
-	left, forward, right, back,
-	attack, defend, run;
-	reload
-	*/
+	//Player attack commands
 	attack_pistol,
 	attack_stun,
+	//Player reload commands
 	reload_stun,
 	reload_pistol,
+	//Player navigation & interaction
 	move,
 	open_inventory,
 	use,
+	//Monster's basic attack
 	attack,
+	//Player and monster's defense command
 	defend;	
 	
 }

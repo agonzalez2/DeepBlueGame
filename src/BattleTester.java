@@ -5,9 +5,6 @@
  * Purpose: 
  */
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class BattleTester
 {
 	public static  void main(String args[])
@@ -49,17 +46,19 @@ public class BattleTester
 		monsterList[14] = m14;
 		monsterList[15] = m15;
 		
-		//MonsterBattle b = new MonsterBattle(p,m1);
-		/*HealthPack hp1 = new HealthPack("HealthPack 10",10,1);
+		MonsterBattle b = new MonsterBattle(p,m1);
+		HealthPack hp1 = new HealthPack("HealthPack 10",10,1);
 		Weapon w1 = new Weapon("Pistol", 0, "Pistol", 3);
 		Weapon w2 = new Weapon("Stun Gun",1,"Stun",4);
 		Shield s1 = new Shield("",1);
 		p.addToInventory(hp1);
-		
+		p.addToInventory(w1);
+		p.addToInventory(w2);
+		p.addToInventory(s1);
 		System.out.println(b.getResult());
 		p.setNextAction(Action.attack);
 		b.changeHealth();
 		System.out.println(b.getResult());
-		*/
+		
 	}
 }

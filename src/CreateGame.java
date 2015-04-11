@@ -41,16 +41,16 @@ public class CreateGame
 		tempActionSequence[2] = Action.attack;
 		tempActionSequence[3] = Action.defend;
 		
-		tempMonsterArray[0] = new Monster(0, "Monster 1", "Desc. 1", 100, 10, tempActionSequence);
-		tempMonsterArray[1] = new Monster(1, "Monster 2", "Desc. 2", 100, 10, tempActionSequence);
-		tempMonsterArray[2] = new Monster(2, "Monster 3", "Desc. 3", 100, 10, tempActionSequence);
-		tempMonsterArray[3] = new Monster(3, "Monster 4", "Desc. 4", 100, 10, tempActionSequence);
-		tempMonsterArray[4] = new Monster(4, "Monster 5", "Desc. 5", 100, 10, tempActionSequence);
-		tempMonsterArray[5] = new Monster(5, "Monster 6", "Desc. 6", 100, 10, tempActionSequence);
-		tempMonsterArray[6] = new Monster(6, "Monster 7", "Desc. 7", 100, 10, tempActionSequence);
-		tempMonsterArray[7] = new Monster(7, "Monster 8", "Desc. 8", 100, 10, tempActionSequence);
-		tempMonsterArray[8] = new Monster(8, "Monster 9", "Desc. 9", 100, 10, tempActionSequence);
-		tempMonsterArray[9] = new Monster(9, "Monster 10", "Desc. 10", 100, 10, tempActionSequence);
+		tempMonsterArray[0] = new Monster(0, "Monster 1", "Desc. 1", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[1] = new Monster(1, "Monster 2", "Desc. 2", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[2] = new Monster(2, "Monster 3", "Desc. 3", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[3] = new Monster(3, "Monster 4", "Desc. 4", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[4] = new Monster(4, "Monster 5", "Desc. 5", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[5] = new Monster(5, "Monster 6", "Desc. 6", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[6] = new Monster(6, "Monster 7", "Desc. 7", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[7] = new Monster(7, "Monster 8", "Desc. 8", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[8] = new Monster(8, "Monster 9", "Desc. 9", 100, 10,0.5, tempActionSequence);
+		tempMonsterArray[9] = new Monster(9, "Monster 10", "Desc. 10", 100, 10,0.5, tempActionSequence);
 	
 	}
 	
