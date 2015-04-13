@@ -80,6 +80,19 @@ public class PlayerTest {
 	}
 
 	@Test
+	public void testGetItemString() {
+		Player p = new Player();
+		Weapon tempWeapon = new Weapon("Pistol", 0, "Pistol", 0);
+		p.addToInventory(tempWeapon);
+		try
+		{
+			assertEquals(tempWeapon, p.getItem("pistol"));
+		} catch (InvalidItemException e) {
+			fail();
+		}
+	}
+
+	@Test
 	public void testUseItem() {
 		Player p = new Player();
 		Weapon tempWeapon = new Weapon("Pistol", 0, "Pistol", 0);

@@ -7,8 +7,6 @@
 
 import java.util.ArrayList;
 
-import javax.activity.InvalidActivityException;
-
 /*Change Log as of 3/30/2015
  * Included no parameter default constructor
  * changed capitalization of health, inventory
