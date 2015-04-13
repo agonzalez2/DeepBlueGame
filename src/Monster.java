@@ -2,7 +2,7 @@
  * @author Maxim
  * Class: ITEC 3860 SPRING 2015
  * Date: March 9, 2015
- * Purpose: 
+ * Purpose: Represents the non-playable characters the player must fight.
  */
 
 public class Monster
@@ -15,20 +15,18 @@ public class Monster
 	private int nextAction = 0;
 	private int damage;
 	private double defense;
-	private boolean isDefeated = false;
-
-	//Monster constructor without an action sequence 
-	//Should delete
-	public Monster(int monsterID, String name,String monsterDesc, int health) 
-	{
-		this.monsterID = monsterID;
-		this.name = name;
-		this.monsterDesc = monsterDesc;
-		this.health = health;
-	}
+	private boolean isDefeated = false;	
 	
-	//Monster constructor with set action sequence array
-	//id,name,description,health,Action[]
+	/**
+	 * Method: Monster constructor
+	 * @param monsterID
+	 * @param name
+	 * @param monsterDesc
+	 * @param health
+	 * @param damage
+	 * @param defense
+	 * @param actionSequence
+	 */
 	public Monster(int monsterID, String name,String monsterDesc, int health,int damage, double defense, Action[] actionSequence) 
 	{
 		this.monsterID = monsterID;
@@ -40,36 +38,57 @@ public class Monster
 		this.actionSequence = actionSequence;
 	}
 	
-	//Returns monster ID
+	/**
+	 * Method: getMonsterID()
+	 * @return monster ID number
+	 */
 	public int getMonsterID() 
 	{
 		return monsterID;
 	}
 	
-	//Returns monster's name
-	public String getName(){
+	/**
+	 * Method: getName()
+	 * @return the monster's name
+	 */
+	public String getName()
+	{
 		return name;
 	}
 
-	//Returns monster's description
+	/**
+	 * Method: getDesc()
+	 * @return monster's description
+	 */
 	public String getDesc()
 	{
 		return monsterDesc;
 	}
 
-	//Returns monster's health
+	/**
+	 * Method: getHealth()
+	 * @return the monster's health
+	 */
 	public int getHealth() 
 	{
 		return health;
 	}
 
-	//Set the monster's health to a specific amount
+	/**
+	 * Method: updateHealth(int newHealth) 
+	 * sets the monster's health to a specific amount
+	 * @param newHealth
+	 */
 	public void updateHealth(int newHealth) 
 	{
 		health = newHealth;
 	}
 
-	//Returns the monster's next action
+	/**
+	 * Method: getNextAction()
+	 * repeats actionSequence if at end of actionSequence
+	 * @return the next action in the actionSequence
+	 */
 	public Action getNextAction()
 	{
 		if(nextAction >= actionSequence.length)
@@ -82,24 +101,40 @@ public class Monster
 		}
 	}
 
-	//Initiate the damage or defense actions
-	//Why does this return an action?
+	/**
+	 * Method: performAction()
+	 * @return the next action in the actionSequence
+	 */
 	public Action performAction()
 	{
 		return actionSequence[nextAction];
 		//if(actionSequence[nextAction].equals(Action.attack))
 	}
 	
+	/**
+	 * Method: getDamage()
+	 * @return the damage amount
+	 */
 	public int getDamage()
 	{
 		return damage;
 	}
 	
+	/**
+	 * Method: getDefence()
+	 * @return the defense amount
+	 */
 	public double getDefense()
 	{
 		return defense;
 	}
 
+	/**
+	 * Method: toggleIsDefeated()
+	 * isDefeated is default false since monsters are created
+	 * at full health. Toggled if monster health decreases <0.
+	 * @return true if the monster's health is 0
+	 */
 	public boolean toggleIsDefeated()
 	{
 		isDefeated = !isDefeated;

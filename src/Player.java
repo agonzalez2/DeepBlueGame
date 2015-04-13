@@ -2,31 +2,11 @@
  * @author Maxim
  * Class: ITEC 3860 SPRING 2015
  * Date: March 9, 2015
- * Purpose: 
+ * Purpose: Represents the internal class the user represents and 
+ * interacts with the game environment with.
  */
 
 import java.util.ArrayList;
-
-/*Change Log as of 3/30/2015
- * Included no parameter default constructor
- * changed capitalization of health, inventory
- * inventory is now arrayList
- * performAction parameter changed from int to Action
- * temporary item class was created thus rooms.Item is changed to just Item
- * Action class is independent of any package (wat)
- * changed removeFromInventory parameter from int to Item and changed to String
- * changed getInventory return type from item[] to String because of toString of inventory 
- * in game, there is 1 single player instance
- * the player has a inventory arraylist
- * that is it
- * to get items from the inventory
- * inventory.get(item's index)
- * how would you get the item index?
- * inventory.indexOf(item object)
- * how would player get the item object?
- * if(player.input
- * 
-*/
 
 public class Player
 {
@@ -44,7 +24,11 @@ public class Player
 						Action.use};
 	private Action nextAction;
 
-	//paramatrized constructor allows for save/loading non-full health players
+	/**
+	 * Method: Player(int Health)
+	 * Parameterized constructor allows for save/loading non-full health players
+	 * @param health : specific amount of health
+	 */
 	public Player(int health) 
 	{
 		this.health = health;
@@ -52,27 +36,42 @@ public class Player
 		
 	}
 	
-	//Default constructor of new player (Health = 100)
+	/**
+	 * Method: Player()
+	 * Creates new default player with default 
+	 * health = 100 and empty inventory.
+	 */
 	public Player() 
 	{
 		health = 100;
 	}
 
-	//Returns player's current action
+	/**
+	 * Method: getNextAction()
+	 * @return player's next action
+	 */
 	public Action getNextAction()
 	{
 		return nextAction;
 	}
 
-	//NOT NEEDED IF GAME.USERINPUT IS ACCESSIBLE
-	//Stores user's current command
+	/**
+	 * Method: setNextAction(Action nextAction)
+	 * Sets player's next action to user's input
+	 * @param nextAction
+	 */
+	//INCOMPLETE: this is suppose to take user's input
 	public void setNextAction(Action nextAction)
 	{
 		this.nextAction = nextAction;
 	}
 	
-	//@incomplete
-	//All these actions are called by the monsterBattle class
+	/**
+	 * Method: performAction(Action nextAction)
+	 * Calls the use() method of items
+	 * @param nextAction
+	 */
+	//INCOMPLETE
 	public void performAction(Action nextAction)
 	{
 		//actionArray[0] is attack_pistol
@@ -89,22 +88,24 @@ public class Player
 		if(nextAction.equals(actionArray[2]))
 		{
 			useItem(getItem(2).getID());
-		} 		//actionArray[3] is reload_stun
+		} 
+		//actionArray[3] is reload_stun
 		if(nextAction.equals(actionArray[3]))
 		{
 			useItem(getItem(3).getID());
-		}
-
-	
+		}	
 	}
-	//NEED SPECIFICATION ON HOW USER INPUT IS PARSED
-	//Adds an item to inventory when player obtains an item
+	
+	/**
+	 * Method: addToInventory(Item itemToAdd)
+	 * Adds a specific item into the player's inventory
+	 * @param itemToAdd
+	 */
 	public void addToInventory(Item itemToAdd) 
 	{
 		inventory.add(itemToAdd);
 		if(itemToAdd instanceof AmmoPack)
 		{
-	
 			if(itemToAdd.getDescription().equalsIgnoreCase("pistol ammo"))
 			{
 				UserInterface.updateInventory(1, 1);
@@ -127,7 +128,12 @@ public class Player
 
 	}
 
-	//Removes an item from inventory by player request or item use
+	/**
+	 * Method: removeFromInventory(Item itemToRemove)
+	 * Removes a specific item from the player's inventory 
+	 * @param itemToRemove
+	 * @return the name of what the item removed was
+	 */
 	public String removeFromInventory(Item itemToRemove) 
 	{
 		inventory.remove(inventory.indexOf(itemToRemove));
@@ -157,8 +163,12 @@ public class Player
 			return itemToRemove.toString() + "Has been removed!";
 	}
 
-	//Returns a list of items inside of the player's inventory
-	public ArrayList getInventory() 
+	/**
+	 * Method: getInventory()
+	 * outputs a list of objects inside the player's inventory
+	 * @return a list of items inside of the player's inventory
+	 */
+	public ArrayList<String> getInventory() 
 	{
 		ArrayList<String> temp = new ArrayList<String>();
 		for(Item i : inventory)
@@ -168,12 +178,24 @@ public class Player
 		return temp;
 	}
 
-	//Returns an item the user requests
+	/**
+	 * Method: getItem(int itemIndex)
+	 * outputs a specific item in the player's inventory
+	 * @param itemIndex Array index of a specific item
+	 * @return an item the user requests
+	 */
 	public Item getItem(int itemIndex)
 	{
 		return inventory.get(itemIndex);
 	}
 	
+	/**
+	 * Method: getItem(String name)
+	 * outputs a specific item in the player's inventory
+	 * @param name
+	 * @return the item requested by the player
+	 * @throws InvalidItemException if input is a known item
+	 */
 	public Item getItem(String name) throws InvalidItemException
 	{
 		for (Item i : inventory)
@@ -186,27 +208,42 @@ public class Player
 		throw new InvalidItemException();
 	}
 	
-	//Uses an actual item specified by the user
-	//Alexander added this, should work but may need more thinking
+	/**
+	 * Method: useItem(int itemPosition)
+	 * calls the use() method of a specific item in the player's inventory.
+	 * @param itemPosition item index in the player's inventory
+	 * @return use() output of an item
+	 */
 	public String useItem(int itemPosition)
 	{
 		return inventory.get(itemPosition).use();
 	}
 	
-	//Currently purely just teleporting
-	//Navigation between rooms
+	/**
+	 * Method: moveToNext(int nextRoom)
+	 * set the current room number. Serves to nagivate between
+	 * different rooms.
+	 * @param nextRoom new room numbers
+	 */
 	public void moveToNext(int nextRoom) 
 	{
 		Game.getInstance().setCurrentRoom(nextRoom);
 	}
 	
-	//Returns health of player
+	/**
+	 * Method: getHealth()
+	 * @return current health of the player
+	 */
 	public int getHealth()
 	{
 		return health;
 	}
 
-	//Sets the health to a specific amount (TOTAL HEALTH)
+	/**
+	 * Method: updateHealth(int newHealth)
+	 * Sets the player's health to a specific amount
+	 * @param newHealth
+	 */
 	public void updateHealth(int newHealth) 
 	{
 		health = newHealth;

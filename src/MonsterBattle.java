@@ -2,7 +2,9 @@
  * @author Maxim
  * Class: ITEC 3860 SPRING 2015
  * Date: March 9, 2015
- * Purpose: 
+ * Purpose: Controls interaction between a single monster and player.
+ * Retrieves the action of each character for every turn and changes
+ * health accordingly.
  */
 
 /*
@@ -11,8 +13,6 @@
  * 2. Hard coded damage/defense values into battle because cannot correct get invt items
  */
 public class MonsterBattle {
-
-	private int currentMonsterID;
 	
 	//WHAT DID THE CURRENT MONSTER ID DO? 4/6/2015
 	
@@ -32,11 +32,17 @@ public class MonsterBattle {
 	private Player pTemp = Game.getInstance().currentPlayer;
 	private Monster mTemp = Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()];
 	
-	//MonsterBattle constructor 
+	/**
+	 * Method: MonsterBattle(Player player, Monster monster)
+	 * Constructor creates a new battle instance for every
+	 * encounter the player has with a monster.
+	 * 
+	 * @param player : current player of the game instance
+	 * @param monster : current monster of the current battle
+	 */
 	public MonsterBattle(Player player, Monster monster)
 	{
 		pTemp = player;
-		currentMonsterID = monster.getMonsterID();
 		mTemp = monster;
 		
 		playerTurn = true;
@@ -44,7 +50,12 @@ public class MonsterBattle {
 		startBattle();
 	}
 	
-	//Determines who's turn it is
+	/**
+	 * Method: startBattle()
+	 * Determines who has the current turn in the battle.
+	 * Calls the user for input if user's turn. Calls
+	 * monster's actionSequence if monster's turn.
+	 */
 	public void startBattle()
 	{
 		while(Game.getInstance().inBattle)
@@ -76,7 +87,10 @@ public class MonsterBattle {
 		}
 	}
 	
-	//Battle processing unit where health is changed according to different actions
+	/**
+	 * Method: changeHealth()
+	 * Battle processing unit where health is changed according to different actions.
+	 */
 	public void changeHealth() 
 	{
 		int pDmg = 2;
@@ -138,10 +152,15 @@ public class MonsterBattle {
 				Game.getInstance().currentPlayer.findAndUseHealthPack();
 			}
 		}
+		//Finalizes the changes in health/this must be changed/deleted
 		Game.getInstance().currentPlayer = pTemp;
 		Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()] = mTemp;		
 	}
 	
+	/**
+	 * Method: requestPlayerAction()
+	 * Parses user's input into an action.
+	 */
 	public void requestPlayerAction() 
 	{
 		//get user input, parse into an action
@@ -167,22 +186,22 @@ public class MonsterBattle {
 			currentPlayerAction = Action.use;
 		}		
 	}
-
+	
+	/**
+	 * Method: getMonsterAction()
+	 * @return monster's next action in the sequence
+	 */
 	public Action getMonsterAction() 
 	{
 		return mTemp.getNextAction();
 	}
 	
-	//is this suppose to be in battle? thought it was in game
-	//MOVED TO PLAYER CLASS - ANDREW
 	/**
-	public void toggleBattle()
-	{
-		inBattle = !inBattle;
-	}
-	**/
-
-	//Returns the changed health of player/monster and determines if game is over
+	 * Method: getResult()
+	 * Returns the changed health of player/monster and determines 
+	 * if game/battle is over.
+	 * @return String output to inform user of current health and battle status.
+	*/
 	public String getResult() 
 	{
 		if(pTemp.getHealth() <= 0)
