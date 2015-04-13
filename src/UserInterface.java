@@ -12,11 +12,23 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-
+/**Class: UserInterface
+* @author Andrew Cronic 
+* @version 2.5 
+* Course : ITEC 3150 Spring 2015 
+* Written: April 4, 2015
+* 
+* 
+* UserInterface -
+* This class builds a user-friendly interface that allows the user to interact with the Game and send game-related commands
+* 
+* Purpose: The purpose of this class is to provide an interface that allows for Game objects to be explored and interacted with through
+* the game's user.  The interface also displays important Game information to allow the player to keep track of health and inventory, as well
+* as read game information and respond to any game-related prompts
+*/ 
 public class UserInterface 
 {
-	
-
+	//FRAME
 	private static JFrame frame = new JFrame("Deep Blue");
 	
 	//PANELS
@@ -53,10 +65,10 @@ public class UserInterface
 	private static JLabel inventoryPic4 = new JLabel();
 	private static JLabel healthPic = new JLabel();
 	private static JLabel healthLabel = new JLabel("HEALTH: 100%");
-	private static int quantityValue1 = 0;
-	private static int quantityValue2 = 0;
-	private static int quantityValue3 = 0;
-	private static int quantityValue4 = 0;
+	public static int quantityValue1 = 0;
+	public static int quantityValue2 = 0;
+	public static int quantityValue3 = 0;
+	public static int quantityValue4 = 0;
 	private static JLabel quantityLabel1 = new JLabel("QTY.  " + quantityValue1);
 	private static JLabel quantityLabel2 = new JLabel("QTY.  " + quantityValue2);
 	private static JLabel quantityLabel3 = new JLabel("QTY.  " + quantityValue3);
@@ -66,7 +78,13 @@ public class UserInterface
 	private static ImageIcon[] inventoryArray = new ImageIcon[4];
 	private static ImageIcon[] healthArray = new ImageIcon[11];
 
-	
+	/**
+	Method: UserInterface()
+	*
+	Constructs new UserInterface, configures all components' visual information,
+	and adds ActionListeners to necessary components.
+	*
+	**/
 	public UserInterface()
 	{    
 		//CONFIGURE FRAME  
@@ -94,26 +112,26 @@ public class UserInterface
 		quantityLabel2.setForeground(Color.white);
 		quantityLabel3.setForeground(Color.white);
 		quantityLabel4.setForeground(Color.white);
-		quantityLabel1.setFont(new Font("Serif", Font.BOLD, 18));
-		quantityLabel2.setFont(new Font("Serif", Font.BOLD, 18));
-		quantityLabel3.setFont(new Font("Serif", Font.BOLD, 18));
-		quantityLabel4.setFont(new Font("Serif", Font.BOLD, 18));
-		
 		
 		//SET EDITABLE
 		gameTextArea.setEditable(false);
 		gameTextArea.setSize(400,400);
-		gameTextArea.setFont(new Font("Serif", Font.PLAIN, 14));
+
 		
 		//SET FONTS
 		healthLabel.setFont(new Font("Serif", Font.BOLD, 16));
 		userInputLabel.setFont(new Font("Serif", Font.BOLD, 18));
+		quantityLabel1.setFont(new Font("Serif", Font.BOLD, 18));
+		quantityLabel2.setFont(new Font("Serif", Font.BOLD, 18));
+		quantityLabel3.setFont(new Font("Serif", Font.BOLD, 18));
+		quantityLabel4.setFont(new Font("Serif", Font.BOLD, 18));
+		gameTextArea.setFont(new Font("Serif", Font.PLAIN, 14));
+		
 		
 		//SET ICONS
 		healthPic.setIcon(new ImageIcon("health10.jpg"));
 
-		
-		//CREATE / SET BORDERS
+		//CREATE and SET BORDERS
 		Border titleBorder = (BorderFactory.createEmptyBorder(0,25,25,25));
 		centerPanel.setBorder(BorderFactory.createTitledBorder(titleBorder, "Deep Blue", 
 				TitledBorder.LEFT, TitledBorder.RIGHT, 
@@ -127,8 +145,7 @@ public class UserInterface
 		inventoryPic3.setBorder(BorderFactory.createEmptyBorder(0,15,0,15));
 		inventoryPic4.setBorder(BorderFactory.createEmptyBorder(0,15,0,15));
 		
-		
-		
+
 		//ADD COMPONENTS
 		menu.add(file);
 		menu.add(help);
@@ -187,8 +204,7 @@ public class UserInterface
 		centerPanel.setVisible(true);
 		frame.setVisible(true);
 		
-		
-		
+	
 		//ACTION LISTENERS
 		newGame.addActionListener(new ActionListener() 
 		{
@@ -196,8 +212,9 @@ public class UserInterface
             public void actionPerformed(ActionEvent e)
             {
             	String[] args = {};
-            	CreateGame.main(args);
+            	CreateGame.main(args); //Calls the Create Game main to generate a new Game instance.
             }
+            
         }); 
 		
 		investigateButton.addActionListener(new ActionListener() 
@@ -266,17 +283,16 @@ public class UserInterface
                 userInputArea.setText(null);
      
             }
-        }); 
-		
-		
-		}
+        }); 	
+	}
 
 	
 	
 	public static void main(String Args[])
 	{
-		//READ IN HEALTH and INVENTORY IMAGES
-		try {
+		//READ IN HEALTH and INVENTORY IMAGES into respective arrays
+		try 
+		{
 			
 			for(int i = 0; i < inventoryArray.length; i++)
 			{
@@ -300,17 +316,28 @@ public class UserInterface
 			e.printStackTrace();
 		}
 		
+		//set fixed inventory icons
 		inventoryPic1.setIcon(inventoryArray[0]);
 		inventoryPic2.setIcon(inventoryArray[1]);
 		inventoryPic3.setIcon(inventoryArray[2]);
 		inventoryPic4.setIcon(inventoryArray[3]);
 		
-		healthPic.setIcon(healthArray[0]); //SETS FULL HEALTH INITIALLY
+		//SET FULL HEALTH INITIALLY
+		healthPic.setIcon(healthArray[0]); 
 
 		new UserInterface();
 
 	}
 
+	
+	/**
+	Method: isInteger()
+	*
+	Tests whether a String is an integer value when parsed.
+	*
+	*@param input - The String input that is being checked whether is an integer or not
+	*@return -  Returns true if the String is an integer when parsed, false otherwise.
+	**/
 	public static boolean isInteger( String input )
 	{
 	   try
@@ -324,8 +351,17 @@ public class UserInterface
 	   }
 	}
 	
+	/**
+	Method: updateInventory()
+	*
+	Updates quantity values that are displayed on the UserInterface next to associated items in the player inventory.
+	*
+	*@param itempType - the itemType to be updated (1,2,3,4) = (PistolAmmo, StunAmmo, HealthPak, ScubaPart)
+	*@param updateValue - the number to be added to the current quantity value - can be negative or positive.
+	**/
 	public static void updateInventory(int itemType, int updateValue)
 	{
+		//Pistol Ammo
 		if(itemType == 1)
 		{
 			int current = quantityValue1;
@@ -334,6 +370,7 @@ public class UserInterface
 			quantityValue1 = newValue;
 		}
 		
+		//Stun Ammo
 		if(itemType == 2)
 		{
 			int current = quantityValue2;
@@ -342,6 +379,7 @@ public class UserInterface
 			quantityValue2 = newValue;
 		}
 		
+		//Health Pack
 		if(itemType == 3)
 		{
 			int current = quantityValue3;
@@ -350,6 +388,7 @@ public class UserInterface
 			quantityValue3 = newValue;
 		}
 		
+		//Scuba Part
 		if(itemType == 4)
 		{
 			int current = quantityValue4;
@@ -359,35 +398,65 @@ public class UserInterface
 		}
 	}
 	
+	/**
+	Method: setHealthPic()
+	*
+	Sets the Health displayed on the UserInterface to an icon existing in healthArray.
+	*@param healthNumber - the number of health to be displayed 0-10 (Percent Health = healthNumber * 10)
+	 * 
+	**/
 	public static void setHealthPic(int healthNumber)
 	{
+		
 		healthPic.setIcon(healthArray[healthNumber]);
+		
 	}
 	
-	
+	/**
+	Method: setGameTextArea()
+	*
+	Sets the text area in the center of the UserInterface to a passed string parameter.  This method is used
+	to update the user with important game information and prompt the user for information when necessary.
+	*
+	*@param s - the String to be appended and displayed within the gameTextArea component.
+	**/
 	public static void setGameTextArea(String s)
 	{
 		
 	    gameTextArea.append('\n' + s + '\n');
-		gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+		gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength()); //automatically scrolls to the bottom of the TextArea
 		
+		//When the room is empty, prompt user to choose a room (1, 2, or 3) for the next level.
 		if(s.equalsIgnoreCase("the room is empty."))
 		{
 			Game.promptUserForNext();
 		}
 		
-		if(s.substring(0,7).equalsIgnoreCase("monster"))
+		
+		//When a monster is in the room, disable the investigate button, and initialize a new Monster Battle
+		//with the currentPlayer and the monster associated with the currentRoomID.
+		if(s.substring(0,15).equalsIgnoreCase("monster in room"))
 		{
 			System.out.println("MONSTER BATTLE ENTERED!");
 			
+			//disable investigate button
 			gameButtonsOn(false);
-			int monsterInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom();
+			//the index that this room's monster can be retrieved within monsterArray
+			int monsterInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom(); 
+			//Construct new MonsterBattle
 			new MonsterBattle(Game.getInstance().currentPlayer, Game.monsterArray[monsterInRoomIndex]);
+			//Set Game variable inBattle to true
 			Game.getInstance().toggleBattle();
 		}
 	}
-	
-	
+
+	/**
+	Method: gameButtonsOn()
+	*
+	Enables or Disables game buttons from being interacted with or clicked (usually during a MonsterBattle)
+	*
+	*@param areTheyOn - boolean value passed to determine if game buttons are enabled or disabled (true = enabled, false = disabled)
+	**/
 	public static void gameButtonsOn(boolean areTheyOn)
 	{
 		if(areTheyOn == true)
@@ -401,13 +470,23 @@ public class UserInterface
 		}
 	}
 	
+	
+	/**
+	Method: promptUserForRoom()
+	*
+	Method that when invoked, prompts the user to enter choose a room (1, 2, or 3) via a JOptionPane dialog.
+	*
+	**/
 	public static int promptUserForRoom()
 	{
 		int roomNumSelected = -1;
 
+		//options array containing choices for user to select from
 		Object[] options = {"Door 1",
 		                    "Door 2",
 		                    "Door 3"};
+		
+		//Integer that stores the user's selection (index in the options array)
 		int n = JOptionPane.showOptionDialog(frame,
 		    "Choose a door to continue to the next room.",
 		    "Choose your path.",
@@ -420,20 +499,30 @@ public class UserInterface
 		
 		System.out.println("You Selected Door " + n);
 
-		
 		roomNumSelected = n;
 		
 		return roomNumSelected;
 	}
 	
+	/**
+	Method: promptUserForAction()
+	*
+	This method is invoked during a MonsterBattle to prompt the user to select the action
+	they would like to perform against the encountered Monster.  The player can choose from
+	Pistol Attack, Stun Attack, Defend, or Use Health Pack.
+	*
+	**/
 	public static int promptUserForAction()
 	{
 		int actionSelected = -1;
-
+		
+		//array of options for user to select from
 		Object[] options = {"Pistol Attack",
 		                    "Stun Attack",
 		                    "Defend",
 		                    "Use Health Pack"};
+		
+		//integer storing user's selection (index in options array)
 		int n = JOptionPane.showOptionDialog(frame,
 		    "Choose an action to take against the encountered monster.",
 		    "Choose your action.",
@@ -446,10 +535,9 @@ public class UserInterface
 		
 		System.out.println("You Selected Action " + n);
 
-		
 		actionSelected = n;
 		
-		
+		//if a valid selection was not made
 		while(actionSelected < 0)
 		{
 			n = JOptionPane.showOptionDialog(frame,

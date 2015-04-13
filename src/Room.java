@@ -174,7 +174,7 @@ public class Room
 	 * 
 	 * @return
 	 */
-	public String roomtoString()
+	public String toString()
 	{
 		String objectString = "";
 		
