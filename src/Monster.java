@@ -100,9 +100,10 @@ public class Monster
 		return defense;
 	}
 
-	public void toggleIsDefeated()
+	public boolean toggleIsDefeated()
 	{
 		isDefeated = !isDefeated;
+		return isDefeated;
 	}
 	
 }
