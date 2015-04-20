@@ -95,28 +95,28 @@ public class MonsterBattle {
 	{
 		int pDmg = 2;
 		//When monster attacks
-		if(currentMonsterAction.equals(Action.attack))
+		if(currentMonsterAction == Action.attack)
 		{
 			//and player attack with pistol
-			if(currentPlayerAction.equals(Action.attack_pistol))
+			if(currentPlayerAction == Action.attack_pistol)
 			{
 				//Game.getInstance().monsterArray[0].getDamage());
 				mTemp.updateHealth(mTemp.getHealth()-pDmg);
 				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
 			}
 			//player attack with stungun
-			if(currentPlayerAction.equals(Action.attack_stun))
+			if(currentPlayerAction == Action.attack_stun)
 			{
 				mTemp.updateHealth(mTemp.getHealth()-pDmg*2);
 				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
 			}
 			//player defends
-			if(currentPlayerAction.equals(Action.defend))
+			if(currentPlayerAction == Action.defend)
 			{
 				pTemp.updateHealth( pTemp.getHealth()-((int)(mTemp.getDamage()-mTemp.getDamage()*0.5)));
 			}
 			//player uses health pack
-			if(currentPlayerAction.equals(Action.use))
+			if(currentPlayerAction == Action.use)
 			{
 				pTemp.updateHealth(pTemp.getHealth()+pDmg*2);
 				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
@@ -124,28 +124,28 @@ public class MonsterBattle {
 		}
 		
 		//When monster defends
-		if(mTemp.getNextAction().equals(Action.defend))
+		if(mTemp.getNextAction() == Action.defend)
 		{
 			double mDef = mTemp.getDefense();
 			//and player attack with pistol
-			if(pTemp.getNextAction().equals(Action.attack_pistol))
+			if(pTemp.getNextAction() == Action.attack_pistol)
 			{
 				//mTemp.updateHealth(mTemp.getHealth()-Integer.parseInt(pTemp.useItem(0)));
 				mTemp.updateHealth((int)(mTemp.getHealth()-pDmg*mDef));
 			}
 			//player attack with stungun
-			if(pTemp.getNextAction().equals(Action.attack_stun))
+			if(pTemp.getNextAction() == Action.attack_stun)
 			{
 				mTemp.updateHealth((int)(mTemp.getHealth()-pDmg*2*mDef));
 
 			}
 			//player defends
-			if(pTemp.getNextAction().equals(Action.defend))
+			if(pTemp.getNextAction() == Action.defend)
 			{
 
 			}
 			//player uses health pack
-			if(pTemp.getNextAction().equals(Action.use))
+			if(pTemp.getNextAction() == Action.use)
 			{
 				//pTemp.updateHealth(pTemp.getHealth()+pTemp.useItem(pTemp.getItem(healthpackID)))
 				pTemp.updateHealth(pTemp.getHealth()+pDmg*2);
@@ -209,7 +209,6 @@ public class MonsterBattle {
 			Game.getInstance().toggleBattle();
 			UserInterface.gameButtonsOn(true);
 			return "You have died! Game over.";
-		
 		}
 		else
 		if(mTemp.getHealth() <= 0)
