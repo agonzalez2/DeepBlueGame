@@ -15,13 +15,6 @@ public class Player
 	
 	private ArrayList<Item> inventory;
 
-	private Action[] actionArray = {Action.attack_pistol,
-						Action.attack_stun,
-						Action.reload_pistol,
-						Action.reload_stun,
-						Action.move,
-						Action.open_inventory,
-						Action.use};
 	private Action nextAction;
 
 	/**
@@ -33,7 +26,6 @@ public class Player
 	{
 		this.health = health;
 		this.inventory = new ArrayList<Item>();
-		
 	}
 	
 	/**
@@ -75,22 +67,35 @@ public class Player
 	public void performAction(Action nextAction)
 	{
 		//actionArray[0] is attack_pistol
-		if(nextAction.equals(actionArray[0]))
+		if(nextAction == Action.attack_pistol)
 		{
-			useItem(getItem(0).getID());
+			//useItem(getItem(0).getID());
+			try {
+				getItem("Pistol").use();
+			} catch (InvalidItemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		//actionArray[1] is attack_stun
-		if(nextAction.equals(actionArray[1]))
+		if(nextAction == Action.attack_stun)
 		{
-			useItem(getItem(1).getID());
+			//useItem(getItem(1).getID());
+			try {
+				getItem("Stun Gun").use();
+			} catch (InvalidItemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		//actionArray[2] is reload_pistol
-		if(nextAction.equals(actionArray[2]))
+		if(nextAction == Action.reload_pistol)
 		{
 			useItem(getItem(2).getID());
 		} 
 		//actionArray[3] is reload_stun
-		if(nextAction.equals(actionArray[3]))
+		if(nextAction == Action.reload_stun)
 		{
 			useItem(getItem(3).getID());
 		}	
@@ -248,6 +253,29 @@ public class Player
 	{
 		health = newHealth;
 		
+		if(health >= 100)
+		{
+			UserInterface.setHealthPic(10);
+		}
+		
+		else
+		{
+			UserInterface.setHealthPic(getFirstDigit(newHealth));
+		}
+		
+	}
+	
+	public static int getFirstDigit(int i) 
+	{
+		if (Math.abs((long)i) >= 10 ) 
+		{
+		    i = i / 10;
+		    while (Math.abs(i) >= 10 ) 
+		    {
+		        i = i / 10;
+		    }
+		}
+		return Math.abs(i);
 	}
 	
 	//This can be modified to incorporate all items

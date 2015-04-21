@@ -40,9 +40,11 @@ public class ScubaGear extends Item
 		String info;
 		if (!used)
 		{
+			Game.scubaPartCount = Game.scubaPartCount + 1;
 			info = "You found a Scuba Gear part.";
-			info += "\nYou now have " + ++Game.getInstance().scubaPartCount + " Scuba Gear parts";
-			used = true;
+			info += "\nYou now have " + Game.scubaPartCount + " Scuba Gear parts";
+			this.used = true;
+			
 		}
 		else info = "This Scuba Gear part has already been counted/used.";
 		return info;

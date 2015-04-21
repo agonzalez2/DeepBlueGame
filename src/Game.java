@@ -24,10 +24,12 @@ public class Game
 	public static HashMap<Integer, Integer> levelMinimumSet = new HashMap<Integer, Integer>(); //stores minimum room index for that level
 	public static HashMap<Integer, Integer> roomLevelSet = new HashMap<Integer, Integer>(); //stores all rooms and their levels by index
 	
+	public static int currentNumberOfItems = 0; //reference for maintaining unique item id's
+	
 	public Player currentPlayer;
 	//private int GameSave = 0;
 	//private int GameID = 0;
-	public int scubaPartCount = 0;
+	public static int scubaPartCount = 0;
 	public int currentRoomID = -1;
 	
 	public boolean inBattle = false; //initially set to false
@@ -137,22 +139,30 @@ public class Game
 	**/
 	public static void promptUserForNext()
 	{
-		int currentRoom = Game.getInstance().currentRoomID;
-		int currentLevel = roomLevelSet.get(currentRoom); //retrieves the current room's Level
-		int nextLevel = currentLevel + 1; //determines what the next level is
-		int minimumRoomNumForLevel = levelMinimumSet.get(nextLevel); //determines what the minimum room number can be for the next level
-		int nextRoom = UserInterface.promptUserForRoom(); //the user selects the nextRoom (will be 0, 1, or 2)
-		nextRoom = minimumRoomNumForLevel + nextRoom; //adds the user selection to the minimum room number for the next level to determine the next room.
-		Game.getInstance().currentRoomID = nextRoom; //update the currentRoomID
-		
-		//Display new room's description
-		UserInterface.setGameTextArea(roomArray[nextRoom].getRoomDescription());
-		//Display if room has monster to toggle monster battle (in UserInterface.setGameTextArea)
-		if(roomArray[nextRoom].hasMonster())
+		if(roomLevelSet.get(Game.getInstance().currentRoomID) < 10)
 		{
-			int monsterInRoom = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom();
-			String monstName = Game.monsterArray[monsterInRoom].getName();
-			UserInterface.setGameTextArea("MONSTER IN ROOM! " + monstName);
+			int currentRoom = Game.getInstance().currentRoomID;
+			int currentLevel = roomLevelSet.get(currentRoom); //retrieves the current room's Level
+			int nextLevel = currentLevel + 1; //determines what the next level is
+			int minimumRoomNumForLevel = levelMinimumSet.get(nextLevel); //determines what the minimum room number can be for the next level
+			int nextRoom = UserInterface.promptUserForRoom(); //the user selects the nextRoom (will be 0, 1, or 2)
+			nextRoom = minimumRoomNumForLevel + nextRoom; //adds the user selection to the minimum room number for the next level to determine the next room.
+			Game.getInstance().currentRoomID = nextRoom; //update the currentRoomID
+			
+			//Display new room's description
+			UserInterface.setGameTextArea(roomArray[nextRoom].getRoomDescription());
+			//Display if room has monster to toggle monster battle (in UserInterface.setGameTextArea)
+			if(roomArray[nextRoom].hasMonster())
+			{
+				int monsterInRoom = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom();
+				String monstName = Game.monsterArray[monsterInRoom].getName();
+				UserInterface.setGameTextArea("MONSTER IN ROOM! " + monstName);
+			}
+		}
+		
+		else
+		{
+			UserInterface.promptGameOverMessage();
 		}
 	
 
@@ -194,6 +204,14 @@ public class Game
 			instance = new Game(roomArray, monsterArray, puzzleArray);
 		}
 		return instance;
+	}
+	
+	public static int getUniqueItemID()
+	{
+		int newItemID = currentNumberOfItems;
+		currentNumberOfItems++;
+		return newItemID;
+		
 	}
 	
 	/**
