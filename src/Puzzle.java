@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 /**Class: Puzzle.java 
  * @author Alexander Gonzalez 
  * @version 1.0 <p> 
@@ -128,4 +131,63 @@ public class Puzzle
 		return isSolved;
 	}
 
+	/**
+	 * method to get four choices of actions to display to the player
+	 * @return Action[] containing correct choice and three other random choices for puzzle solution
+	 */
+	public Action[] getPossibleActions()
+	{
+		Action[] actions = new Action[4];
+		Random r = new Random();
+
+		//get random place of possible actions to place correct choice
+		int correctChoice = r.nextInt(4);
+
+		//create temp variables for randomization
+		int temp = 0;
+		Action tempAction;
+		ArrayList<Action> usedActions = new ArrayList<Action>();
+
+		//place other choices accordingly
+		for (int i = 0; i < 4; i++)
+		{
+			if (i == correctChoice)
+			{
+				actions[i] = solution[placeInSequence];
+				usedActions.add(solution[placeInSequence]);
+			}
+			else
+			{
+				temp = r.nextInt(solution.length);
+				if (temp != placeInSequence && r.nextBoolean())
+				{
+					tempAction = solution[temp]; 
+				}
+				else 
+				{
+					switch ((temp < 7)? temp : r.nextInt(7))
+					{
+						case 0: tempAction = Action.eat; break;
+						case 1: tempAction = Action.jump; break;
+						case 2: tempAction = Action.hit; break;
+						case 3: tempAction = Action.toss; break;
+						case 4: tempAction = Action.drop; break;
+						case 5: tempAction = Action.relax; break;
+						case 6: tempAction = Action.yell; break;
+						default: tempAction = Action.sit; break;
+					}
+					if (usedActions.contains(tempAction))
+					{
+						i--; //try again
+					}
+					else
+					{
+						actions[i] = tempAction;
+						usedActions.add(tempAction);
+					}
+				}
+			}
+		}
+		return actions;
+	}
 }

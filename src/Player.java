@@ -94,7 +94,7 @@ public class Player
 		{
 			useItem(getItem(3).getID());
 		}	
-	}
+	} 
 	
 	/**
 	 * Method: addToInventory(Item itemToAdd)
