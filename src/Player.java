@@ -69,12 +69,25 @@ public class Player
 		//actionArray[0] is attack_pistol
 		if(nextAction == Action.attack_pistol)
 		{
-			useItem(getItem(0).getID());
+			//useItem(getItem(0).getID());
+			try {
+				getItem("Pistol").use();
+			} catch (InvalidItemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		//actionArray[1] is attack_stun
 		if(nextAction == Action.attack_stun)
 		{
-			useItem(getItem(1).getID());
+			//useItem(getItem(1).getID());
+			try {
+				getItem("Stun Gun").use();
+			} catch (InvalidItemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		//actionArray[2] is reload_pistol
 		if(nextAction == Action.reload_pistol)
@@ -240,6 +253,29 @@ public class Player
 	{
 		health = newHealth;
 		
+		if(health >= 100)
+		{
+			UserInterface.setHealthPic(10);
+		}
+		
+		else
+		{
+			UserInterface.setHealthPic(getFirstDigit(newHealth));
+		}
+		
+	}
+	
+	public static int getFirstDigit(int i) 
+	{
+		if (Math.abs((long)i) >= 10 ) 
+		{
+		    i = i / 10;
+		    while (Math.abs(i) >= 10 ) 
+		    {
+		        i = i / 10;
+		    }
+		}
+		return Math.abs(i);
 	}
 	
 	//This can be modified to incorporate all items

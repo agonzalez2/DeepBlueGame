@@ -100,6 +100,7 @@ public class MonsterBattle {
 			//and player attack with pistol
 			if(currentPlayerAction == Action.attack_pistol)
 			{
+				pDmg = 100; //Temporarily 100 Damage
 				//Game.getInstance().monsterArray[0].getDamage());
 				mTemp.updateHealth(mTemp.getHealth()-pDmg);
 				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
@@ -107,6 +108,7 @@ public class MonsterBattle {
 			//player attack with stungun
 			if(currentPlayerAction == Action.attack_stun)
 			{
+				pDmg = 30;
 				mTemp.updateHealth(mTemp.getHealth()-pDmg*2);
 				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
 			}
@@ -169,21 +171,26 @@ public class MonsterBattle {
 		if(userActionInput == 0)
 		{
 			currentPlayerAction = Action.attack_pistol;
+			//update inventory on user interface
+			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
 		
 		if(userActionInput == 1)
 		{
 			currentPlayerAction = Action.attack_stun;
+			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
 		
 		if(userActionInput == 2)
 		{
 			currentPlayerAction = Action.defend;
+			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
 		
 		if(userActionInput == 3)
 		{
 			currentPlayerAction = Action.use;
+			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}		
 	}
 	
@@ -207,7 +214,7 @@ public class MonsterBattle {
 		if(pTemp.getHealth() <= 0)
 		{
 			Game.getInstance().toggleBattle();
-			UserInterface.gameButtonsOn(true);
+			UserInterface.gameButtonsOn(false);
 			return "You have died! Game over.";
 		}
 		else
@@ -215,7 +222,7 @@ public class MonsterBattle {
 		{
 			Game.getInstance().toggleBattle();
 			UserInterface.gameButtonsOn(true);
-			return mTemp.getName() + " has been defeated! You win!";
+			return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
 		}
 		else
 		{

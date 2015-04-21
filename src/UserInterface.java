@@ -39,8 +39,9 @@ public class UserInterface
 	private JPanel centerPanel = new JPanel();
 
 	//BUTTONS
-	private JButton userSubmitButton = new JButton("SUBMIT");
+	private static JButton userSubmitButton = new JButton("SUBMIT");
 	private static JButton investigateButton = new JButton("Investigate");
+	private static JButton useHealthPackButton = new JButton("Use Health Pack");
 	
 	//MENU and MENUITEMS
 	private JMenuBar menu = new JMenuBar();
@@ -69,10 +70,10 @@ public class UserInterface
 	public static int quantityValue2 = 0;
 	public static int quantityValue3 = 0;
 	public static int quantityValue4 = 0;
-	private static JLabel quantityLabel1 = new JLabel("QTY.  " + quantityValue1);
-	private static JLabel quantityLabel2 = new JLabel("QTY.  " + quantityValue2);
-	private static JLabel quantityLabel3 = new JLabel("QTY.  " + quantityValue3);
-	private static JLabel quantityLabel4 = new JLabel("QTY.  " + quantityValue4);
+	public static JLabel quantityLabel1 = new JLabel("QTY.  " + quantityValue1);
+	public static JLabel quantityLabel2 = new JLabel("QTY.  " + quantityValue2);
+	public static JLabel quantityLabel3 = new JLabel("QTY.  " + quantityValue3);
+	public static JLabel quantityLabel4 = new JLabel("QTY.  " + quantityValue4);
 	
 	//Health / Inventory Components
 	private static ImageIcon[] inventoryArray = new ImageIcon[4];
@@ -164,7 +165,7 @@ public class UserInterface
 		southPanel.add(new JLabel());
 		southPanel.add(new JLabel());
 		southPanel.add(investigateButton);
-		southPanel.add(new JLabel());
+		southPanel.add(useHealthPackButton);
 		southPanel.add(new JLabel());
 		southPanel.add(new JLabel());
 		southPanel.add(new JScrollPane(userInputArea));
@@ -213,6 +214,7 @@ public class UserInterface
             {
             	String[] args = {};
             	CreateGame.main(args); //Calls the Create Game main to generate a new Game instance.
+            	gameButtonsOn(true);
             }
             
         }); 
@@ -227,6 +229,19 @@ public class UserInterface
             }
         }); 
 		
+		useHealthPackButton.addActionListener(new ActionListener() 
+		{
+	       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                try {
+					Game.getInstance().currentPlayer.getItem("Health Pak").use();
+				} catch (InvalidItemException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        }); 
 		
 		quit.addActionListener(new ActionListener() 
 		{
@@ -410,6 +425,8 @@ public class UserInterface
 		
 		healthPic.setIcon(healthArray[healthNumber]);
 		
+		healthLabel.setText("HEALTH: " + Game.getInstance().currentPlayer.getHealth() + "%");
+		
 	}
 	
 	/**
@@ -445,8 +462,7 @@ public class UserInterface
 			int monsterInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom(); 
 			//Construct new MonsterBattle
 			new MonsterBattle(Game.getInstance().currentPlayer, Game.monsterArray[monsterInRoomIndex]);
-			//Set Game variable inBattle to true
-			Game.getInstance().toggleBattle();
+
 		}
 	}
 
@@ -462,11 +478,17 @@ public class UserInterface
 		if(areTheyOn == true)
 		{
 			investigateButton.setEnabled(true);
+			useHealthPackButton.setEnabled(true);
+			userSubmitButton.setEnabled(true);
+			userInputArea.setEnabled(true);
 		}
 		
 		if(areTheyOn == false)
 		{
 			investigateButton.setEnabled(false);
+			useHealthPackButton.setEnabled(false);
+			userSubmitButton.setEnabled(false);
+			userInputArea.setEnabled(false);
 		}
 	}
 	
@@ -554,6 +576,24 @@ public class UserInterface
 		
 		
 		return actionSelected;
+	}
+	
+	public static void promptGameOverMessage()
+	{
+		if(Game.getInstance().scubaPartCount >= 2)
+		{
+			JOptionPane.showMessageDialog(frame, "You have collected enough Scuba Parts to escape!  You survive!");
+			UserInterface.setGameTextArea("Great Job!  Navigate to File > New Game to play again!");
+			gameButtonsOn(false);
+		}
+		
+		else
+		{
+			JOptionPane.showMessageDialog(frame, "You do not have enough scuba parts to escape!  You lose and die.");
+			UserInterface.setGameTextArea("Better luck next time!  Navigate to File > New Game to try again!");
+			gameButtonsOn(false);
+		}
+		
 	}
 	
 

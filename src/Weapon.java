@@ -53,6 +53,18 @@ public class Weapon extends Item
 			info = weaponType + " has been fired.";
 			ammo--;
 			info += " Remaining ammo: " + ammo;
+			if(weaponType.equals("Pistol"))
+			{
+				System.out.println("USE WEAPON: Pistol");
+				UserInterface.updateInventory(1, -1);
+			}
+			
+			if(weaponType.equals("Stun"))
+			{
+				System.out.println("USE WEAPON: Stun Gun");
+				UserInterface.updateInventory(2, -1);
+			}
+		
 		}
 		else
 		{

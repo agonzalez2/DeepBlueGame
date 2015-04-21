@@ -101,8 +101,9 @@ public class CreateGame
 		//initialize the item types into an array for retrieval
 		itemTypeArray[0] = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
 		itemTypeArray[1] = new AmmoPack("Stun Ammo","Stun", 2,5);
-		itemTypeArray[2] = new HealthPack("Health Pak", 3, 2);
+		itemTypeArray[2] = new HealthPack("Health Pak", 3, 100);
 		itemTypeArray[3] = new ScubaGear("Scuba Part", 4);
+		
 	}
 	
 	
@@ -170,8 +171,8 @@ public class CreateGame
 			//scubaRoomSet contains all room numbers (1 for each level) to add a ScubaPart to.
 			if(scubaRoomSet.contains(i))
 			{
-				Item scubaItem = itemTypeArray[3]; //Only Scuba Parts
-				itemsInRoom.add(scubaItem);
+				//Item scubaItem = itemTypeArray[3]; //Only Scuba Parts
+				itemsInRoom.add(new ScubaGear("Scuba Gear", Game.getUniqueItemID()));
 			}
 
 			//a random number generated from zero to the number of rooms remaining for the current level
@@ -305,6 +306,12 @@ public class CreateGame
 		
 		//add one health pak
 		p.addToInventory(itemTypeArray[2]);
+		
+		//add player weapons
+		Weapon pistolWeapon = new Weapon("Pistol", 4, "Pistol", 10);
+		Weapon stunWeapon = new Weapon("Stun Gun", 5, "Stun", 20);
+		p.addToInventory(pistolWeapon);
+		p.addToInventory(stunWeapon);
 		
 		test.run();
 		
