@@ -83,9 +83,28 @@ public class CreateGame
 	**/
 	public static void generatePuzzles()
 	{
+		String[][] resultString = new String[2][2];
+		resultString[0][0] = "correct";
+		resultString[0][1] = "incorrect";
+		resultString[1][0] = "correct";
+		resultString[1][1] = "incorrect";
 		
+		//Action[] solutionArray = new Action[1];
+		ArrayList<Action> solutionArray = new ArrayList<Action>();
+		solutionArray.add(Action.use);
+		
+		Item prizeItem = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
 		//*** PUZZLE ARRAY COMPONENTS ***
-		tempPuzzleArray[0] = new Puzzle();
+		tempPuzzleArray[0] = new Puzzle(0, "Puzzle 1", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[1] = new Puzzle(1, "Puzzle 2", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[2] = new Puzzle(2, "Puzzle 3", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[3] = new Puzzle(3, "Puzzle 4", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[4] = new Puzzle(4, "Puzzle 5", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[5] = new Puzzle(5, "Puzzle 6", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[6] = new Puzzle(6, "Puzzle 7", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[7] = new Puzzle(7, "Puzzle 8", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[8] = new Puzzle(8, "Puzzle 9", resultString, solutionArray, prizeItem);
+		tempPuzzleArray[9] = new Puzzle(9, "Puzzle 10", resultString, solutionArray, prizeItem);
 	}
 	
 	

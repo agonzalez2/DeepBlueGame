@@ -207,7 +207,7 @@ public class UserInterface
 		
 	
 		//ACTION LISTENERS
-		newGame.addActionListener(new ActionListener() 
+		newGame.addActionListener(new ActionListener()
 		{
 	       	 
             public void actionPerformed(ActionEvent e)
@@ -452,8 +452,9 @@ public class UserInterface
 		
 		//When a monster is in the room, disable the investigate button, and initialize a new Monster Battle
 		//with the currentPlayer and the monster associated with the currentRoomID.
-		if(s.substring(0,15).equalsIgnoreCase("monster in room"))
+		if(s.contains("MONSTER IN ROOM"))
 		{
+			//s.substring(0,15).equalsIgnoreCase("monster in room")
 			System.out.println("MONSTER BATTLE ENTERED!");
 			
 			//disable investigate button
@@ -462,7 +463,27 @@ public class UserInterface
 			int monsterInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom(); 
 			//Construct new MonsterBattle
 			new MonsterBattle(Game.getInstance().currentPlayer, Game.monsterArray[monsterInRoomIndex]);
-
+		}
+		
+		if(s.contains("puzzle in room"))
+		{
+			System.out.println("PUZZLE ENTERED!");
+			
+			//disable investigate button
+			gameButtonsOn(false);
+			//the index that this room's monster can be retrieved within monsterArray
+			int puzzleInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom(); 
+			//Construct new MonsterBattle
+			if(Game.getInstance().roomArray[Game.getInstance().currentRoomID].hasMonster() &&
+					Game.monsterArray[Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()].getIsDefeated())
+			{
+				Game.puzzleArray[puzzleInRoomIndex].startPuzzle();
+			}
+			else if(Game.getInstance().roomArray[Game.getInstance().currentRoomID].hasPuzzle())
+			{
+				Game.puzzleArray[puzzleInRoomIndex].startPuzzle();
+			}
+			
 		}
 	}
 
@@ -577,6 +598,54 @@ public class UserInterface
 		
 		return actionSelected;
 	}
+	
+	
+	public static Action promptUserForPuzzle()
+	{
+		int actionSelected = -1;
+		
+		//array of options for user to select from
+		Action[] options = {Action.attack,
+		                    Action.move,
+		                    Game.puzzleArray[Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom()].getSolution(),
+		                    Action.reload_pistol};
+		
+		
+		//integer storing user's selection (index in options array)
+		int n = JOptionPane.showOptionDialog(frame,
+		    "Choose an action to take for the puzzle.",
+		    "Choose your action.",
+		    JOptionPane.YES_NO_CANCEL_OPTION,
+		    JOptionPane.QUESTION_MESSAGE,
+		    null,
+		    options,
+		    options[2]);
+	
+		
+		System.out.println("You Selected Action " + n);
+
+		Action tempActionSelected = options[n];
+		
+		//if a valid selection was not made
+		while(actionSelected < 0)
+		{
+			n = JOptionPane.showOptionDialog(frame,
+				    "Choose an action to take against the encountered monster.",
+				    "Choose a VALID action.",
+				    JOptionPane.YES_NO_CANCEL_OPTION,
+				    JOptionPane.QUESTION_MESSAGE,
+				    null,
+				    options,
+				    options[2]);
+			
+			actionSelected = n;
+		}
+		
+		
+		return tempActionSelected;
+	}
+	
+	
 	
 	public static void promptGameOverMessage()
 	{

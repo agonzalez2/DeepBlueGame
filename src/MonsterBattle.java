@@ -222,7 +222,9 @@ public class MonsterBattle {
 		{
 			Game.getInstance().toggleBattle();
 			UserInterface.gameButtonsOn(true);
+			mTemp.toggleIsDefeated();
 			return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
+		
 		}
 		else
 		{
@@ -230,4 +232,6 @@ public class MonsterBattle {
 					+mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
 		}
 	}
+	
+
 }

@@ -71,24 +71,45 @@ public class Room
 	public String investigate() 
 	{
 		String info;
-		if (objectsInRoom.size() == 0) 
+		
+		if(this.hasPuzzle() && !Game.puzzleArray[this.getPuzzleInRoom()].isSolved())
 		{
-			info = "The room is empty.";
-			markRoomComplete();
+			if(this.hasMonster() && Game.monsterArray[getMonsterInRoom()].getIsDefeated())
+			{
+				//UserInterface.setGameTextArea("puzzle in room");
+				info = "puzzle in room";
+				return info;
+			}
+			
+			else
+			{
+				info = "puzzle in room";
+				return info;
+			}
 			
 		}
+		
 		else
 		{
-			Item roomObject = objectsInRoom.remove(0);
-			if (roomObject instanceof ScubaGear)
+			if (objectsInRoom.size() == 0) 
 			{
-				UserInterface.setGameTextArea(roomObject.use());
+				info = "The room is empty.";
+				markRoomComplete();
+				
 			}
-			info = "The room contained " + roomObject.getDescription();
-			Game.getInstance().currentPlayer.addToInventory(roomObject);
-			info += ", it has been added to your inventory.";
+			else
+			{
+				Item roomObject = objectsInRoom.remove(0);
+				if (roomObject instanceof ScubaGear)
+				{
+					UserInterface.setGameTextArea(roomObject.use());
+				}
+				info = "The room contained " + roomObject.getDescription();
+				Game.getInstance().currentPlayer.addToInventory(roomObject);
+				info += ", it has been added to your inventory.";
+			}
+			return info;
 		}
-		return info;
 		
 	}
 

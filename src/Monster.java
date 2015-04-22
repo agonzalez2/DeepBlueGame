@@ -141,4 +141,9 @@ public class Monster
 		return isDefeated;
 	}
 	
+	public boolean getIsDefeated()
+	{
+		return isDefeated;
+	}
+	
 }

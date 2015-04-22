@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**Class: Puzzle.java 
  * @author Alexander Gonzalez 
  * @version 1.0 <p> 
@@ -17,12 +19,23 @@
 public class Puzzle
 {
 	private String puzzleDesc;
-	private Action[] solution;
+	//private Action[] solution;
+	private ArrayList<Action> solution = new ArrayList<Action>(); //Changed to ArrayList to handle variety of puzzle lengths
 	private int puzzleID;
 	private String[][] results;
-	private boolean isSolved;
-	private int placeInSequence;
+	private boolean isSolved = false;
+	private int placeInSequence = 0;
 	private Item prizeItem;
+	
+	public Puzzle(int id, String desc, String[][] resultString, ArrayList<Action> solutionArray, Item prize)
+	{
+		puzzleID = id;
+		puzzleDesc = desc;
+		results = resultString;
+		solution = solutionArray;
+		prizeItem = prize;
+		
+	}
 
 	/**
 	 * A method to check whether the action taken by the player is part of the solution 
@@ -38,14 +51,15 @@ public class Puzzle
 		//check if puzzle is already solved
 		if (!isSolved)
 		{
-			if (playerAction == solution[placeInSequence])
+			if (playerAction == solution.get(placeInSequence))
 			{
 				//get positive result when player correctly performs next action of puzzle
 				info = getResult(0);
 				placeInSequence++;
 				//check if player has reached the end of the action sequence
-				if (placeInSequence >= solution.length)
+				if (placeInSequence >= solution.size())
 				{
+					System.out.println("solution size: " + solution.size());
 					markSolved();
 					info += " Your rewards is a " + getPrizeItem().getDescription();
 					info += ", it has been added to inventory.";
@@ -55,6 +69,7 @@ public class Puzzle
 			{
 				//get negative result when player incorrectly performs an action
 				info = getResult(1);
+				UserInterface.promptUserForPuzzle();
 			}
 		}
 		else info = "Puzzle is already solved.";
@@ -126,6 +141,25 @@ public class Puzzle
 	public boolean isSolved() 
 	{
 		return isSolved;
+	}
+	
+	public void startPuzzle()
+	{
+		while(!isSolved)
+		{
+			Action a = UserInterface.promptUserForPuzzle();
+			
+			checkSolution(a);
+			
+		}
+		
+		UserInterface.setGameTextArea("Puzzle Solved! Continue Investigating...");
+		UserInterface.gameButtonsOn(true);
+	}
+	
+	public Action getSolution()
+	{
+		return solution.get(placeInSequence);
 	}
 
 }
