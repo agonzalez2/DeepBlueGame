@@ -143,7 +143,7 @@ public class Player implements Serializable
 	 */
 	public String removeFromInventory(Item itemToRemove) 
 	{
-		inventory.remove(inventory.indexOf(itemToRemove));
+		inventory.remove(itemToRemove);
 		
 		if(itemToRemove instanceof AmmoPack)
 		{
@@ -253,7 +253,7 @@ public class Player implements Serializable
 	 */
 	public void updateHealth(int newHealth) 
 	{
-		health = newHealth;
+		health += newHealth;
 		
 		if(health >= 100)
 		{
@@ -262,22 +262,9 @@ public class Player implements Serializable
 		
 		else
 		{
-			UserInterface.setHealthPic(getFirstDigit(newHealth));
+			UserInterface.setHealthPic(health/10);
 		}
 		
-	}
-	
-	public static int getFirstDigit(int i) 
-	{
-		if (Math.abs((long)i) >= 10 ) 
-		{
-		    i = i / 10;
-		    while (Math.abs(i) >= 10 ) 
-		    {
-		        i = i / 10;
-		    }
-		}
-		return Math.abs(i);
 	}
 	
 	//This can be modified to incorporate all items
