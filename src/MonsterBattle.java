@@ -13,25 +13,25 @@
  * 2. Hard coded damage/defense values into battle because cannot correct get invt items
  */
 public class MonsterBattle {
-	
+
 	//WHAT DID THE CURRENT MONSTER ID DO? 4/6/2015
-	
+
 	//private boolean inBattle;  MOVED TO PLAYER CLASS
 
 	private Action currentPlayerAction;
 
 	private Action currentMonsterAction;
-	
+
 	private boolean playerTurn = false;
-	
+
 	private boolean monsterTurn = false;
-	
+
 	private boolean timeForUpdate = false;
-	
+
 	//NEED TO Replace all temporary variables with Game.getXXXXX
 	private Player pTemp = Game.getInstance().currentPlayer;
 	private Monster mTemp = Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()];
-	
+
 	/**
 	 * Method: MonsterBattle(Player player, Monster monster)
 	 * Constructor creates a new battle instance for every
@@ -44,12 +44,12 @@ public class MonsterBattle {
 	{
 		pTemp = player;
 		mTemp = monster;
-		
+
 		playerTurn = true;
 		Game.getInstance().toggleBattle();
 		startBattle();
 	}
-	
+
 	/**
 	 * Method: startBattle()
 	 * Determines who has the current turn in the battle.
@@ -65,9 +65,9 @@ public class MonsterBattle {
 				requestPlayerAction(); //sets currentPlayerAction
 				playerTurn = false;
 				monsterTurn = true;
-				
+
 			}
-			
+
 			if(monsterTurn)
 			{
 				System.out.println("Monster Turn");
@@ -75,7 +75,7 @@ public class MonsterBattle {
 				monsterTurn = false;
 				timeForUpdate = true;
 			}
-			
+
 			if(timeForUpdate)
 			{
 				System.out.println("Time for update");
@@ -86,7 +86,7 @@ public class MonsterBattle {
 			}
 		}
 	}
-	
+
 	/**
 	 * Method: changeHealth()
 	 * Battle processing unit where health is changed according to different actions.
@@ -102,29 +102,29 @@ public class MonsterBattle {
 			{
 				pDmg = 100; //Temporarily 100 Damage
 				//Game.getInstance().monsterArray[0].getDamage());
-				mTemp.updateHealth(mTemp.getHealth()-pDmg);
-				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
+				mTemp.updateHealth(-pDmg);
+				pTemp.updateHealth(-mTemp.getDamage());
 			}
 			//player attack with stungun
 			if(currentPlayerAction == Action.attack_stun)
 			{
 				pDmg = 30;
-				mTemp.updateHealth(mTemp.getHealth()-pDmg*2);
-				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
+				mTemp.updateHealth(-pDmg);
+				pTemp.updateHealth(-mTemp.getDamage());
 			}
 			//player defends
 			if(currentPlayerAction == Action.defend)
 			{
-				pTemp.updateHealth( pTemp.getHealth()-((int)(mTemp.getDamage()-mTemp.getDamage()*0.5)));
+				pTemp.updateHealth(-(-(mTemp.getDamage() - ));
 			}
 			//player uses health pack
 			if(currentPlayerAction == Action.use)
 			{
-				pTemp.updateHealth(pTemp.getHealth()+pDmg*2);
-				pTemp.updateHealth(pTemp.getHealth()-mTemp.getDamage());
+				pTemp.updateHealth(pTemp.findAndUseHealthPack());
+				pTemp.updateHealth(-mTemp.getDamage());
 			}
 		}
-		
+
 		//When monster defends
 		if(mTemp.getNextAction() == Action.defend)
 		{
@@ -154,11 +154,9 @@ public class MonsterBattle {
 				Game.getInstance().currentPlayer.findAndUseHealthPack();
 			}
 		}
-		//Finalizes the changes in health/this must be changed/deleted
-		Game.getInstance().currentPlayer = pTemp;
-		Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()] = mTemp;		
+		
 	}
-	
+
 	/**
 	 * Method: requestPlayerAction()
 	 * Parses user's input into an action.
@@ -167,33 +165,33 @@ public class MonsterBattle {
 	{
 		//get user input, parse into an action
 		int userActionInput = UserInterface.promptUserForAction();
-		
+
 		if(userActionInput == 0)
 		{
 			currentPlayerAction = Action.attack_pistol;
 			//update inventory on user interface
 			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
-		
+
 		if(userActionInput == 1)
 		{
 			currentPlayerAction = Action.attack_stun;
 			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
-		
+
 		if(userActionInput == 2)
 		{
 			currentPlayerAction = Action.defend;
 			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
-		
+
 		if(userActionInput == 3)
 		{
 			currentPlayerAction = Action.use;
 			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}		
 	}
-	
+
 	/**
 	 * Method: getMonsterAction()
 	 * @return monster's next action in the sequence
@@ -202,13 +200,13 @@ public class MonsterBattle {
 	{
 		return mTemp.getNextAction();
 	}
-	
+
 	/**
 	 * Method: getResult()
 	 * Returns the changed health of player/monster and determines 
 	 * if game/battle is over.
 	 * @return String output to inform user of current health and battle status.
-	*/
+	 */
 	public String getResult() 
 	{
 		if(pTemp.getHealth() <= 0)
@@ -218,16 +216,16 @@ public class MonsterBattle {
 			return "You have died! Game over.";
 		}
 		else
-		if(mTemp.getHealth() <= 0)
-		{
-			Game.getInstance().toggleBattle();
-			UserInterface.gameButtonsOn(true);
-			return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
-		}
-		else
-		{
-			return "Your health is now " + pTemp.getHealth() +". " 
-					+mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
-		}
+			if(mTemp.getHealth() <= 0)
+			{
+				Game.getInstance().toggleBattle();
+				UserInterface.gameButtonsOn(true);
+				return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
+			}
+			else
+			{
+				return "Your health is now " + pTemp.getHealth() +". " 
+						+mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
+			}
 	}
 }

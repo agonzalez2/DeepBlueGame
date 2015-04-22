@@ -18,6 +18,10 @@ public class Player implements Serializable
 	private ArrayList<Item> inventory;
 
 	private Action nextAction;
+	
+	private Weapon pistol, stun;
+	
+	
 
 	/**
 	 * Method: Player(int Health)
@@ -111,6 +115,17 @@ public class Player implements Serializable
 	public void addToInventory(Item itemToAdd) 
 	{
 		inventory.add(itemToAdd);
+		if (itemToAdd instanceof Weapon)
+		{
+			if (itemToAdd.getDescription().equals("pistol"))
+			{
+				pistol = (Weapon)itemToAdd;
+			}
+			else if (itemToAdd.getDescription().equals("stun"))
+			{
+				stun = (Weapon)itemToAdd;
+			}
+		}
 		if(itemToAdd instanceof AmmoPack)
 		{
 			if(itemToAdd.getDescription().equalsIgnoreCase("pistol ammo"))
@@ -268,19 +283,21 @@ public class Player implements Serializable
 	}
 	
 	//This can be modified to incorporate all items
-	public void findAndUseHealthPack()
+	public int findAndUseHealthPack()
 	{
-		
 		for (Item i : inventory)
 		{
-			if(i.getDescription().equalsIgnoreCase("Health Pak"))
+			if(i instanceof HealthPack)
 			{
 				i.use();
-				inventory.remove(i);
+				HealthPack h = (HealthPack)i;
+				return h.getHealAmount();
 			}
 		}
+		return 0;
 	}
 }
+
 class InvalidItemException extends Exception
 {
 	public InvalidItemException(){}

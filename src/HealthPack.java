@@ -51,5 +51,10 @@ public class HealthPack extends Item
 		info += ", health pack has been removed from inventory.";
 		return info;
 	}
+	
+	public int getHealAmount()
+	{
+		return healAmount;
+	}
 
 }

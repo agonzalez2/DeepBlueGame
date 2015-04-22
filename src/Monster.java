@@ -84,7 +84,7 @@ public class Monster implements Serializable
 	 */
 	public void updateHealth(int newHealth) 
 	{
-		health = newHealth;
+		health += newHealth;
 	}
 
 	/**

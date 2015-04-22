@@ -44,7 +44,7 @@ public class Shield extends Item
 	 */
 	public String use() 
 	{
-		return null;
+		return "" + defendAmount;
 	}
 
 }
