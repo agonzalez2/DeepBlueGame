@@ -23,5 +23,7 @@ public class PuzzleMaker
 		System.out.println(p1.checkSolution(Action.drop));
 		System.out.println(p1.checkSolution(Action.drop));
 		System.out.println(p1.checkSolution(Action.hit));
+		System.out.println(p1.checkSolution(Action.eat));
+		System.out.println(p1.checkSolution(Action.relax));
 	}
 }
