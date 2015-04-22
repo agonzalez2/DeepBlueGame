@@ -28,6 +28,46 @@ public class Puzzle implements Serializable
 	private boolean isSolved;
 	private int placeInSequence;
 	private Item prizeItem;
+	private static int nextPuzzleID;
+
+	
+	/**
+	 * 
+	 * @param puzzleDesc
+	 * @param solution
+	 * @param puzzleID
+	 * @param results
+	 * @param prizeItem
+	 */
+	public Puzzle(String puzzleDesc, Action[] solution, int puzzleID, 
+			String[][] results, Item prizeItem)
+	{
+		this.puzzleDesc = puzzleDesc;
+		this.solution = solution;
+		this.puzzleID = puzzleID;
+		this.results = results;
+		this.prizeItem = prizeItem;
+		isSolved = false;
+		placeInSequence = 0;
+	}
+	
+	/**
+	 * 
+	 * @param puzzleDesc
+	 * @param solution
+	 * @param results
+	 * @param prizeItem
+	 */
+	public Puzzle(String puzzleDesc, Action[] solution, String[][] results, Item prizeItem)
+	{
+		this.puzzleDesc = puzzleDesc;
+		this.solution = solution;
+		this.puzzleID = nextPuzzleID++;
+		this.results = results;
+		this.prizeItem = prizeItem;
+		isSolved = false;
+		placeInSequence = 0;
+	}
 
 	/**
 	 * A method to check whether the action taken by the player is part of the solution 

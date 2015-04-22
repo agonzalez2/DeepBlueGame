@@ -85,7 +85,7 @@ public class CreateGame
 	{
 		
 		//*** PUZZLE ARRAY COMPONENTS ***
-		tempPuzzleArray[0] = new Puzzle();
+		//tempPuzzleArray[0] = new Puzzle();
 	}
 	
 	
