@@ -115,7 +115,7 @@ public class MonsterBattle {
 			//player defends
 			if(currentPlayerAction == Action.defend)
 			{
-				pTemp.updateHealth(-(-(mTemp.getDamage() - ));
+				pTemp.updateHealth(-(-(mTemp.getDamage() - 10))); // change to use shield
 			}
 			//player uses health pack
 			if(currentPlayerAction == Action.use)
@@ -154,7 +154,7 @@ public class MonsterBattle {
 				Game.getInstance().currentPlayer.findAndUseHealthPack();
 			}
 		}
-		
+
 	}
 
 	/**
@@ -215,35 +215,20 @@ public class MonsterBattle {
 			UserInterface.gameButtonsOn(false);
 			return "You have died! Game over.";
 		}
-		else
-<<<<<<< HEAD
-		if(mTemp.getHealth() <= 0)
+		else if(mTemp.getHealth() <= 0)
 		{
 			Game.getInstance().toggleBattle();
 			UserInterface.gameButtonsOn(true);
 			mTemp.toggleIsDefeated();
 			return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
-		
+
 		}
 		else
 		{
 			return "Your health is now " + pTemp.getHealth() +". " 
-					+mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
-		}
-=======
-			if(mTemp.getHealth() <= 0)
-			{
-				Game.getInstance().toggleBattle();
-				UserInterface.gameButtonsOn(true);
-				return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
-			}
-			else
-			{
-				return "Your health is now " + pTemp.getHealth() +". " 
-						+mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
-			}
->>>>>>> origin/master
+					+ mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
+		}		
 	}
-	
+
 
 }

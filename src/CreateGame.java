@@ -90,25 +90,24 @@ public class CreateGame
 		resultString[1][1] = "incorrect";
 		
 		//Action[] solutionArray = new Action[1];
-		ArrayList<Action> solutionArray = new ArrayList<Action>();
-		solutionArray.add(Action.use);
+		Action[] solutionArray = {Action.use};
 		
 		Item prizeItem = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
 		//*** PUZZLE ARRAY COMPONENTS ***
-<<<<<<< HEAD
-		tempPuzzleArray[0] = new Puzzle(0, "Puzzle 1", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[1] = new Puzzle(1, "Puzzle 2", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[2] = new Puzzle(2, "Puzzle 3", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[3] = new Puzzle(3, "Puzzle 4", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[4] = new Puzzle(4, "Puzzle 5", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[5] = new Puzzle(5, "Puzzle 6", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[6] = new Puzzle(6, "Puzzle 7", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[7] = new Puzzle(7, "Puzzle 8", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[8] = new Puzzle(8, "Puzzle 9", resultString, solutionArray, prizeItem);
-		tempPuzzleArray[9] = new Puzzle(9, "Puzzle 10", resultString, solutionArray, prizeItem);
-=======
+
+		tempPuzzleArray[0] = new Puzzle("Puzzle 1", solutionArray, 0, resultString, prizeItem);
+		tempPuzzleArray[1] = new Puzzle("Puzzle 2", solutionArray, 1,  resultString, prizeItem);
+		tempPuzzleArray[2] = new Puzzle("Puzzle 3", solutionArray, 2, resultString, prizeItem);
+		tempPuzzleArray[3] = new Puzzle("Puzzle 4", solutionArray, 3, resultString, prizeItem);
+		tempPuzzleArray[4] = new Puzzle("Puzzle 5", solutionArray, 4, resultString, prizeItem);
+		tempPuzzleArray[5] = new Puzzle("Puzzle 6", solutionArray, 5, resultString, prizeItem);
+		tempPuzzleArray[6] = new Puzzle("Puzzle 7", solutionArray, 6, resultString, prizeItem);
+		tempPuzzleArray[7] = new Puzzle("Puzzle 8", solutionArray, 7, resultString, prizeItem);
+		tempPuzzleArray[8] = new Puzzle("Puzzle 9", solutionArray, 8, resultString, prizeItem);
+		tempPuzzleArray[9] = new Puzzle("Puzzle 10", solutionArray, 9, resultString, prizeItem);
+		
+
 		//tempPuzzleArray[0] = new Puzzle();
->>>>>>> origin/master
 	}
 	
 	

@@ -1,10 +1,9 @@
-<<<<<<< HEAD
+
 import java.util.ArrayList;
-=======
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
->>>>>>> origin/master
+
 
 /**Class: Puzzle.java 
  * @author Alexander Gonzalez 
@@ -26,24 +25,12 @@ public class Puzzle implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private String puzzleDesc;
-	//private Action[] solution;
-	private ArrayList<Action> solution = new ArrayList<Action>(); //Changed to ArrayList to handle variety of puzzle lengths
+	private Action[] solution;
 	private int puzzleID;
 	private String[][] results;
-	private boolean isSolved = false;
-	private int placeInSequence = 0;
+	private boolean isSolved;
+	private int placeInSequence;
 	private Item prizeItem;
-<<<<<<< HEAD
-	
-	public Puzzle(int id, String desc, String[][] resultString, ArrayList<Action> solutionArray, Item prize)
-	{
-		puzzleID = id;
-		puzzleDesc = desc;
-		results = resultString;
-		solution = solutionArray;
-		prizeItem = prize;
-		
-=======
 	private static int nextPuzzleID;
 
 	
@@ -83,7 +70,6 @@ public class Puzzle implements Serializable
 		this.prizeItem = prizeItem;
 		isSolved = false;
 		placeInSequence = 0;
->>>>>>> origin/master
 	}
 
 	/**
@@ -100,15 +86,14 @@ public class Puzzle implements Serializable
 		//check if puzzle is already solved
 		if (!isSolved)
 		{
-			if (playerAction == solution.get(placeInSequence))
+			if (playerAction == solution[placeInSequence])
 			{
 				//get positive result when player correctly performs next action of puzzle
 				info = getResult(0);
 				placeInSequence++;
 				//check if player has reached the end of the action sequence
-				if (placeInSequence >= solution.size())
+				if (placeInSequence >= solution.length)
 				{
-					System.out.println("solution size: " + solution.size());
 					markSolved();
 					info += " Your rewards is a " + getPrizeItem().getDescription();
 					info += ", it has been added to inventory.";
@@ -118,7 +103,6 @@ public class Puzzle implements Serializable
 			{
 				//get negative result when player incorrectly performs an action
 				info = getResult(1);
-				UserInterface.promptUserForPuzzle();
 			}
 		}
 		else info = "Puzzle is already solved.";
@@ -194,22 +178,20 @@ public class Puzzle implements Serializable
 	
 	public void startPuzzle()
 	{
+		System.out.println(isSolved);
 		while(!isSolved)
 		{
+			System.out.println("P 184");
 			Action a = UserInterface.promptUserForPuzzle();
-			
+			System.out.println("P 186");
 			checkSolution(a);
-			
+			System.out.println("P 187");
 		}
 		
 		UserInterface.setGameTextArea("Puzzle Solved! Continue Investigating...");
 		UserInterface.gameButtonsOn(true);
 	}
 	
-	public Action getSolution()
-	{
-		return solution.get(placeInSequence);
-	}
 
 	/**
 	 * method to get four choices of actions to display to the player

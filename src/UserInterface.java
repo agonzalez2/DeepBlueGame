@@ -472,16 +472,20 @@ public class UserInterface
 			//disable investigate button
 			gameButtonsOn(false);
 			//the index that this room's monster can be retrieved within monsterArray
-			int puzzleInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom(); 
+			int puzzleInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom();
+			System.out.println("476");
 			//Construct new MonsterBattle
 			if(Game.getInstance().roomArray[Game.getInstance().currentRoomID].hasMonster() &&
 					Game.monsterArray[Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()].getIsDefeated())
 			{
+				System.out.println("480");
 				Game.puzzleArray[puzzleInRoomIndex].startPuzzle();
 			}
 			else if(Game.getInstance().roomArray[Game.getInstance().currentRoomID].hasPuzzle())
 			{
+				System.out.println("485");
 				Game.puzzleArray[puzzleInRoomIndex].startPuzzle();
+				System.out.println("488");
 			}
 			
 		}
@@ -605,11 +609,8 @@ public class UserInterface
 		int actionSelected = -1;
 		
 		//array of options for user to select from
-		Action[] options = {Action.attack,
-		                    Action.move,
-		                    Game.puzzleArray[Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom()].getSolution(),
-		                    Action.reload_pistol};
-		
+//		Action[] options = Game.puzzleArray[Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom()].getPossibleActions();
+		Action[] options = {Action.attack, Action.drop, Action.hit, Action.jump};
 		
 		//integer storing user's selection (index in options array)
 		int n = JOptionPane.showOptionDialog(frame,
