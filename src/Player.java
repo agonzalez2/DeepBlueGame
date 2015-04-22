@@ -6,10 +6,12 @@
  * interacts with the game environment with.
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player
+public class Player implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 
 	private int health;
 	

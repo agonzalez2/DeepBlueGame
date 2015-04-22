@@ -15,6 +15,7 @@
 
 public class AmmoPack extends Item 
 {
+	private static final long serialVersionUID = 1L;
 	private String ammoType;
 	private int ammoAmmount;
 	

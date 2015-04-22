@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * @author Maxim
  * Class: ITEC 3860 SPRING 2015
@@ -5,8 +7,9 @@
  * Purpose: Represents the non-playable characters the player must fight.
  */
 
-public class Monster
+public class Monster implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private Action[] actionSequence;
 	private int monsterID;
 	private String name;

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**Class: Room.java 
@@ -17,8 +18,9 @@ import java.util.ArrayList;
  * 
  * Purpose: – To represent a room that may contain a monster, a puzzle, and items
  */
-public class Room 
+public class Room implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private String RoomDescription;
 	private boolean monster;
 	private boolean puzzle;

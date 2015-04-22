@@ -10,7 +10,10 @@ public class LoadGame
 {
 	public static void load()
 	{
-		
+		loadRooms(new File("room.ser"));
+		loadMonsters(new File("monster.ser"));
+		loadPuzzles(new File("puzzle.ser"));
+		loadGameInstance(new File("game.ser"));
 	}
 	
 	public static void loadGameInstance(File inputFile)

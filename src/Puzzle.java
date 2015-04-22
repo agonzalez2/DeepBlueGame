@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,8 +18,9 @@ import java.util.Random;
  * Purpose: – To represent a Puzzle to be implemented in a text based game
  */
 
-public class Puzzle
+public class Puzzle implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private String puzzleDesc;
 	private Action[] solution;
 	private int puzzleID;

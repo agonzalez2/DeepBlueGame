@@ -18,6 +18,7 @@
  */
 public class HealthPack extends Item 
 {
+	private static final long serialVersionUID = 1L;
 	private int healAmount;
 
 	/**

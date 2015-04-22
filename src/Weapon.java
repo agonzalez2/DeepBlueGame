@@ -15,6 +15,7 @@
  */
 public class Weapon extends Item 
 {
+	private static final long serialVersionUID = 1L;
 	private String weaponType;
 	private int damageAmount;
 	private int ammo;
