@@ -21,6 +21,8 @@ public enum Action
 	//Monster's basic attack
 	attack,
 	//Player and monster's defense command
-	defend;	
+	defend,
+	//puzzle commands
+	jump, eat, hit, toss, drop, relax, yell, sit;	
 	
 }

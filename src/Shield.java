@@ -15,6 +15,7 @@
  */
 public class Shield extends Item
 {
+	private static final long serialVersionUID = 1L;
 	private String shieldType;
 	private int defendAmount;
 	
@@ -43,7 +44,7 @@ public class Shield extends Item
 	 */
 	public String use() 
 	{
-		return null;
+		return "" + defendAmount;
 	}
 
 }

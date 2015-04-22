@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 
 /**Class: Item.java 
  * @author Alexander Gonzalez 
@@ -13,8 +15,9 @@
  * 
  * Purpose: – To represent a generic Item in the game
  */
-public abstract class Item //CHANGED BACK TO ABSTRACT A.G. 4/8/15
+public abstract class Item implements Serializable //CHANGED BACK TO ABSTRACT A.G. 4/8/15
 {
+	private static final long serialVersionUID = 1L;
 	private String itemDescription;
 	private int itemID; //(pistolAmmo, stunAmmo, healthPak, scubaPart) = (1, 2, 3, 4)
 	

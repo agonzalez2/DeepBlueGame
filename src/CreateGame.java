@@ -95,6 +95,7 @@ public class CreateGame
 		
 		Item prizeItem = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
 		//*** PUZZLE ARRAY COMPONENTS ***
+<<<<<<< HEAD
 		tempPuzzleArray[0] = new Puzzle(0, "Puzzle 1", resultString, solutionArray, prizeItem);
 		tempPuzzleArray[1] = new Puzzle(1, "Puzzle 2", resultString, solutionArray, prizeItem);
 		tempPuzzleArray[2] = new Puzzle(2, "Puzzle 3", resultString, solutionArray, prizeItem);
@@ -105,6 +106,9 @@ public class CreateGame
 		tempPuzzleArray[7] = new Puzzle(7, "Puzzle 8", resultString, solutionArray, prizeItem);
 		tempPuzzleArray[8] = new Puzzle(8, "Puzzle 9", resultString, solutionArray, prizeItem);
 		tempPuzzleArray[9] = new Puzzle(9, "Puzzle 10", resultString, solutionArray, prizeItem);
+=======
+		//tempPuzzleArray[0] = new Puzzle();
+>>>>>>> origin/master
 	}
 	
 	

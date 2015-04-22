@@ -6,16 +6,22 @@
  * interacts with the game environment with.
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player
+public class Player implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 
 	private int health;
 	
 	private ArrayList<Item> inventory;
 
 	private Action nextAction;
+	
+	private Weapon pistol, stun;
+	
+	
 
 	/**
 	 * Method: Player(int Health)
@@ -99,7 +105,7 @@ public class Player
 		{
 			useItem(getItem(3).getID());
 		}	
-	}
+	} 
 	
 	/**
 	 * Method: addToInventory(Item itemToAdd)
@@ -109,6 +115,17 @@ public class Player
 	public void addToInventory(Item itemToAdd) 
 	{
 		inventory.add(itemToAdd);
+		if (itemToAdd instanceof Weapon)
+		{
+			if (itemToAdd.getDescription().equals("pistol"))
+			{
+				pistol = (Weapon)itemToAdd;
+			}
+			else if (itemToAdd.getDescription().equals("stun"))
+			{
+				stun = (Weapon)itemToAdd;
+			}
+		}
 		if(itemToAdd instanceof AmmoPack)
 		{
 			if(itemToAdd.getDescription().equalsIgnoreCase("pistol ammo"))
@@ -141,7 +158,7 @@ public class Player
 	 */
 	public String removeFromInventory(Item itemToRemove) 
 	{
-		inventory.remove(inventory.indexOf(itemToRemove));
+		inventory.remove(itemToRemove);
 		
 		if(itemToRemove instanceof AmmoPack)
 		{
@@ -251,7 +268,7 @@ public class Player
 	 */
 	public void updateHealth(int newHealth) 
 	{
-		health = newHealth;
+		health += newHealth;
 		
 		if(health >= 100)
 		{
@@ -260,38 +277,27 @@ public class Player
 		
 		else
 		{
-			UserInterface.setHealthPic(getFirstDigit(newHealth));
+			UserInterface.setHealthPic(health/10);
 		}
 		
-	}
-	
-	public static int getFirstDigit(int i) 
-	{
-		if (Math.abs((long)i) >= 10 ) 
-		{
-		    i = i / 10;
-		    while (Math.abs(i) >= 10 ) 
-		    {
-		        i = i / 10;
-		    }
-		}
-		return Math.abs(i);
 	}
 	
 	//This can be modified to incorporate all items
-	public void findAndUseHealthPack()
+	public int findAndUseHealthPack()
 	{
-		
 		for (Item i : inventory)
 		{
-			if(i.getDescription().equalsIgnoreCase("Health Pak"))
+			if(i instanceof HealthPack)
 			{
 				i.use();
-				inventory.remove(i);
+				HealthPack h = (HealthPack)i;
+				return h.getHealAmount();
 			}
 		}
+		return 0;
 	}
 }
+
 class InvalidItemException extends Exception
 {
 	public InvalidItemException(){}

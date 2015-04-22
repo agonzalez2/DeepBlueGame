@@ -18,6 +18,7 @@
  */
 public class HealthPack extends Item 
 {
+	private static final long serialVersionUID = 1L;
 	private int healAmount;
 
 	/**
@@ -49,6 +50,11 @@ public class HealthPack extends Item
 		Game.getInstance().currentPlayer.removeFromInventory(this);
 		info += ", health pack has been removed from inventory.";
 		return info;
+	}
+	
+	public int getHealAmount()
+	{
+		return healAmount;
 	}
 
 }
