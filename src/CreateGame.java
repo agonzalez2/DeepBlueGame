@@ -83,6 +83,7 @@ public class CreateGame
 	**/
 	public static void generatePuzzles()
 	{
+		/*
 		String[][] resultString = new String[2][2];
 		resultString[0][0] = "correct";
 		resultString[0][1] = "incorrect";
@@ -90,7 +91,7 @@ public class CreateGame
 		resultString[1][1] = "incorrect";
 		
 		//Action[] solutionArray = new Action[1];
-		Action[] solutionArray = {Action.use};
+		Action[] solutionArray = {Action.use, Action.jump, Action.relax, Action.sit};
 		
 		Item prizeItem = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
 		//*** PUZZLE ARRAY COMPONENTS ***
@@ -105,8 +106,36 @@ public class CreateGame
 		tempPuzzleArray[7] = new Puzzle("Puzzle 8", solutionArray, 7, resultString, prizeItem);
 		tempPuzzleArray[8] = new Puzzle("Puzzle 9", solutionArray, 8, resultString, prizeItem);
 		tempPuzzleArray[9] = new Puzzle("Puzzle 10", solutionArray, 9, resultString, prizeItem);
+		*/
 		
-
+		String desc = "The room contains a combination lock, but it is odd, there are no dials to it.";
+		Action[] actions = {Action.hit,Action.relax,Action.attack_pistol};
+		String r1 = "You've hit the lock, but it won't buldge. Your temper is going up.";
+		String r2 = "Now that you relax, you get an idea to force the lock open...";
+		String r3 = "That worked! The lock opens.";
+		String r4 = "That doesn't work, try using brute force";
+		String r5 = "Your not thinking clearly";
+		String r6 = "Try breaking the lock";
+		String[][] results = new String[2][3];
+		results[0][0] = r1;
+		results[0][1] = r2;
+		results[0][2] = r3;
+		results[1][0] = r4;
+		results[1][1] = r5;
+		results[1][2] = r6;
+		
+		tempPuzzleArray[0] = new Puzzle(desc, actions, 1, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[1] = new Puzzle(desc, actions, 2, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[2] = new Puzzle(desc, actions, 3, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[3] = new Puzzle(desc, actions, 4, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[4] = new Puzzle(desc, actions, 5, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[5] = new Puzzle(desc, actions, 6, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[6] = new Puzzle(desc, actions, 7, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[7] = new Puzzle(desc, actions, 8, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[8] = new Puzzle(desc, actions, 9, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[9] = new Puzzle(desc, actions, 10, results, new ScubaGear("Snorkle", 0));
+		
+		
 		//tempPuzzleArray[0] = new Puzzle();
 	}
 	

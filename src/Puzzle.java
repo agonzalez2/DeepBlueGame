@@ -33,7 +33,7 @@ public class Puzzle implements Serializable
 	private Item prizeItem;
 	private static int nextPuzzleID;
 
-	
+
 	/**
 	 * 
 	 * @param puzzleDesc
@@ -53,7 +53,7 @@ public class Puzzle implements Serializable
 		isSolved = false;
 		placeInSequence = 0;
 	}
-	
+
 	/**
 	 * 
 	 * @param puzzleDesc
@@ -175,7 +175,7 @@ public class Puzzle implements Serializable
 	{
 		return isSolved;
 	}
-	
+
 	public void startPuzzle()
 	{
 		System.out.println(isSolved);
@@ -187,11 +187,11 @@ public class Puzzle implements Serializable
 			checkSolution(a);
 			System.out.println("P 187");
 		}
-		
+
 		UserInterface.setGameTextArea("Puzzle Solved! Continue Investigating...");
 		UserInterface.gameButtonsOn(true);
 	}
-	
+
 
 	/**
 	 * method to get four choices of actions to display to the player
@@ -229,25 +229,26 @@ public class Puzzle implements Serializable
 				{
 					switch ((temp < 7)? temp : r.nextInt(7))
 					{
-						case 0: tempAction = Action.eat; break;
-						case 1: tempAction = Action.jump; break;
-						case 2: tempAction = Action.hit; break;
-						case 3: tempAction = Action.toss; break;
-						case 4: tempAction = Action.drop; break;
-						case 5: tempAction = Action.relax; break;
-						case 6: tempAction = Action.yell; break;
-						default: tempAction = Action.sit; break;
-					}
-					if (usedActions.contains(tempAction))
-					{
-						i--; //try again
-					}
-					else
-					{
-						actions[i] = tempAction;
-						usedActions.add(tempAction);
+					case 0: tempAction = Action.eat; break;
+					case 1: tempAction = Action.jump; break;
+					case 2: tempAction = Action.hit; break;
+					case 3: tempAction = Action.toss; break;
+					case 4: tempAction = Action.drop; break;
+					case 5: tempAction = Action.relax; break;
+					case 6: tempAction = Action.yell; break;
+					default: tempAction = Action.sit; break;
 					}
 				}
+				if (usedActions.contains(tempAction) || tempAction == solution[placeInSequence])
+				{
+					--i; //try again
+				}
+				else
+				{
+					actions[i] = tempAction;
+					usedActions.add(tempAction);
+				}
+
 			}
 		}
 		return actions;

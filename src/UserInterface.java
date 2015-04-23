@@ -608,9 +608,12 @@ public class UserInterface
 	{
 		int actionSelected = -1;
 		
+
+		
 		//array of options for user to select from
-//		Action[] options = Game.puzzleArray[Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom()].getPossibleActions();
-		Action[] options = {Action.attack, Action.drop, Action.hit, Action.jump};
+		Action[] options = Game.puzzleArray[Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom()].getPossibleActions();
+		
+		
 		
 		//integer storing user's selection (index in options array)
 		int n = JOptionPane.showOptionDialog(frame,
