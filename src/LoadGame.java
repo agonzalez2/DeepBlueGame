@@ -14,6 +14,7 @@ public class LoadGame
 		loadMonsters(new File("monster.ser"));
 		loadPuzzles(new File("puzzle.ser"));
 		loadGameInstance(new File("game.ser"));
+		updateGUI();
 	}
 	
 	public static void updateGUI()
@@ -29,11 +30,11 @@ public class LoadGame
 			if (i instanceof AmmoPack)
 			{
 				AmmoPack a = (AmmoPack)i;
-				if (a.getType().equalsIgnoreCase("pistol"))
+				if (a.getType().equalsIgnoreCase("pistol ammo"))
 				{
 					pistol++;
 				}
-				if (a.getType().equalsIgnoreCase("stun"))
+				if (a.getType().equalsIgnoreCase("stun ammo"))
 				{
 					stun++;
 				}
@@ -44,9 +45,14 @@ public class LoadGame
 			}
 		}
 		
-		//update values in GUI
+		//update values in GUI for inventory
+		UserInterface.updateInventory(1, pistol);
+		UserInterface.updateInventory(2, stun);
+		UserInterface.updateInventory(3, health);
+		UserInterface.updateInventory(4, Game.scubaPartCount);
 		
-	
+		//update player health in GUI
+		Game.getInstance().currentPlayer.updateHealth(0);
 	}
 	
 	public static void loadGameInstance(File inputFile)
@@ -75,7 +81,7 @@ public class LoadGame
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error occured while reading file.");
+			System.out.println("Error occured while reading file: " + inputFile.getPath());
 			e.printStackTrace();
 		}
 		finally
@@ -126,7 +132,7 @@ public class LoadGame
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error occured while reading file.");
+			System.out.println("Error occured while reading file: " + inputFile.getPath());
 			e.printStackTrace();
 		}
 		finally
