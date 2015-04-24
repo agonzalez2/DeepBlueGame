@@ -90,7 +90,6 @@ public class MonsterBattle {
 	/**
 	 * Method: changeHealth()
 	 * Battle processing unit where health is changed according to different actions.
-	 * @throws InvalidItemException 
 	 * @throws NumberFormatException 
 	 */
 	public void changeHealth() throws NumberFormatException 
@@ -145,13 +144,16 @@ public class MonsterBattle {
 			//and player attack with pistol
 			if(pTemp.getNextAction() == Action.attack_pistol)
 			{
+				UserInterface.setGameTextArea(pTemp.getPistol().use());
+				pDmg = pTemp.getPistol().getDamage();
 				mTemp.updateHealth((int)-(pDmg*mDef));
 			}
 			//player attack with stungun
 			if(pTemp.getNextAction() == Action.attack_stun)
 			{
+				UserInterface.setGameTextArea(pTemp.getStun().use());
+				pDmg = pTemp.getStun().getDamage();
 				mTemp.updateHealth((int)-(sDmg*mDef));
-
 			}
 			//player defends
 			if(pTemp.getNextAction() == Action.defend)
@@ -160,12 +162,10 @@ public class MonsterBattle {
 			//player uses health pack
 			if(pTemp.getNextAction() == Action.use)
 			{
-				//pTemp.updateHealth(pTemp.getHealth()+pTemp.useItem(pTemp.getItem(healthpackID)))
 				pTemp.updateHealth(pTemp.getHealth()+pDmg*2);
 				Game.getInstance().currentPlayer.findAndUseHealthPack();
 			}
 		}
-
 	}
 
 	/**
@@ -221,7 +221,8 @@ public class MonsterBattle {
 	public String getResult() 
 	{
 		String result = "Your health is now " + pTemp.getHealth() +". " 
-				+ mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
+				+ mTemp.getName()+ " now has " +mTemp.getHealth() +" health.";
+		String askNextMove = "What is your next move?";
 		
 		if(pTemp.getHealth() <= 0)
 		{

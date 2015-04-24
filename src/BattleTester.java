@@ -52,11 +52,14 @@ public class BattleTester
 		monsterList[15] = m15;
 				
 		p.addToInventory(new Weapon("Pistol", 0, "Pistol", 0));
-		p.addToInventory(new Weapon("Stungun", 0, "Pistol", 0));
-		p.addToInventory(new Weapon("Apples", 0, "Pistol", 0));
+		p.addToInventory(new Weapon("Stun gun", 0, "Pistol", 0));
+		p.addToInventory(new Weapon("Apples", 0, "stun", 0));
 		p.addToInventory(new AmmoPack("Pistol Ammo","Pistol",0,10));
 		
 		System.out.println(p.getInventory());
+			//System.out.println(p.getItem("Stun gun").use());
+			System.out.println(p.getStun());
+			System.out.println(p.getPistol());
 		/*try {
 			System.out.println(p.getItem("pistol").getDescription());
 		} catch (InvalidItemException e) {

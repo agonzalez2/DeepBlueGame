@@ -50,8 +50,15 @@ public class Player implements Serializable
 	 */
 	public Weapon getPistol()
 	{
-		Weapon pistolWeapon = new Weapon("Pistol", 4, "Pistol", 10);
-		return pistolWeapon;
+		try
+		{
+			pistol = (Weapon) getItem("Pistol");
+		} catch (InvalidItemException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pistol;
 	}
 	
 	/**
@@ -61,8 +68,15 @@ public class Player implements Serializable
 	 */
 	public Weapon getStun()
 	{
-		Weapon stunWeapon = new Weapon("Stun Gun", 5, "Stun", 20);
-		return stunWeapon;
+		try
+		{
+			stun = (Weapon) getItem("Stun gun");
+		} catch (InvalidItemException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return stun;
 	}
 
 	/**
@@ -138,11 +152,11 @@ public class Player implements Serializable
 		inventory.add(itemToAdd);
 		if (itemToAdd instanceof Weapon)
 		{
-			if (itemToAdd.getDescription().equals("pistol"))
+			if (itemToAdd.getDescription().equalsIgnoreCase("pistol"))
 			{
 				pistol = (Weapon)itemToAdd;
 			}
-			else if (itemToAdd.getDescription().equals("stun"))
+			else if (itemToAdd.getDescription().equalsIgnoreCase("stun"))
 			{
 				stun = (Weapon)itemToAdd;
 			}
@@ -212,8 +226,7 @@ public class Player implements Serializable
 	 * @return a list of items inside of the player's inventory
 	 */
 	public ArrayList<Item> getInventory() 
-	{
-		
+	{		
 		return inventory;
 	}
 
@@ -237,14 +250,16 @@ public class Player implements Serializable
 	 */
 	public Item getItem(String name) throws InvalidItemException
 	{
+		Item a = null;
 		for (Item i : inventory)
 		{
 			if(i.getDescription().equalsIgnoreCase(name))
 			{
-				return i;
+				a=i;
 			}
 		}
-		throw new InvalidItemException();
+		//throw new InvalidItemException();
+		return a;
 	}
 	
 	/**
@@ -317,8 +332,6 @@ public class Player implements Serializable
 	}
 	
 }
-
-
 
 class InvalidItemException extends Exception
 {
