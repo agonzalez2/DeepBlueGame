@@ -226,11 +226,11 @@ public class Game
 	{
 		
 	}
-	
-	private static void exit()
+		**/
+	public static void exit()
 	{
-		
+		System.exit(0);
 	}
-	**/
+
 	
 }

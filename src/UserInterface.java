@@ -474,6 +474,9 @@ public class UserInterface
 			//the index that this room's monster can be retrieved within monsterArray
 			int puzzleInRoomIndex = Game.roomArray[Game.getInstance().currentRoomID].getPuzzleInRoom();
 			System.out.println("476");
+			
+			setGameTextArea(Game.puzzleArray[puzzleInRoomIndex].getPuzzleDescription());
+			
 			//Construct new MonsterBattle
 			if(Game.getInstance().roomArray[Game.getInstance().currentRoomID].hasMonster() &&
 					Game.monsterArray[Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()].getIsDefeated())
@@ -625,7 +628,7 @@ public class UserInterface
 		    options,
 		    options[2]);
 	
-		
+		actionSelected = n;
 		System.out.println("You Selected Action " + n);
 
 		Action tempActionSelected = options[n];
@@ -634,7 +637,7 @@ public class UserInterface
 		while(actionSelected < 0)
 		{
 			n = JOptionPane.showOptionDialog(frame,
-				    "Choose an action to take against the encountered monster.",
+				    "Choose an action to take for the puzzle.",
 				    "Choose a VALID action.",
 				    JOptionPane.YES_NO_CANCEL_OPTION,
 				    JOptionPane.QUESTION_MESSAGE,

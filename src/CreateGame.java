@@ -83,31 +83,7 @@ public class CreateGame
 	**/
 	public static void generatePuzzles()
 	{
-		/*
-		String[][] resultString = new String[2][2];
-		resultString[0][0] = "correct";
-		resultString[0][1] = "incorrect";
-		resultString[1][0] = "correct";
-		resultString[1][1] = "incorrect";
-		
-		//Action[] solutionArray = new Action[1];
-		Action[] solutionArray = {Action.use, Action.jump, Action.relax, Action.sit};
-		
-		Item prizeItem = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
-		//*** PUZZLE ARRAY COMPONENTS ***
 
-		tempPuzzleArray[0] = new Puzzle("Puzzle 1", solutionArray, 0, resultString, prizeItem);
-		tempPuzzleArray[1] = new Puzzle("Puzzle 2", solutionArray, 1,  resultString, prizeItem);
-		tempPuzzleArray[2] = new Puzzle("Puzzle 3", solutionArray, 2, resultString, prizeItem);
-		tempPuzzleArray[3] = new Puzzle("Puzzle 4", solutionArray, 3, resultString, prizeItem);
-		tempPuzzleArray[4] = new Puzzle("Puzzle 5", solutionArray, 4, resultString, prizeItem);
-		tempPuzzleArray[5] = new Puzzle("Puzzle 6", solutionArray, 5, resultString, prizeItem);
-		tempPuzzleArray[6] = new Puzzle("Puzzle 7", solutionArray, 6, resultString, prizeItem);
-		tempPuzzleArray[7] = new Puzzle("Puzzle 8", solutionArray, 7, resultString, prizeItem);
-		tempPuzzleArray[8] = new Puzzle("Puzzle 9", solutionArray, 8, resultString, prizeItem);
-		tempPuzzleArray[9] = new Puzzle("Puzzle 10", solutionArray, 9, resultString, prizeItem);
-		*/
-		
 		String desc = "The room contains a combination lock, but it is odd, there are no dials to it.";
 		Action[] actions = {Action.hit,Action.relax,Action.attack_pistol};
 		String r1 = "You've hit the lock, but it won't buldge. Your temper is going up.";
@@ -134,9 +110,7 @@ public class CreateGame
 		tempPuzzleArray[7] = new Puzzle(desc, actions, 8, results, new ScubaGear("Snorkle", 0));
 		tempPuzzleArray[8] = new Puzzle(desc, actions, 9, results, new ScubaGear("Snorkle", 0));
 		tempPuzzleArray[9] = new Puzzle(desc, actions, 10, results, new ScubaGear("Snorkle", 0));
-		
-		
-		//tempPuzzleArray[0] = new Puzzle();
+
 	}
 	
 	
@@ -364,6 +338,8 @@ public class CreateGame
 		p.addToInventory(pistolWeapon);
 		p.addToInventory(stunWeapon);
 		
+		System.out.println(p.getInventory());
+		System.out.println(p.getInventory().size());
 		test.run();
 		
 	}

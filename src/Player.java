@@ -268,15 +268,17 @@ public class Player implements Serializable
 	 */
 	public void updateHealth(int newHealth) 
 	{
-		health += newHealth;
+		//health += newHealth;
 		
-		if(health >= 100)
+		if(health + newHealth >= 100)
 		{
+			health = 100;
 			UserInterface.setHealthPic(10);
 		}
 		
 		else
 		{
+			health += newHealth;
 			UserInterface.setHealthPic(health/10);
 		}
 		
@@ -296,7 +298,10 @@ public class Player implements Serializable
 		}
 		return 0;
 	}
+	
 }
+
+
 
 class InvalidItemException extends Exception
 {

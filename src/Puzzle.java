@@ -181,11 +181,11 @@ public class Puzzle implements Serializable
 		System.out.println(isSolved);
 		while(!isSolved)
 		{
-			System.out.println("P 184");
+			
 			Action a = UserInterface.promptUserForPuzzle();
-			System.out.println("P 186");
-			checkSolution(a);
-			System.out.println("P 187");
+			
+			UserInterface.setGameTextArea(checkSolution(a));
+		
 		}
 
 		UserInterface.setGameTextArea("Puzzle Solved! Continue Investigating...");
