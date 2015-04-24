@@ -21,7 +21,6 @@ public class Player implements Serializable
 	
 	private Weapon pistol, stun;
 	
-	
 
 	/**
 	 * Method: Player(int Health)
@@ -42,6 +41,28 @@ public class Player implements Serializable
 	public Player() 
 	{
 		health = 100;
+	}
+	
+	/**
+	 * Method: getPistol()
+	 * returns the player's pistol so that weapon attribute can be retrieved
+	 * @return pistol weapon
+	 */
+	public Weapon getPistol()
+	{
+		Weapon pistolWeapon = new Weapon("Pistol", 4, "Pistol", 10);
+		return pistolWeapon;
+	}
+	
+	/**
+	 * Method: getStun()
+	 * returns the player's stun gun so that weapon attribute can be retrieved
+	 * @return stun gun weapon
+	 */
+	public Weapon getStun()
+	{
+		Weapon stunWeapon = new Weapon("Stun Gun", 5, "Stun", 20);
+		return stunWeapon;
 	}
 
 	/**

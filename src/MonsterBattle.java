@@ -90,32 +90,45 @@ public class MonsterBattle {
 	/**
 	 * Method: changeHealth()
 	 * Battle processing unit where health is changed according to different actions.
+	 * @throws InvalidItemException 
+	 * @throws NumberFormatException 
 	 */
-	public void changeHealth() 
+	public void changeHealth() throws NumberFormatException 
 	{
-		int pDmg = 2;
+		int pDmg = pTemp.getPistol().getDamage();
+		int sDmg = pTemp.getStun().getDamage();
 		//When monster attacks
 		if(currentMonsterAction == Action.attack)
 		{
 			//and player attack with pistol
 			if(currentPlayerAction == Action.attack_pistol)
 			{
-				pDmg = 100; //Temporarily 100 Damage
-				//Game.getInstance().monsterArray[0].getDamage());
+				UserInterface.setGameTextArea(pTemp.getPistol().use());
+				pDmg = pTemp.getPistol().getDamage();
 				mTemp.updateHealth(-pDmg);
 				pTemp.updateHealth(-mTemp.getDamage());
 			}
 			//player attack with stungun
 			if(currentPlayerAction == Action.attack_stun)
 			{
-				pDmg = 30;
-				mTemp.updateHealth(-pDmg);
+				UserInterface.setGameTextArea(pTemp.getStun().use());
+				pDmg = pTemp.getStun().getDamage();
+				mTemp.updateHealth(-sDmg);
 				pTemp.updateHealth(-mTemp.getDamage());
 			}
 			//player defends
 			if(currentPlayerAction == Action.defend)
 			{
-				pTemp.updateHealth(-(-(mTemp.getDamage() - 10))); // change to use shield
+				//pTemp.updateHealth(-(-(mTemp.getDamage() - 10))); // change to use shield
+				try 
+				{
+					pTemp.updateHealth(mTemp.getDamage() - Integer.parseInt(pTemp.getItem("Shield").use()));
+				} catch (InvalidItemException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					UserInterface.setGameTextArea("ERROR IN SHIELD DEFENSE");
+				}
 			}
 			//player uses health pack
 			if(currentPlayerAction == Action.use)
@@ -132,19 +145,17 @@ public class MonsterBattle {
 			//and player attack with pistol
 			if(pTemp.getNextAction() == Action.attack_pistol)
 			{
-				//mTemp.updateHealth(mTemp.getHealth()-Integer.parseInt(pTemp.useItem(0)));
-				mTemp.updateHealth((int)(mTemp.getHealth()-pDmg*mDef));
+				mTemp.updateHealth((int)-(pDmg*mDef));
 			}
 			//player attack with stungun
 			if(pTemp.getNextAction() == Action.attack_stun)
 			{
-				mTemp.updateHealth((int)(mTemp.getHealth()-pDmg*2*mDef));
+				mTemp.updateHealth((int)-(sDmg*mDef));
 
 			}
 			//player defends
 			if(pTemp.getNextAction() == Action.defend)
 			{
-
 			}
 			//player uses health pack
 			if(pTemp.getNextAction() == Action.use)
@@ -209,26 +220,35 @@ public class MonsterBattle {
 	 */
 	public String getResult() 
 	{
+		String result = "Your health is now " + pTemp.getHealth() +". " 
+				+ mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
+		
 		if(pTemp.getHealth() <= 0)
 		{
 			Game.getInstance().toggleBattle();
 			UserInterface.gameButtonsOn(false);
-			return "You have died! Game over.";
+			result = "You have died! Game over.\n" + result;
+			if(mTemp.getHealth() < 0)
+			{
+				mTemp.updateHealth(Math.abs(mTemp.getHealth()));
+			}
 		}
 		else if(mTemp.getHealth() <= 0)
 		{
 			Game.getInstance().toggleBattle();
 			UserInterface.gameButtonsOn(true);
 			mTemp.toggleIsDefeated();
-			return mTemp.getName() + " has been defeated! You win! Continue investigating room...";
-
+			if(mTemp.getHealth() < 0)
+			{
+				mTemp.updateHealth(Math.abs(mTemp.getHealth()));
+			}
+			result =  mTemp.getName() + " has been defeated! You win! Continue investigating room...\n" + result;
 		}
 		else
 		{
-			return "Your health is now " + pTemp.getHealth() +". " 
-					+ mTemp.getName()+ " now has " +mTemp.getHealth() +" health. What is your next move?";
-		}		
+			return result;
+		}	
+		return result;
 	}
-
 
 }
