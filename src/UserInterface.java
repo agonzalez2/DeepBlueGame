@@ -219,6 +219,29 @@ public class UserInterface
             
         }); 
 		
+		saveGame.addActionListener(new ActionListener()
+		{
+	       	 
+            public void actionPerformed(ActionEvent e)
+            {
+            	SaveGame.writeToFile();
+            	
+            }
+            
+        }); 
+		
+		loadGame.addActionListener(new ActionListener()
+		{
+	       	 
+            public void actionPerformed(ActionEvent e)
+            {
+            	LoadGame.load();
+            	Game.getInstance().run();
+            	System.out.println(Game.getInstance().currentRoomID);
+            }
+            
+        });
+		
 		investigateButton.addActionListener(new ActionListener() 
 		{
 	       	 
