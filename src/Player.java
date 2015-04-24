@@ -211,14 +211,10 @@ public class Player implements Serializable
 	 * outputs a list of objects inside the player's inventory
 	 * @return a list of items inside of the player's inventory
 	 */
-	public ArrayList<String> getInventory() 
+	public ArrayList<Item> getInventory() 
 	{
-		ArrayList<String> temp = new ArrayList<String>();
-		for(Item i : inventory)
-		{
-			temp.add(i.getDescription());
-		}
-		return temp;
+		
+		return inventory;
 	}
 
 	/**

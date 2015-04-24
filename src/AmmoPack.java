@@ -61,5 +61,10 @@ public class AmmoPack extends Item
 		
 		return "" + ammoAmmount;
 	}
+	
+	public String getType()
+	{
+		return ammoType;
+	}
 
 }

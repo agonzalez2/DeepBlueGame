@@ -16,6 +16,39 @@ public class LoadGame
 		loadGameInstance(new File("game.ser"));
 	}
 	
+	public static void updateGUI()
+	{
+		Player p = Game.getInstance().currentPlayer;
+		int stun = 0;
+		int pistol = 0;
+		int health = 0;
+		
+		//get count of items in inventory
+		for(Item i : p.getInventory())
+		{
+			if (i instanceof AmmoPack)
+			{
+				AmmoPack a = (AmmoPack)i;
+				if (a.getType().equalsIgnoreCase("pistol"))
+				{
+					pistol++;
+				}
+				if (a.getType().equalsIgnoreCase("stun"))
+				{
+					stun++;
+				}
+			}
+			if (i instanceof HealthPack)
+			{
+				health++;
+			}
+		}
+		
+		//update values in GUI
+		
+	
+	}
+	
 	public static void loadGameInstance(File inputFile)
 	{
 		ObjectInputStream input = null;
