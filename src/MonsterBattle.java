@@ -171,25 +171,25 @@ public class MonsterBattle {
 		{
 			currentPlayerAction = Action.attack_pistol;
 			//update inventory on user interface
-			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
+			//Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
 
 		if(userActionInput == 1)
 		{
 			currentPlayerAction = Action.attack_stun;
-			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
+			//Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
 
 		if(userActionInput == 2)
 		{
 			currentPlayerAction = Action.defend;
-			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
+			//Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}
 
 		if(userActionInput == 3)
 		{
 			currentPlayerAction = Action.use;
-			Game.getInstance().currentPlayer.performAction(currentPlayerAction);
+			//Game.getInstance().currentPlayer.performAction(currentPlayerAction);
 		}		
 	}
 
