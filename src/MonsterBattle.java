@@ -7,16 +7,7 @@
  * health accordingly.
  */
 
-/*
- * MAJOR CHANGES 4/9/2015
- * 1. monster will only have one damage value and one defense value
- * 2. Hard coded damage/defense values into battle because cannot correct get invt items
- */
 public class MonsterBattle {
-
-	//WHAT DID THE CURRENT MONSTER ID DO? 4/6/2015
-
-	//private boolean inBattle;  MOVED TO PLAYER CLASS
 
 	private Action currentPlayerAction;
 
@@ -28,7 +19,6 @@ public class MonsterBattle {
 
 	private boolean timeForUpdate = false;
 
-	//NEED TO Replace all temporary variables with Game.getXXXXX
 	private Player pTemp = Game.getInstance().currentPlayer;
 	private Monster mTemp = Game.getInstance().monsterArray[Game.getInstance().roomArray[Game.getInstance().currentRoomID].getMonsterInRoom()];
 
@@ -121,7 +111,7 @@ public class MonsterBattle {
 				//pTemp.updateHealth(-(-(mTemp.getDamage() - 10))); // change to use shield
 				try 
 				{
-					pTemp.updateHealth(mTemp.getDamage() - Integer.parseInt(pTemp.getItem("Shield").use()));
+					pTemp.updateHealth(-(int)(mTemp.getDamage()*(Double.valueOf(pTemp.getItem("Shield").use())/100)));
 				} catch (InvalidItemException e)
 				{
 					// TODO Auto-generated catch block

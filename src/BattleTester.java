@@ -60,6 +60,7 @@ public class BattleTester
 			//System.out.println(p.getItem("Stun gun").use());
 			System.out.println(p.getStun());
 			System.out.println(p.getPistol());
+			System.out.println(Double.valueOf("50")/100);
 		/*try {
 			System.out.println(p.getItem("pistol").getDescription());
 		} catch (InvalidItemException e) {

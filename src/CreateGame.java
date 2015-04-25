@@ -335,8 +335,10 @@ public class CreateGame
 		//add player weapons
 		Weapon pistolWeapon = new Weapon("Pistol", 4, "Pistol", 10);
 		Weapon stunWeapon = new Weapon("Stun Gun", 5, "Stun", 20);
+		Shield shield = new Shield("Shield", 1, "Shield", 50);
 		p.addToInventory(pistolWeapon);
 		p.addToInventory(stunWeapon);
+		p.addToInventory(shield);
 		
 		System.out.println(p.getInventory());
 		System.out.println(p.getInventory().size());
