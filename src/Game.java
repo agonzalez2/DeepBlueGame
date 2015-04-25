@@ -29,8 +29,8 @@ public class Game
 	public Player currentPlayer;
 	//private int GameSave = 0;
 	//private int GameID = 0;
-	public static int scubaPartCount = 0;
-	public int currentRoomID = -1;
+	public static int scubaPartCount;
+	public int currentRoomID;
 	
 	public boolean inBattle = false; //initially set to false
 	
@@ -53,7 +53,8 @@ public class Game
 		setLevels(); //generates level information and stores in level Data Structures - levelMinimumSet, roomLevelSet
 		
 		instance = this; //works with the getInstance class to retain information not passed in constructor
-		
+		currentRoomID = -1;
+		scubaPartCount = 0;
 	}
 	
 	

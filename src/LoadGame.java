@@ -66,7 +66,7 @@ public class LoadGame
 			Game game = Game.getInstance();
 	
 			game.currentPlayer = (Player)input.readObject();
-			game.scubaPartCount = input.readInt();
+			Game.scubaPartCount = input.readInt();
 			game.currentRoomID = input.readInt();
 			
 		}
@@ -113,7 +113,7 @@ public class LoadGame
 		{
 			output = new PrintWriter(new File("log.txt"));
 			input = new ObjectInputStream(new FileInputStream(inputFile));
-			Game.monsterArray = new Monster[8];
+			Game.monsterArray = new Monster[10];
 			int position = 0;
 			while (true)
 			{
