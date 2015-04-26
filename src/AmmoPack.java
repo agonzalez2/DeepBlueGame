@@ -47,17 +47,21 @@ public class AmmoPack extends Item
 		//remove this item from player's inventory to simulate being used
 		Game.getInstance().currentPlayer.removeFromInventory(this);
 		
-		/**  UPDATED IN WEAPON USE FOR NOW
+		/**
+		
 		if(ammoType.equals("Pistol"))
 		{
-			UserInterface.updateInventory(1, -1);
+			//UserInterface.updateInventory(1, -1); handled in weapon use for now
+			Game.getInstance().currentPlayer.getPistol().reload(this);
 		}
 		
 		if(ammoType.equals("Stun"))
 		{
-			UserInterface.updateInventory(1, -1);
+			//UserInterface.updateInventory(1, -1);
+			Game.getInstance().currentPlayer.getStun().reload(this);
 		}
 		**/
+		
 		
 		return "" + ammoAmmount;
 	}

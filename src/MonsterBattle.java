@@ -156,6 +156,8 @@ public class MonsterBattle {
 				Game.getInstance().currentPlayer.findAndUseHealthPack();
 			}
 		}
+		
+		System.out.println("Inventory Size: " + Game.getInstance().currentPlayer.getInventory().size());
 	}
 
 	/**

@@ -33,7 +33,7 @@ public class Weapon extends Item
 	public Weapon(String itemDescription, int itemID, String type, int damage)
 	{
 		super(itemDescription, itemID);
-		ammo = 5;
+		ammo = 0; //Changed from 5 - will reload to get ammo
 		damageAmount = damage;
 		weaponType = type;
 	}
@@ -57,13 +57,41 @@ public class Weapon extends Item
 			if(weaponType.equals("Pistol"))
 			{
 				System.out.println("USE WEAPON: Pistol");
-				UserInterface.updateInventory(1, -1);
+				UserInterface.updateInventory(1, -1); //DONE IN REMOVEFROMINVENTORY METHOD
+				
+				/**
+				try 
+				{
+					Game.getInstance().currentPlayer.removeFromInventory(Game.getInstance().currentPlayer.getItem("Pistol Ammo"));
+				} 
+				
+				catch (InvalidItemException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				**/
+
 			}
 			
 			if(weaponType.equals("Stun"))
 			{
 				System.out.println("USE WEAPON: Stun Gun");
+				//UserInterface.updateInventory(2, -1);
 				UserInterface.updateInventory(2, -1);
+				
+				/**
+				try 
+				{
+					Game.getInstance().currentPlayer.removeFromInventory(Game.getInstance().currentPlayer.getItem("Stun Ammo"));
+				} 
+				catch (InvalidItemException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				**/
 			}
 		
 		}
@@ -81,7 +109,19 @@ public class Weapon extends Item
 	 */
 	public void reload(AmmoPack magazine) 
 	{
-		ammo += Integer.parseInt(magazine.use());
+		int newAmmo = Integer.parseInt(magazine.use());
+		ammo += newAmmo;
+		if(weaponType.equalsIgnoreCase("pistol"))
+		{
+			UserInterface.updateInventory(1, newAmmo);
+			System.out.println("Pistol Ammo: " + ammo);
+		}
+		
+		if(weaponType.equalsIgnoreCase("stun"))
+		{
+			UserInterface.updateInventory(2, newAmmo);
+			System.out.println("Stun Ammo: " + ammo);
+		}
 	}
 
 	/**
@@ -94,6 +134,11 @@ public class Weapon extends Item
 	public int getDamage()
 	{
 		return (ammo > 0)? damageAmount : 0; 
+	}
+	
+	public int getAmmo()
+	{
+		return ammo;
 	}
 
 }

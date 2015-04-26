@@ -8,13 +8,18 @@ import java.io.PrintWriter;
 
 public class LoadGame 
 {
+	
+	private static Room[] tempRoomArray = new Room[29];
+	private static Puzzle[] tempPuzzleArray = new Puzzle[9];
+	private static Monster[] tempMonsterArray = new Monster[9];
 	public static void load()
 	{
 		loadRooms(new File("room.ser"));
 		loadMonsters(new File("monster.ser"));
 		loadPuzzles(new File("puzzle.ser"));
 		loadGameInstance(new File("game.ser"));
-		updateGUI();
+		UserInterface.resetInterface();
+		//updateGUI();
 	}
 	
 	public static void updateGUI()
@@ -63,16 +68,29 @@ public class LoadGame
 		{
 			output = new PrintWriter(new File("log.txt"));
 			input = new ObjectInputStream(new FileInputStream(inputFile));
-			Game game = Game.getInstance();
-	
+			Game game = new Game(tempRoomArray, tempMonsterArray, tempPuzzleArray);//Game.getInstance()
+			Game.setInstance(game);
+			System.out.println("73");
 			game.currentPlayer = (Player)input.readObject();
 			Game.scubaPartCount = input.readInt();
 			game.currentRoomID = input.readInt();
 			
+			game.run();
+			
+			System.out.println(game.currentPlayer.getInventory());
+			System.out.println(game.currentPlayer.getInventory().size());
+			
+			System.out.println("Loaded Current Room ID: " + game.currentRoomID);
+			//ADDED ANDREW - not sure
+			//Game.setInstance(game);
+			//game.run();
+			
 		}
 		catch (EOFException eofe)
 		{
+		
 			System.out.println("Game imported");
+			System.out.println("Room ID : " + Game.getInstance().currentRoomID);
 		}
 		catch (FileNotFoundException fnfe)
 		{
@@ -113,13 +131,15 @@ public class LoadGame
 		{
 			output = new PrintWriter(new File("log.txt"));
 			input = new ObjectInputStream(new FileInputStream(inputFile));
-			Game.monsterArray = new Monster[10];
+			Game.monsterArray = new Monster[9];
 			int position = 0;
-			while (true)
+			while (position < Game.monsterArray.length)
 			{
 				Game.monsterArray[position] = ((Monster)input.readObject());
 				position++;
 			}
+			tempMonsterArray = Game.monsterArray;
+			
 		}
 		catch (EOFException eofe)
 		{
@@ -164,13 +184,15 @@ public class LoadGame
 		{
 			output = new PrintWriter(new File("log.txt"));
 			input = new ObjectInputStream(new FileInputStream(inputFile));
-			Game.roomArray = new Room[30];
+			Game.roomArray = new Room[29];
 			int position = 0;
-			while (true)
+			while (position < Game.roomArray.length)
 			{
 				Game.roomArray[position] = ((Room)input.readObject());
 				position++;
 			}
+			
+			tempRoomArray = Game.roomArray;
 		}
 		catch (EOFException eofe)
 		{
@@ -215,13 +237,15 @@ public class LoadGame
 		{
 			output = new PrintWriter(new File("log.txt"));
 			input = new ObjectInputStream(new FileInputStream(inputFile));
-			Game.puzzleArray = new Puzzle[30];
+			Game.puzzleArray = new Puzzle[9];
 			int position = 0;
-			while (true)
+			while (position < Game.puzzleArray.length)
 			{
 				Game.puzzleArray[position] = ((Puzzle)input.readObject());
 				position++;
 			}
+			
+			tempPuzzleArray = Game.puzzleArray;
 		}
 		catch (EOFException eofe)
 		{

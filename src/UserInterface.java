@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -236,7 +237,7 @@ public class UserInterface
             public void actionPerformed(ActionEvent e)
             {
             	LoadGame.load();
-            	Game.getInstance().run();
+            	//Game.getInstance().run();
             	System.out.println(Game.getInstance().currentRoomID);
             }
             
@@ -541,6 +542,52 @@ public class UserInterface
 			userSubmitButton.setEnabled(false);
 			userInputArea.setEnabled(false);
 		}
+	}
+	
+	public static void resetInterface()
+	{
+		quantityValue1 = 0;
+		quantityValue2 = 0;
+		quantityValue3 = 0;
+		quantityValue4 = 0;
+		
+		
+		ArrayList<Item> inventory = Game.getInstance().currentPlayer.getInventory();
+		
+		for (Item i: inventory)
+		{
+			if (i instanceof Weapon)
+			{
+				if (i.getDescription().equalsIgnoreCase("Pistol"))
+				{
+					quantityValue1 = Game.getInstance().currentPlayer.getPistol().getAmmo();
+				}
+				
+				if (i.getDescription().equalsIgnoreCase("Stun Gun"))
+				{
+					quantityValue2 = Game.getInstance().currentPlayer.getStun().getAmmo();
+				}
+			}
+			
+			if (i instanceof HealthPack)
+			{
+				quantityValue3++;
+			}
+			
+			if (i instanceof ScubaGear)
+			{
+				quantityValue4++;
+			}
+		}
+		
+		quantityLabel1.setText("QTY.   " + quantityValue1);
+		quantityLabel2.setText("QTY.   " + quantityValue2);
+		quantityLabel3.setText("QTY.   " + quantityValue3);
+		quantityLabel4.setText("QTY.   " + quantityValue4);
+		
+		int currentPlayerHealth = Game.getInstance().currentPlayer.getHealth();
+		setHealthPic(currentPlayerHealth/10);
+		UserInterface.healthLabel.setText("HEALTH: " + currentPlayerHealth + "%");
 	}
 	
 	

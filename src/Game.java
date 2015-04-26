@@ -67,7 +67,7 @@ public class Game
 	**/
 	public void run()
 	{
-		
+		UserInterface.resetInterface();
 		String firstGameString = "You wake up in a dark room.  There are three doors in front of you and nowhere else to go.  "
 				+ '\n' + "Enter a number 1, 2, or 3 to choose a door.";
 		UserInterface.setGameTextArea(firstGameString);
@@ -149,6 +149,7 @@ public class Game
 			int nextRoom = UserInterface.promptUserForRoom(); //the user selects the nextRoom (will be 0, 1, or 2)
 			nextRoom = minimumRoomNumForLevel + nextRoom; //adds the user selection to the minimum room number for the next level to determine the next room.
 			Game.getInstance().currentRoomID = nextRoom; //update the currentRoomID
+			System.out.println("Current Room ID is " + Game.getInstance().currentRoomID);
 			
 			//Display new room's description
 			UserInterface.setGameTextArea(roomArray[nextRoom].getRoomDescription());
@@ -205,6 +206,12 @@ public class Game
 			instance = new Game(roomArray, monsterArray, puzzleArray);
 		}
 		return instance;
+	}
+	
+	public static void setInstance(Game g)
+	{
+		instance = g;
+		
 	}
 	
 	public static int getUniqueItemID()

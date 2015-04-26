@@ -124,9 +124,9 @@ public class CreateGame
 	public static void generateItems()
 	{
 		//initialize the item types into an array for retrieval
-		itemTypeArray[0] = new AmmoPack("Pistol Ammo", "Pistol", 1,10);
-		itemTypeArray[1] = new AmmoPack("Stun Ammo","Stun", 2,5);
-		itemTypeArray[2] = new HealthPack("Health Pak", 3, 100);
+		itemTypeArray[0] = new AmmoPack("Pistol Ammo", "Pistol", 1,5);
+		itemTypeArray[1] = new AmmoPack("Stun Ammo","Stun", 2,3);
+		itemTypeArray[2] = new HealthPack("Health Pak", 3, 60);
 		itemTypeArray[3] = new ScubaGear("Scuba Part", 4);
 		
 	}
@@ -289,6 +289,22 @@ public class CreateGame
 
     }
 	
+	public static void resetVariables()
+	{
+		levelRemaining = 2;
+		levelCount = 0;
+		currentNumberOfMonsters = 0;
+		currentNumberOfPuzzles = 0;
+		
+		monsterRoomSet.clear();
+		puzzleRoomSet.clear();
+		itemRoomSet.clear();
+		scubaRoomSet.clear();
+		otherItemRoomSet.clear();
+		descriptionList.clear();
+		
+	}
+	
 	
 	/**
 	Method: main()
@@ -302,6 +318,7 @@ public class CreateGame
 	**/
 	public static void main(String Args[])
 	{
+		resetVariables();
 		populateLists();
 		generateMonsters();
 		generatePuzzles();
@@ -317,17 +334,6 @@ public class CreateGame
 		Player p = new Player(100);
 		Game.getInstance().currentPlayer = p;
 		
-		//add 10 pistol ammo
-		for(int i = 0; i < 10; i++)
-		{
-			p.addToInventory(itemTypeArray[0]);
-		}
-		
-		//add 5 stun ammo
-		for(int i = 0; i < 5; i++)
-		{
-			p.addToInventory(itemTypeArray[1]);
-		}
 		
 		//add one health pak
 		p.addToInventory(itemTypeArray[2]);
@@ -339,6 +345,19 @@ public class CreateGame
 		p.addToInventory(pistolWeapon);
 		p.addToInventory(stunWeapon);
 		p.addToInventory(shield);
+		
+		//add 3 pistol ammo packs
+		for(int i = 0; i < 3; i++)
+		{
+			p.addToInventory(itemTypeArray[0]);
+		}
+		
+		//add 2 stun ammo packs
+		for(int i = 0; i < 2; i++)
+		{
+			p.addToInventory(itemTypeArray[1]);
+		}
+
 		
 		System.out.println(p.getInventory());
 		System.out.println(p.getInventory().size());
