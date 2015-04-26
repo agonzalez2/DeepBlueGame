@@ -63,8 +63,10 @@ public class SaveGame
 			output = new ObjectOutputStream(new FileOutputStream(libraryFile));
 			Game game = Game.getInstance();
 			output.writeObject(game.currentPlayer);
-			output.writeObject(game.scubaPartCount);
-			output.writeObject(game.currentRoomID);
+			output.writeInt(Game.scubaPartCount);
+			System.out.println(Game.scubaPartCount);
+			output.writeInt(game.currentRoomID);
+			System.out.println(game.currentRoomID);
 		}
 		catch (FileNotFoundException fnfe)
 		{

@@ -147,6 +147,7 @@ public class Puzzle implements Serializable
 		if (isSolved)
 		{
 			Game.getInstance().currentPlayer.addToInventory(prizeItem);
+			if (prizeItem instanceof ScubaGear) UserInterface.setGameTextArea(prizeItem.use());
 			return prizeItem;
 		}
 		else return null;
