@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -133,7 +134,8 @@ public class UserInterface
 		
 		
 		//SET ICONS
-		healthPic.setIcon(new ImageIcon("health10.jpg"));
+		URL url = UserInterface.class.getResource("/health10.jpg");
+		healthPic.setIcon(new ImageIcon(url));
 
 		//CREATE and SET BORDERS
 		Border titleBorder = (BorderFactory.createEmptyBorder(0,25,25,25));
@@ -349,16 +351,20 @@ public class UserInterface
 			
 			for(int i = 0; i < inventoryArray.length; i++)
 			{
-				String inventoryNum = "inventory" + (i) + ".jpg";
-				ImageIcon tempInventory = new ImageIcon(ImageIO.read(new File(inventoryNum)));
+				URL url = UserInterface.class.getResource("/inventory" + i + ".jpg");
+				//String inventoryNum = "/inventory" + (i) + ".jpg";
+				//ImageIcon tempInventory = new ImageIcon(ImageIO.read(new File(inventoryNum)));
+				ImageIcon tempInventory = new ImageIcon(ImageIO.read(url));
 				inventoryArray[i] = tempInventory;
 				
 			}
 			
 			for(int i = 0; i < healthArray.length; i++)
 			{
-				String healthNum = "health" + (i) + ".jpg";
-				ImageIcon tempHealth = new ImageIcon(ImageIO.read(new File(healthNum)));
+				URL url = UserInterface.class.getResource("/health" + i + ".jpg");
+				//String healthNum = "/health" + (i) + ".jpg";
+				//ImageIcon tempHealth = new ImageIcon(ImageIO.read(new File(healthNum)));
+				ImageIcon tempHealth = new ImageIcon(ImageIO.read(url));
 				healthArray[i] = tempHealth;
 				
 			}		
