@@ -209,7 +209,7 @@ public class Room implements Serializable
 			objectString = objectString + objectsInRoom.get(i).getDescription() + ", ";
 		}
 		
-		String roomString = RoomDescription + ",  Monster ID: " + monsterInRoomID
+		String roomString = "Monster ID: " + monsterInRoomID
 				+ ",  Puzzle: " + puzzleInRoomID + " Items: " + objectString;
 		
 		return roomString;

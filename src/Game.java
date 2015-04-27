@@ -158,7 +158,9 @@ public class Game
 			{
 				int monsterInRoom = Game.roomArray[Game.getInstance().currentRoomID].getMonsterInRoom();
 				String monstName = Game.monsterArray[monsterInRoom].getName();
-				UserInterface.setGameTextArea("MONSTER IN ROOM! " + monstName);
+				String monstDesc = Game.monsterArray[monsterInRoom].getDesc();
+				UserInterface.setGameTextArea("MONSTER IN ROOM! " + monstName + " - " + monstDesc + " - "
+						+ " is in the room! Defeat the monster!");
 			}
 		}
 		
