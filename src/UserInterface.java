@@ -173,8 +173,6 @@ public class UserInterface
 		southPanel.add(useHealthPackButton);
 		southPanel.add(new JLabel());
 		southPanel.add(new JLabel());
-		southPanel.add(new JScrollPane(userInputArea));
-		southPanel.add(userSubmitButton);
 		//WEST PANEL
 		westPanel.add(inventoryPic1);
 		westPanel.add(quantityLabel1);
