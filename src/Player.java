@@ -165,12 +165,16 @@ public class Player implements Serializable
 		{
 			if(itemToAdd.getDescription().equalsIgnoreCase("pistol ammo"))
 			{
-				UserInterface.updateInventory(1, 1);
+				
+				Game.getInstance().currentPlayer.getPistol().reload((AmmoPack)itemToAdd);
+				System.out.println("Pistol Reloaded");
 			}
 			
 			else if (itemToAdd.getDescription().equalsIgnoreCase("stun ammo"))
 			{
-				UserInterface.updateInventory(2, 1);
+			
+				Game.getInstance().currentPlayer.getStun().reload((AmmoPack) itemToAdd);
+				System.out.println("Stun Reloaded");
 			}
 		}
 		if(itemToAdd instanceof HealthPack)

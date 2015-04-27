@@ -118,6 +118,8 @@ public class UserInterface
 		//SET EDITABLE
 		gameTextArea.setEditable(false);
 		gameTextArea.setSize(400,400);
+		gameTextArea.setLineWrap(true);
+		gameTextArea.setWrapStyleWord(true);
 
 		
 		//SET FONTS
@@ -283,9 +285,21 @@ public class UserInterface
             {
                 JFrame aboutFrame = new JFrame("Game Documentation - Help");
                 JTextArea aboutArea = new JTextArea("HOW TO PLAY THE GAME: " +'\n'
-                		+ "HELP DOCUMENTATION HERE");
+                		+ '\n' + "Navigating Rooms:" + '\n' + '\n' +
+                		"To navigate between rooms, select from door 1, 2, or 3 when prompted."
+                		+ "Then, click the investigate button to search the room for puzzles and items!"
+                		+'\n' + '\n' + "Fighting Monsters:" + '\n' + '\n' +
+                		"If a monster is in a room, you will enter a MonsterBattle where you can choose from"
+                		+" several actions to take against the monster.  Depending on the monster's attack strategy, "
+                		+ "you may have to experiment with the actions you choose and in what order you choose them."
+                		+ '\n' + '\n' + "Solving Puzzles: " +'\n' + '\n'
+                		+ "If a room contains a puzzle, you will be prompted for an action to take to solve the puzzle"
+                		+ " when you come across one.");
+                
                 aboutArea.setEditable(false);
-                aboutFrame.setSize(450, 300);
+                aboutArea.setLineWrap(true);
+                aboutArea.setWrapStyleWord(true);
+                aboutFrame.setSize(450, 380);
                 aboutFrame.setLocationRelativeTo(null);
                 aboutFrame.add(aboutArea);
                 aboutFrame.setVisible(true);

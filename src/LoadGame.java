@@ -81,10 +81,6 @@ public class LoadGame
 			System.out.println(game.currentPlayer.getInventory().size());
 			
 			System.out.println("Loaded Current Room ID: " + game.currentRoomID);
-			//ADDED ANDREW - not sure
-			//Game.setInstance(game);
-			//game.run();
-			
 		}
 		catch (EOFException eofe)
 		{

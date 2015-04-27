@@ -233,10 +233,112 @@ public class CreateGame
 	{
 		
 		//add generic room descriptions to descriptionList
+		//1
+		descriptionList.add("You open the door to find a flooded room.  Water rushes towards you"
+				+ ", but you manage to keep your footing.  Flashing, red emergency lights illuminate the room.");
+		//2
+		descriptionList.add("The door slowly opens, and you enter a small engine room with noisy mechanical components and gadgets working"
+				+" all around.  You see what looks like more doors across the room...");
+		//3
+		descriptionList.add("You enter one of the base's dining halls, food and trash is thrown everywhere and tables are flipped over"
+				+ " and broken.  The overhead lights flicker, and a distant drone can be heard... ");
+		//4
+		descriptionList.add("The door swings open, revealing some of the sleeping quarters for the ship's workers.  There is no sign of "
+				+ "anyone.  Everyone's belongings are still in place, so it looks like everyone left in a hurry.  The floors are wet and water"
+				+ " is dripping from the ceiling.  You should probably get out of here...");
+		//5
+		descriptionList.add("The door swings open, revealing an eerie, abandoned auditorium.  There is a large window in the room showing"
+				+ " a chilling view of the ocean depths.  You notice what looks like a way out of the room.");
+		//6
+		descriptionList.add("The door is stuck.  You bust down the door to find total darkness.  The only light source seems to be"
+				+ " coming from across the room.  The room smells awful. You need to find a way out of here, quick.");
+		//7
+		descriptionList.add("You kick the door in.  The noise echoes through a huge room you have just entered containing"
+				+ " prison-like cells.  I wonder what was kept inside these cells?");
+		//8
+		descriptionList.add("The door blows open from water pressure building inside the room.  Water races towards you, but you manage to "
+				+ "climb up some stairs inside the room.  You stumble upon many computers in a large room with many cubicles.  "
+				+ "Be careful, there are many places to hide in here...");
+		//9
+		descriptionList.add("You enter the room and are astonished to see a glass floor and huge glass window in front of you"
+				+ " presenting a view of the deep ocean and the many fish surrounding the Underwater Base.  You notice it looks as though it is cracked,"
+				+ " and you're going to have to walk on the glass floor to get to the exit.  Be careful.");
+		//10
+		descriptionList.add("When you walk into the room you see as though it looks like a Central Control room.  There were high-tech gadgets"
+				+ " everywhere and many lighted buttons.  You have no idea what any of this does.  You can't see a way out. "
+				+ " You'll have to look around for an exit.");
+		//11
+		descriptionList.add("You have to push the door open.  The room is a mess with many pieces of furniture blocking the entrance."
+				+ " You climb over the bookcases and flipped over desks.  What could have done this?  You can't see well because the lights are"
+				+ " broken out." );
+		//12
+		descriptionList.add("You enter the submarine launch bay.  Remnant submarines are still here but it looks as though the bay door is "
+				+ "pinned shut.  You'll have to escape another way.  You can hear distant shrieks and are starting to panic..." );
+		//13
+		descriptionList.add("You enter the base library.  Bookshelves are flipped over, pages are torn from books and thrown throughout the room.  "
+				+ " Again, you see more doorways across the room.  Where is the final exit!?");
+		//14
+		descriptionList.add("The door opens.  You slowly enter what seems to be a dressing room.  There are old, rusty showers leaking and"
+				+ " bathroom stalls at the side of the room.  It smells badly.  You think you might hear noises from the stalls...");
+		//15
+		descriptionList.add("You press your palm on the door sensor.  A large metal door swings open.  Looks as though you found the Armory, but there"
+				+ " are no leftover items to salvage.  It seems that the place was ransacked.  You continue walking through the long, winding, hall-like"
+				+ " armory, hoping to reach an exit.");
+		//16
+		descriptionList.add("You turn the door handle and swing the door open.  This room looks like the base entertainment room.  There are couches and "
+				+ "tables all around the room, and the TV is still on from the last time the place was occupied.");
+		//17
+		descriptionList.add("You enter the security room where you see many screens showing security camera footage from around the boat.  Many"
+				+ " camera's look as though they have been broken.  You think you see a dark figure move on one of the screens...");
+		//18
+		descriptionList.add("You enter and find a large industrial kitchen.  There are grills, friers, and cooking tools throughout."
+				+ "  You travel through the maze of kitchen machinery to find a way out.  You notice the grills are still on and hot.  No"
+				+ " one bothered to turn them off...");
+		//19
+		descriptionList.add("You enter an enormous, formal dining room with large crystal chandelliers hanging above.  "
+				+ "It is eerily empty and quiet.");
+		//20
+		descriptionList.add("You bust in the door.  You find an experimental lab filled with fragile beakers and cylinders.  "
+				+ "You wonder what kind of experiments went on in here.");
+		//21
+		descriptionList.add("The door opens.  You think you may have found one of the main lobby areas.  There are large, exotic spiral stairways and red carpet."
+				+ "  The downstairs area seems pretty flooded.  You decide look around upstairs...");
+		//22
+		descriptionList.add("You struggle to find a source of light when the door opens.  After a while your eyes adjust and you can make out "
+				+ "a dim source of light coming from around a far corner of the room.  You decide to check it out...");
+		//23
+		descriptionList.add("You enter the barracks designated for the base's soldiers and military personnel.  "
+				+ "This area seems untouched.  Everything is in place and in tact.  You look around for items...");
+		//24
+		descriptionList.add("You enter an area with a few large elevators... they seem to be malfunctioning and the control panel is fried. "
+				+ "Looks like they may have been used to transport some kind of large vehicles.");
+		//25
+		descriptionList.add("The door opens and a hangar with a variety of advanced underwater vehicles appears.  Still no sign of any life.  "
+				+ "You do not know how to function the vehicles so you continue searching for a way out...");
+		//26
+		descriptionList.add("The door opens to reveal a very long, dark, narrow hall.  You hear noises at the end of the hall, but you can't"
+				+ "identify the sound.  Keep going.  You think you may be getting close.");
+		//27
+		descriptionList.add("The base computer lab is revealed when the door opens.  Hundreds of computers, printers, and other devices"
+				+ " make up the room for the base residents to use.  ");
+		//28
+		descriptionList.add("The door swings open and you recognize that it is the gym area of the base.  Basketball and tennis courts line "
+				+ "one side of the room, while the other contains gym excercise equipment.  It is quite messy now, with trash littered over the floor, "
+				+ "and machinery broken.  You think the diving chambers are in one of the adjacent rooms and there might be a way out!");
+		//29
+		descriptionList.add("You arrive at a hospital / medical area where the injured are treated.  Strangely, no one is here. "
+				+ "Everywhere you go, it is completely abandoned and silent.  Except for some loud noises you hear occasionally... You see a sign "
+				+ "pointing towards the diving chambers!  You think that may be the way out.");
+		//30
+		descriptionList.add("You found the diving chambers!  Here there is a chamber that you can enter that will allow you to escape the base"
+				+ " and swim to the surface.  The room doesn't look like it has much ScubaGear remaining.  Hope you brought your own!");
+		
+		/**
 		for(int i = 0; i < 30; i++)
 		{
 			descriptionList.add("Room Description: " + i);
 		}
+		**/
 		
 		
 		//determine rooms to put monsters, rooms to put puzzles, rooms to put scubagear, and rooms to put some items
