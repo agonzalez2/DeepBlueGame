@@ -89,7 +89,7 @@ public class CreateGame
 	{
 
 		String desc = "The room contains a combination lock, but it is odd, there are no dials to it.";
-		Action[] actions = {Action.hit,Action.relax,Action.attack_pistol};
+		Action[] actions = {Action.hit,Action.relax,Action.shoot};
 		String r1 = "You've hit the lock, but it won't buldge. Your temper is going up.";
 		String r2 = "Now that you relax, you get an idea to force the lock open...";
 		String r3 = "That worked! The lock opens.";
@@ -97,23 +97,103 @@ public class CreateGame
 		String r5 = "Your not thinking clearly";
 		String r6 = "Try breaking the lock";
 		String[][] results = new String[2][3];
-		results[0][0] = r1;
-		results[0][1] = r2;
-		results[0][2] = r3;
-		results[1][0] = r4;
-		results[1][1] = r5;
-		results[1][2] = r6;
+		results[0][0] = new String(r1);
+		results[0][1] = new String(r2);
+		results[0][2] = new String(r3);
+		results[1][0] = new String(r4);
+		results[1][1] = new String(r5);
+		results[1][2] = new String(r6);
+
+		tempPuzzleArray[0] = new Puzzle(new String(desc), actions, 1, results, new ScubaGear("Snorkle", 0));
+		tempPuzzleArray[6] = new Puzzle(new String(desc), actions, 7, results, new ScubaGear("Goggles", 6));
 		
-		tempPuzzleArray[0] = new Puzzle(desc, actions, 1, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[1] = new Puzzle(desc, actions, 2, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[2] = new Puzzle(desc, actions, 3, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[3] = new Puzzle(desc, actions, 4, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[4] = new Puzzle(desc, actions, 5, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[5] = new Puzzle(desc, actions, 6, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[6] = new Puzzle(desc, actions, 7, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[7] = new Puzzle(desc, actions, 8, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[8] = new Puzzle(desc, actions, 9, results, new ScubaGear("Snorkle", 0));
-		tempPuzzleArray[9] = new Puzzle(desc, actions, 10, results, new ScubaGear("Snorkle", 0));
+		desc = "You see a command table in the corner of the room, "
+				+ "there is a warning message about the pressure of the ship, its increasing..."
+				+ "\nWhat do you do to release the pressure?";
+		Action[] actions2 = {Action.search_manual,Action.find_key,Action.turn_release};
+		r1 = "The manual says there is a release valve, but it requires a key";
+		r2 = "You found the key in one of the drawers, and the release valve is in the command table";
+		r3 = "Wow, that was close, the ship's pressure is stabilizing";
+		r4 = "That didn't help. There should be some instructions to this.";
+		r5 = "Hmm, maybe you should try searching for the key";
+		r6 = "The release seems to be loose now...";
+		String[][] results2 = new String[2][3];
+		results2[0][0] = new String(r1);
+		results2[0][1] = new String(r2);
+		results2[0][2] = new String(r3);
+		results2[1][0] = new String(r4);
+		results2[1][1] = new String(r5);
+		results2[1][2] = new String(r6);
+		
+		tempPuzzleArray[1] = new Puzzle(new String(desc), actions2, 2, results2, new ScubaGear("Oxygen tank", 1));
+		tempPuzzleArray[8] = new Puzzle(new String(desc), actions2, 2, results2, new HealthPack("Health Pak",99,60));
+		
+		desc = "There are some test tubes in a table in this room. "
+				+ "some are filled mid-way, and they are bubling..."
+				+ "\nTry to neutralize the chemicals before this explodes!"
+				+ "\nStart with the red one... the clear chemicals seem to be stable";
+		Action[] actions3 = {Action.pour_blue,Action.pour_yellow,Action.pour_pink};
+		r1 = "That turned it purple, but its slowing down";
+		r2 = "Somehow that worked, its going back to a clear pink";
+		r3 = "Who would have tought pink neautralized it. That was close.";
+		r4 = "That didn't help. The chemical is heating up";
+		r5 = "Careful, lets add clearer colors to the mix";
+		r6 = "You're close, think clearly now."
+				+ "\nThere is another pink chemical, and that seems stable, hmmm...";
+		String[][] results3 = new String[2][3];
+		results3[0][0] = new String(r1);
+		results3[0][1] = new String(r2);
+		results3[0][2] = new String(r3);
+		results3[1][0] = new String(r4);
+		results3[1][1] = new String(r5);
+		results3[1][2] = new String(r6);
+		
+		tempPuzzleArray[2] = new Puzzle(new String(desc), actions3, 3, results3, new ScubaGear("Mask", 2));
+		tempPuzzleArray[9] = new Puzzle(new String(desc), actions3, 10, results3, new AmmoPack("Stun Ammo","Stun Ammo",15,5));
+		
+		desc = "There are some test tubes in a table in this room. "
+				+ "some are filled mid-way, and they are bubling..."
+				+ "\nTry to neutralize the chemicals before this explodes!"
+				+ "\nStart with the clear one... the dark chemicals seem to be stable";
+		Action[] actions4 = {Action.pour_yellow,Action.pour_red,Action.pour_black};
+		r1 = "That turned it yellow green, its slowing down";
+		r2 = "Yes, adding the dark colors definitly works";
+		r3 = "You saved the ship from sinking further.";
+		r4 = "That didn't help. The chemical is heating up";
+		r6 = "Lets try a dark color, it might work";
+		r5 = "You're close, think clearly now.";
+		String[][] results4 = new String[2][3];
+		results4[0][0] = new String(r1);
+		results4[0][1] = new String(r2);
+		results4[0][2] = new String(r3);
+		results4[1][0] = new String(r4);
+		results4[1][1] = new String(r5);
+		results4[1][2] = new String(r6);
+		
+		
+		tempPuzzleArray[3] = new Puzzle(new String(desc), actions4, 4, results4, new ScubaGear("Upper Bod Suit", 3));
+		tempPuzzleArray[4] = new Puzzle(new String(desc), actions4, 5, results4, new ScubaGear("Lower Body Suit", 4));
+		
+		desc = "The room contains a chest box closed by combination lock, there is one single dial"
+				+ "\nIt moves up, down, left, rigth. What could be the combination?";
+		Action[] actions5 = {Action.move_up,Action.move_right,Action.move_left};
+		r1 = "Good, moving up worked. Hmm, the box contains lots of arrows pointing right...";
+		r2 = "The lock clicks, you're getting close.\nThe last arrow is different, but it's blured";
+		r3 = "That worked! The lock opens.";
+		r4 = "That doesn't work, try another direction";
+		r5 = "Your not thinking clearly";
+		r6 = "Not that, try another direction";
+		String[][] results5 = new String[2][3];
+		results5[0][0] = new String(r1);
+		results5[0][1] = new String(r2);
+		results5[0][2] = new String(r3);
+		results5[1][0] = new String(r4);
+		results5[1][1] = new String(r5);
+		results5[1][2] = new String(r6);
+		
+		tempPuzzleArray[5] = new Puzzle(new String(desc), actions5, 6, results5, new ScubaGear("Communicator", 5));
+		tempPuzzleArray[6] = new Puzzle(new String(desc), actions5, 7, results5, new AmmoPack("Stun Ammo","Stun Ammo",23,5));
+		tempPuzzleArray[7] = new Puzzle(new String(desc), actions5, 8, results5, new AmmoPack("Pistol Ammo","Pistol Ammo",22,7));
 
 	}
 	
@@ -130,7 +210,7 @@ public class CreateGame
 		//initialize the item types into an array for retrieval
 		itemTypeArray[0] = new AmmoPack("Pistol Ammo", "Pistol", 1,5);
 		itemTypeArray[1] = new AmmoPack("Stun Ammo","Stun", 2,3);
-		itemTypeArray[2] = new HealthPack("Health Pak", 3, 60);
+		itemTypeArray[2] = new HealthPack("Health Pak", 3, 50);
 		itemTypeArray[3] = new ScubaGear("Scuba Part", 4);
 		
 	}

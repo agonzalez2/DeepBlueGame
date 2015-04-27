@@ -228,15 +228,23 @@ public class Puzzle implements Serializable
 				}
 				else 
 				{
-					switch ((temp < 7)? temp : r.nextInt(7))
+					switch (r.nextInt(16))
 					{
 					case 0: tempAction = Action.eat; break;
 					case 1: tempAction = Action.jump; break;
-					case 2: tempAction = Action.hit; break;
+					case 2: tempAction = Action.pour_black; break;
 					case 3: tempAction = Action.toss; break;
 					case 4: tempAction = Action.drop; break;
 					case 5: tempAction = Action.relax; break;
 					case 6: tempAction = Action.yell; break;
+					case 7: tempAction = Action.find_key; break;
+					case 8: tempAction = Action.move_down; break;
+					case 9: tempAction = Action.shoot; break;
+					case 10: tempAction = Action.search_manual; break;
+					case 11: tempAction = Action.pour_pink; break;
+					case 12: tempAction = Action.move_left; break;
+					case 13: tempAction = Action.use; break;
+					case 14: tempAction = Action.leave; break;
 					default: tempAction = Action.sit; break;
 					}
 				}

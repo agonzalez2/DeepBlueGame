@@ -23,6 +23,8 @@ public enum Action
 	//Player and monster's defense command
 	defend,
 	//puzzle commands
-	jump, eat, hit, toss, drop, relax, yell, sit;	
+	jump, eat, hit, toss, drop, relax, yell, sit,
+	turn_release, shoot, search_manual, find_key, pour_red, pour_blue, pour_black, pour_pink, pour_yellow,
+	move_up, move_left, move_right, move_down,leave;	
 	
 }

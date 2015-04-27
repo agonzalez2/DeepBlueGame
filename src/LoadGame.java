@@ -11,7 +11,7 @@ public class LoadGame
 	
 	private static Room[] tempRoomArray = new Room[29];
 	private static Puzzle[] tempPuzzleArray = new Puzzle[9];
-	private static Monster[] tempMonsterArray = new Monster[9];
+	private static Monster[] tempMonsterArray = new Monster[15];
 	public static void load()
 	{
 		loadRooms(new File("room.ser"));
