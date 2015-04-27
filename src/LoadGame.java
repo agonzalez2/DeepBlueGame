@@ -19,9 +19,46 @@ public class LoadGame
 		loadPuzzles(new File("puzzle.ser"));
 		loadGameInstance(new File("game.ser"));
 		UserInterface.resetInterface();
-		UserInterface.gameButtonsOn(true);
+		//updateGUI();
 	}
 	
+	public static void updateGUI()
+	{
+		Player p = Game.getInstance().currentPlayer;
+		int stun = 0;
+		int pistol = 0;
+		int health = 0;
+		
+		//get count of items in inventory
+		for(Item i : p.getInventory())
+		{
+			if (i instanceof AmmoPack)
+			{
+				AmmoPack a = (AmmoPack)i;
+				if (a.getType().equalsIgnoreCase("pistol ammo"))
+				{
+					pistol++;
+				}
+				if (a.getType().equalsIgnoreCase("stun ammo"))
+				{
+					stun++;
+				}
+			}
+			if (i instanceof HealthPack)
+			{
+				health++;
+			}
+		}
+		
+		//update values in GUI for inventory
+		UserInterface.updateInventory(1, pistol);
+		UserInterface.updateInventory(2, stun);
+		UserInterface.updateInventory(3, health);
+		UserInterface.updateInventory(4, Game.scubaPartCount);
+		
+		//update player health in GUI
+		Game.getInstance().currentPlayer.updateHealth(0);
+	}
 	
 	public static void loadGameInstance(File inputFile)
 	{
