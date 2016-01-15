@@ -56,7 +56,6 @@ public class CreateGame
 		
 		//*** Basic Action Sequence Array used during Monster Construction ***
 		Action[] typeA = {Action.attack,Action.defend,Action.attack,Action.defend};
-		Action[] typeB = {Action.defend,Action.attack,Action.defend,Action.attack};
 		Action[] typeC = {Action.attack,Action.attack,Action.attack,Action.attack};		
 		
 		//Monster objects are created and added to tempMonsterArray data structure
